@@ -1,0 +1,61 @@
+<?php
+    include_once("../config/all.php");
+    $PAGE = $_GET['page'] ?? 'index';
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ตานีแก้จน</title>
+    <meta name="description" content="ตานีแก้จน">
+    <meta name="keywords" content="ตานีแก้จน" />
+    <link rel="icon" href="../images/favicon.png" />
+    <!-- jquery -->
+    <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
+    <!-- bootstrap -->
+    <link href="../assets/bootstrap-5.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/bootstrap-5.3.7/js/bootstrap.bundle.min.js"></script>
+    <!-- font-awesome -->
+    <link href="../assets/fontawesome-free-7.0.0/css/all.min.css" rel="stylesheet">
+    <!-- sweetalert2 -->
+    <script src="../assets/sweetalert2/sweetalert.min.js"></script>
+    <!-- moment -->
+    <script src="../assets/moment/moment.js"></script>
+    <script src="../assets/moment/locale/th.js"></script>
+    <!-- jBox -->
+    <link href="../assets/jBox-1.3.3/jBox.all.min.css" rel="stylesheet">
+    <script src="../assets/jBox-1.3.3/jBox.all.min.js"></script>
+    <!-- autocomplete -->
+    <link href="../assets/jquery-autocomplete/jquery.auto-complete.css" rel="stylesheet" />
+    <script src="../assets/jquery-autocomplete/jquery.auto-complete.min.js"></script>
+    <!-- cropperjs -->
+    <link href="../assets/cropperjs/cropper.min.css" rel="stylesheet" />
+    <script src="../assets/cropperjs/cropper.min.js"></script>
+    <!-- liff -->
+    <script src="https://static.line-scdn.net/liff/edge/2.1/liff.js"></script>
+    <!-- func -->
+    <script src="../assets/func.js?version=<?php echo $VERSION; ?>"></script>
+    <!-- index -->
+    <link href="assets/index.css?version=<?php echo $VERSION; ?>" rel="stylesheet" />
+    <script src="assets/index.js?version=<?php echo $VERSION; ?>"></script>
+    <?php
+        if( $MODE=="production" ) {
+            echo '<script src="assets/myliff-prod.js?version='.$VERSION.'"></script>';
+        } else {
+            echo '<script src="assets/myliff-dev.js?version='.$VERSION.'"></script>';
+        }
+    ?>
+</head>
+
+<body>
+    <input type="hidden" id="PAGE" value="profile">
+    <div id="main" style="display:none;" class="container-fluid pt-3 pb-3"></div>
+    <div id="loading"
+        style="display:none;z-index:7700;position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);">
+        <div class="spinner-border text-primary"></div>
+    </div>
+</body>
+
+</html>
