@@ -31,4 +31,5 @@
             "status"=>"no",
             "message"=>"ไม่พบข้อมูล"
         ));
+        unset($_SESSION["customer"]["data"]);
     }

@@ -4,14 +4,13 @@
     </h4>
     <form id="formdata">
         <div class="mb-3">
-            <label for="phone" class="form-label">เบอร์มือถือ</label>
-            <input type="tel" class="form-control form-control-lg" id="phone" name="phone" autocomplete="phone"
-                required>
+            <label for="phone" class="form-label">เบอร์มือถือ <span class="text-danger">* ระบุ 10 หลัก
+                    ไม่มีขีด</span></label>
+            <input type="tel" class="form-control form-control-lg" id="phone" name="phone" maxlength="10" required>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">รหัสผ่าน</label>
-            <input type="password" class="form-control form-control-lg" id="password" name="password"
-                autocomplete="password" required>
+            <label for="password" class="form-label">รหัสผ่าน <span class="text-danger">*</span></label>
+            <input type="password" class="form-control form-control-lg" id="password" name="password" required>
         </div>
         <div class="row mb-3 mt-4">
             <div class="col pe-2">
