@@ -4,6 +4,10 @@
     $customer_sname = trim($_POST['customer_sname'] ?? "");
     $phone = trim($_POST['phone'] ?? "");
     $address = trim($_POST['address'] ?? "");
+    $tambol_id = trim($_POST['tambol_id'] ?? "");
+    $amphur_id = trim($_POST['amphur_id'] ?? "");
+    $province_id = trim($_POST['province_id'] ?? "");
+    $zipcode = trim($_POST['zipcode'] ?? "");
     $occupation_id = trim($_POST['occupation_id'] ?? "");
     $userId = @$_SESSION["customer"]["user_line"]["userId"];
     $displayName = @$_SESSION["customer"]["user_line"]["displayName"];
@@ -12,6 +16,10 @@
         $customer_sname == "" ||
         $phone == "" ||
         $address == "" ||
+        $tambol_id == "" ||
+        $amphur_id == "" ||
+        $province_id == "" ||
+        $zipcode == "" ||
         $occupation_id == "" ||
         strlen($phone) != 10
     ) {
@@ -45,6 +53,10 @@
         "customer_sname"=>$customer_sname,
         "phone"=>$phone,
         "address"=>$address,
+        "tambol_id"=>$tambol_id,
+        "amphur_id"=>$amphur_id,
+        "province_id"=>$province_id,
+        "zipcode"=>$zipcode,
         "occupation_id"=>$occupation_id,
         "edit_by"=>$customer_name." ".$customer_sname,
         "edit_when"=>date("Y-m-d H:i:s")

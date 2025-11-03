@@ -30,9 +30,26 @@
                 autocomplete="off" required>
         </div>
         <div class="mb-3">
-            <label for="address">ที่อยู่ <span class="text-danger">*</span></label>
-            <textarea class="form-control form-control-lg" id="address" name="address" rows="3" autocomplete="off"
+            <label for="address">ที่อยู่
+                <span class="text-danger">*
+                    <small>กรอกบ้านเลขที่, หมู่ที่, ถนน, ซอย, อาคาร (ถ้ามี)</small>
+                </span>
+            </label>
+            <textarea class="form-control form-control-lg" id="address" name="address" rows="2" autocomplete="off"
                 required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="th_address">ตำบล/อำเภอ/จังหวัด <span class="text-danger">*</span></label>
+            <textarea class="form-control form-control-lg" id="th_address" autocomplete="off" rows="2"
+                readonly></textarea>
+            <input type="hidden" name="tambol_id" id="tambol_id">
+            <input type="hidden" name="amphur_id" id="amphur_id">
+            <input type="hidden" name="province_id" id="province_id">
+        </div>
+        <div class="mb-3">
+            <label for="zipcode">รหัสไปรษณีย์ <span class="text-danger">*</span></label>
+            <input type="text" class="form-control form-control-lg" id="zipcode" name="zipcode" autocomplete="off"
+                required>
         </div>
         <div class="mb-3">
             <label for="occupation_id">อาชีพ <span class="text-danger">*</span></label>

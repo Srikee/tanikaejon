@@ -7,3 +7,12 @@
     border-radius: 12px;
     border: 1px solid #ddd;
 }
+
+.list-group-item {
+    padding: 12px 8px;
+}
+
+.jBox-title,
+.jBox-content {
+    padding: 15px 10px !important;
+}

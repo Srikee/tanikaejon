@@ -5,6 +5,10 @@
     $phone = trim($_POST['phone'] ?? "");
     $password = trim($_POST['password'] ?? "");
     $address = trim($_POST['address'] ?? "");
+    $tambol_id = trim($_POST['tambol_id'] ?? "");
+    $amphur_id = trim($_POST['amphur_id'] ?? "");
+    $province_id = trim($_POST['province_id'] ?? "");
+    $zipcode = trim($_POST['zipcode'] ?? "");
     $occupation_id = trim($_POST['occupation_id'] ?? "");
     $userId = @$_SESSION["customer"]["user_line"]["userId"];
     $displayName = @$_SESSION["customer"]["user_line"]["displayName"];
@@ -14,6 +18,10 @@
         $phone == "" ||
         $password == "" ||
         $address == "" ||
+        $tambol_id == "" ||
+        $amphur_id == "" ||
+        $province_id == "" ||
+        $zipcode == "" ||
         $occupation_id == "" ||
         strlen($phone) != 10
     ) {
@@ -40,6 +48,10 @@
         "phone"=>$phone,
         "password"=>Func::Encrypt($password),
         "address"=>$address,
+        "tambol_id"=>$tambol_id,
+        "amphur_id"=>$amphur_id,
+        "province_id"=>$province_id,
+        "zipcode"=>$zipcode,
         "occupation_id"=>$occupation_id,
         "status"=>"1",
         "add_by"=>$customer_name." ".$customer_sname,
