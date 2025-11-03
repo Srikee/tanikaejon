@@ -13,7 +13,6 @@ function Initial(liffId, callback) {
         liff.getProfile().then(profile => {
             var user_line = profile;
             user_line.email = liff.getDecodedIDToken().email;
-            console.log(user_line);
             $.post("api/login.php", {
                 user_line: user_line
             }, function (res) {
@@ -58,7 +57,8 @@ $(function () {
             }
         } else {
             if (customer.status == "1") {
-                p = "profile-pending";
+                if (p == "changepass") { }
+                else p = "profile-pending";
             }
         }
         var href = location.href;

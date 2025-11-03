@@ -41,7 +41,8 @@ $(function () {
             }
         } else {
             if (customer.status == "1") {
-                p = "profile-pending";
+                if (p == "changepass") { }
+                else p = "profile-pending";
             }
         }
         var href = location.href;
