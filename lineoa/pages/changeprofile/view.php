@@ -1,14 +1,29 @@
 <?php
     include_once("../../../config/all.php");
 
-    $pictureUrl = $_SESSION['customer']['user_line']['pictureUrl'];
+    $customer_id = $_SESSION['customer']['data']['customer_id'];
+    $sql = "
+        SELECT 
+            c.*,
+            o.occupation_name,
+            ul.userId,
+            ul.displayName,
+            ul.pictureUrl
+        FROM customer c
+            LEFT JOIN occupation o ON o.occupation_id = c.occupation_id
+            LEFT JOIN user_line ul ON ul.customer_id = c.customer_id
+        WHERE c.customer_id = '".$customer_id."' 
+    ";
+    $customer = $DB->QueryFirst($sql);
+
+    $pictureUrl = $customer["pictureUrl"];
     if( $pictureUrl==null || $pictureUrl=="" ) {
         $pictureUrl = "../images/default-profile.png?v=".$VERSION;
     }
 ?>
 <div class="container-fluid my-5">
     <h4 class="text-center mb-5">
-        แบบฟอร์มลงทะเบียน
+        แก้ไขโปรไฟล์ของฉัน
     </h4>
     <form id="formdata" autocomplete="off">
         <div class="profile-image">
@@ -17,17 +32,17 @@
         <div class="mb-3">
             <label for="customer_name">ชื่อ <span class="text-danger">*</span></label>
             <input type="text" class="form-control form-control-lg" id="customer_name" name="customer_name"
-                autocomplete="off" required>
+                autocomplete="off" value="<?php echo $customer["customer_name"]; ?>" required>
         </div>
         <div class="mb-3">
             <label for="customer_sname">นามสกุล <span class="text-danger">*</span></label>
             <input type="text" class="form-control form-control-lg" id="customer_sname" name="customer_sname"
-                autocomplete="off" required>
+                autocomplete="off" value="<?php echo $customer["customer_sname"]; ?>" required>
         </div>
         <div class="mb-3">
             <label for="address">ที่อยู่ <span class="text-danger">*</span></label>
             <textarea class="form-control form-control-lg" id="address" name="address" rows="3" autocomplete="off"
-                required></textarea>
+                required><?php echo $customer["address"]; ?></textarea>
         </div>
         <div class="mb-3">
             <label for="occupation_id">อาชีพ <span class="text-danger">*</span></label>
@@ -37,7 +52,8 @@
                     $sql = "SELECT * FROM occupation ORDER BY occupation_name ASC";
                     $obj = $DB->QueryObj($sql);
                     foreach ($obj as $row) {
-                        echo '<option value="' . $row['occupation_id'] . '">' . $row['occupation_name'] . '</option>';
+                        $selected = ($row["occupation_id"]==$customer["occupation_id"]) ? "selected" : "";
+                        echo '<option value="' . $row['occupation_id'] . '" '.$selected.'>' . $row['occupation_name'] . '</option>';
                     }
                 ?>
             </select>
@@ -45,22 +61,17 @@
         <div class="mb-3">
             <label for="phone">เบอร์มือถือ <span class="text-danger">* ระบุ 10 หลัก ไม่มีขีด</span></label>
             <input type="tel" class="form-control form-control-lg" id="phone" name="phone" maxlength="10"
-                autocomplete="off" required>
+                autocomplete="off" value="<?php echo $customer["phone"]; ?>" required>
         </div>
-        <div class="mb-3">
-            <label for="password">กำหนดรหัสผ่านเข้าระบบ <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg mb-4" id="password" name="password"
-                autocomplete="off" required>
-        </div>
-        <div class="row">
+        <div class="row mb-3 mt-4">
             <div class="col pe-2">
                 <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
                     <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
                 </button>
             </div>
             <div class="col ps-2">
-                <button type="submit" class="btn btn-success btn-lg btn-block w-100">
-                    <i class="fas fa-sign-in-alt me-1"></i> ลงทะเบียน
+                <button id="btn-submit" type="submit" class="btn btn-success btn-lg w-100">
+                    <i class="fas fa-pen me-1"></i> ยืนยัน
                 </button>
             </div>
         </div>

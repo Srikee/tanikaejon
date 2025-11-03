@@ -57,8 +57,9 @@ $(function () {
             }
         } else {
             if (customer.status == "1") {
-                if (p == "changepass") { }
-                else p = "profile-pending";
+                if ($.inArray(p, ["changepass", "changeprofile"]) == -1) {
+                    p = "profile-pending";
+                }
             }
         }
         var href = location.href;

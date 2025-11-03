@@ -2,6 +2,15 @@ $(function () {
     $("title").html("แบบฟอร์มลงทะเบียน");
     $("#formdata").submit(function (e) {
         e.preventDefault();
+        let phone = $("#phone").val().trim();
+        if (phone == "" || phone.length != 10) {
+            Func.ShowAlert({
+                html: "กรุณาระบุเบอร์มือถือให้ถูกต้อง",
+                type: "error",
+                callback: function () { $("#phone").focus(); }
+            });
+            return;
+        }
         Func.ShowLoading();
         $.ajax({
             type: "POST",
@@ -33,5 +42,9 @@ $(function () {
                 });
             }
         });
+    });
+    $(".profile-image").click(function () {
+        var src = $(this).find("img").attr("src");
+        Func.ShowImage(src, "Profile");
     });
 });

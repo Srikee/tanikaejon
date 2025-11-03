@@ -61,6 +61,10 @@
             <i class="fa-solid fa-key me-2"></i>
             เปลี่ยนรหัสผ่าน
         </a>
+        <a href="./?page=changeprofile" class="btn btn-lg btn-outline-secondary w-100 mb-2">
+            <i class="fa-solid fa-pen me-2"></i>
+            แก้ไขโปรไฟล์ของฉัน
+        </a>
         <button type="button" class="btn btn-lg btn-danger w-100 mb-2" id="btn-logout">
             <i class="fa-solid fa-right-from-bracket me-2"></i>
             ออกจากระบบ
