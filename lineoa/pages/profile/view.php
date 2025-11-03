@@ -20,6 +20,8 @@
     if( $pictureUrl==null || $pictureUrl=="" ) {
         $pictureUrl = "../images/default-profile.png?v=".$VERSION;
     }
+
+    // Func::PrintData($_SESSION);
 ?>
 <div class="container-fluid my-5">
     <h4 class="text-center mb-5">
@@ -51,15 +53,15 @@
                 <td><?php echo $customer["occupation_name"]; ?></td>
             </tr>
             <tr>
-                <th>รหัสผ่าน</th>
-                <td><?php echo $customer["password"]; ?></td>
+                <th>ชื่อไลน์</th>
+                <td><?php echo $customer["displayName"]; ?></td>
             </tr>
         </table>
         <a href="./?page=changepass" class="btn btn-lg btn-outline-warning w-100 mb-2">
             <i class="fa-solid fa-key me-2"></i>
             เปลี่ยนรหัสผ่าน
         </a>
-        <button class="btn btn-lg btn-danger w-100 mb-2" id="btn-logout">
+        <button type="button" class="btn btn-lg btn-danger w-100 mb-2" id="btn-logout">
             <i class="fa-solid fa-right-from-bracket me-2"></i>
             ออกจากระบบ
         </button>

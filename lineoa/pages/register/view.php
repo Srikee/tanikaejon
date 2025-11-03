@@ -37,7 +37,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="phone">เบอร์มือถือ <span class="text-danger">*</span></label>
+            <label for="phone">เบอร์มือถือ <span class="text-danger">* ระบุ 10 หลัก ไม่มีขีด</span></label>
             <input type="tel" class="form-control form-control-lg" id="phone" name="phone" maxlength="10"
                 autocomplete="off" required>
         </div>
