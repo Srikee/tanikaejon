@@ -1,0 +1,57 @@
+<?php
+    include_once("../../../config/all.php");
+
+    $customer_id = $_SESSION['customer']['data']['customer_id'];
+    $sql = "
+        SELECT 
+            c.*,
+            o.occupation_name,
+            ul.userId,
+            ul.displayName,
+            ul.pictureUrl
+        FROM customer c
+            LEFT JOIN occupation o ON o.occupation_id = c.occupation_id
+            LEFT JOIN user_line ul ON ul.customer_id = c.customer_id
+        WHERE c.customer_id = '".$customer_id."' 
+    ";
+    $customer = $DB->QueryFirst($sql);
+
+    $pictureUrl = $customer["pictureUrl"];
+    if( $pictureUrl==null || $pictureUrl=="" ) {
+        $pictureUrl = "../images/default-profile.png?v=".$VERSION;
+    }
+?>
+<div class="container-fluid my-5">
+    <h4 class="text-center mb-5">
+        เปลี่ยนรหัสผ่าน
+    </h4>
+    <form id="formdata" autocomplete="off">
+        <div class="mb-3">
+            <label for="password1" class="form-label">รหัสผ่านเดิม <span class="text-danger">*</span></label>
+            <input type="password" class="form-control form-control-lg" id="password1" name="password1"
+                autocomplete="off" required>
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">รหัสผ่านใหม่ <span class="text-danger">*</span></label>
+            <input type="password" class="form-control form-control-lg" id="password2" name="password2"
+                autocomplete="off" required>
+        </div>
+        <div class="mb-3">
+            <label for="password3" class="form-label">ยืนยันรหัสผ่านอีกครั้ง <span class="text-danger">*</span></label>
+            <input type="password" class="form-control form-control-lg" id="password3" name="password3"
+                autocomplete="off" required>
+        </div>
+        <div class="row mb-3 mt-4">
+            <div class="col pe-2">
+                <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
+                    <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
+                </button>
+            </div>
+            <div class="col ps-2">
+                <button id="btn-submit" type="submit" class="btn btn-success btn-lg w-100">
+                    <i class="fas fa-pen me-1"></i> ยืนยัน
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
