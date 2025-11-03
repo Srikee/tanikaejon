@@ -21,6 +21,9 @@
     <link href="../assets/fontawesome-free-7.0.0/css/all.min.css" rel="stylesheet">
     <!-- sweetalert2 -->
     <script src="../assets/sweetalert2/sweetalert.min.js"></script>
+    <!-- fancybox -->
+    <script src="../assets/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="../assets/fancybox/fancybox.css" />
     <!-- moment -->
     <script src="../assets/moment/moment.js"></script>
     <script src="../assets/moment/locale/th.js"></script>

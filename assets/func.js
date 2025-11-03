@@ -508,5 +508,27 @@ var Func = {
             });
         });
         $input.click();
+    },
+    ShowImage(src, caption) {
+        var option = [{
+            src: src,
+            caption: caption,
+            type: "image",
+        }];
+        var fcb = new Fancybox(option);
+    },
+    ShowGalleryImage(index, images) {
+        var index = 0;
+        var option = [];
+        for (var i = 0; i < images.length; i++) {
+            option.push({
+                src: images[i],
+                caption: i + 1,
+                type: "image",
+            });
+        }
+        var fcb = new Fancybox(option, {
+            startIndex: index
+        });
     }
 };
