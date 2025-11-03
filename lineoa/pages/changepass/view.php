@@ -27,6 +27,11 @@
     </h4>
     <form id="formdata" autocomplete="off">
         <div class="mb-3">
+            <label>เบอร์มือถือ</label>
+            <input type="text" class="form-control form-control-lg" value="<?php echo $customer["phone"]; ?>"
+                autocomplete="off" disabled>
+        </div>
+        <div class="mb-3">
             <label for="password1" class="form-label">รหัสผ่านเดิม <span class="text-danger">*</span></label>
             <input type="password" class="form-control form-control-lg" id="password1" name="password1"
                 autocomplete="off" required>

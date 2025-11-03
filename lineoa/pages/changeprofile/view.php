@@ -30,6 +30,11 @@
             <img src="<?php echo $pictureUrl; ?>" alt="Profile" class="w-100">
         </div>
         <div class="mb-3">
+            <label>ชื่อไลน์</label>
+            <input type="text" class="form-control form-control-lg"
+                value="<?php echo $_SESSION['customer']['user_line']['displayName']; ?>" disabled>
+        </div>
+        <div class="mb-3">
             <label for="customer_name">ชื่อ <span class="text-danger">*</span></label>
             <input type="text" class="form-control form-control-lg" id="customer_name" name="customer_name"
                 autocomplete="off" value="<?php echo $customer["customer_name"]; ?>" required>
