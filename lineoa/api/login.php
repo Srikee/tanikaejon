@@ -2,9 +2,6 @@
     include_once("../../config/all.php");
     $user_line = $_POST["user_line"];
 
-
-
-
     $sql = "SELECT * FROM user_line WHERE userId='".$DB->Escape($user_line["userId"])."' ";
     $obj = $DB->QueryObj($sql);
     $_SESSION["customer"]["user_line"] = $user_line;

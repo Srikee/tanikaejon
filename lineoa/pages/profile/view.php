@@ -1,26 +1,68 @@
-<div class="mb-4">
-    <img src="images/passport.png" alt="PSU Passport">
-</div>
-<form id="formdata">
-    <div class="form-group">
-        <label for="username">รหัสผู้ใช้งาน</label>
-        <input type="text" class="form-control form-control-lg" id="username" name="username" required>
-    </div>
-    <div class="form-group">
-        <label for="password">รหัสผ่าน</label>
-        <input type="password" class="form-control form-control-lg mb-4" id="password" name="password" required>
-    </div>
-    <div class="mb-5">
-        <p>
-            ขอความยินยอม
-            <a href="./?page=pdpa" class="text-underline">โปรดอ่านก่อนยินยอม <i
-                    class="fas fa-external-link-alt ml-1"></i></a>
-        </p>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="check-pdpa" name="check-pdpa">
-            <label class="custom-control-label" for="check-pdpa">ยินยอม</label>
+<?php
+    include_once("../../../config/all.php");
+
+    $customer_id = $_SESSION['customer']['data']['customer_id'];
+    $sql = "
+        SELECT 
+            c.*,
+            o.occupation_name,
+            ul.userId,
+            ul.displayName,
+            ul.pictureUrl
+        FROM customer c
+            LEFT JOIN occupation o ON o.occupation_id = c.occupation_id
+            LEFT JOIN user_line ul ON ul.customer_id = c.customer_id
+        WHERE c.customer_id = '".$customer_id."' 
+    ";
+    $customer = $DB->QueryFirst($sql);
+
+    $pictureUrl = $customer["pictureUrl"];
+    if( $pictureUrl==null || $pictureUrl=="" ) {
+        $pictureUrl = "../images/default-profile.png?v=".$VERSION;
+    }
+?>
+<div class="container-fluid my-5">
+    <h4 class="text-center mb-5">
+        โปรไฟล์ของฉัน
+    </h4>
+    <div>
+        <?php if( $customer!=null ) { ?>
+        <div class="profile-image">
+            <img src="<?php echo $pictureUrl; ?>" alt="Profile" class="w-100">
         </div>
+        <table class="table table-hover mb-4">
+            <tr>
+                <th style="width:125px;">ชื่อ-นามสกุล</th>
+                <td>
+                    <?php echo $customer["customer_name"]; ?>
+                    <?php echo $customer["customer_sname"]; ?>
+                </td>
+            </tr>
+            <tr>
+                <th>ที่อยู่</th>
+                <td><?php echo $customer["address"]; ?></td>
+            </tr>
+            <tr>
+                <th>เบอร์มือถือ</th>
+                <td><?php echo $customer["phone"]; ?></td>
+            </tr>
+            <tr>
+                <th>อาชีพ</th>
+                <td><?php echo $customer["occupation_name"]; ?></td>
+            </tr>
+            <tr>
+                <th>รหัสผ่าน</th>
+                <td><?php echo $customer["password"]; ?></td>
+            </tr>
+        </table>
+        <a href="./?page=changepass" class="btn btn-lg btn-outline-warning w-100 mb-2">
+            <i class="fa-solid fa-key me-2"></i>
+            เปลี่ยนรหัสผ่าน
+        </a>
+        <button class="btn btn-lg btn-danger w-100 mb-2" id="btn-logout">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>
+            ออกจากระบบ
+        </button>
+        <?php } ?>
     </div>
-    <button id="btn-submit" type="submit" class="btn btn-success btn-lg btn-block" disabled><i
-            class="fas fa-sign-in-alt mr-2"></i> เข้าสู่ระบบ</button>
-</form>
+</div>

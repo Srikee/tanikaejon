@@ -1,17 +1,13 @@
-.custom-control {
-    padding-left: 1.8rem;
+.profile-image {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #ddd;
 }
 
-.custom-control-label::before {
-    top: 0.12rem;
-    left: -1.8rem;
-    width: 1.3rem;
-    height: 1.3rem;
-}
-
-.custom-control-label::after {
-    top: 0.12rem;
-    left: -1.8rem;
-    width: 1.3rem;
-    height: 1.3rem;
+table {
+    font-size: 18px;
 }

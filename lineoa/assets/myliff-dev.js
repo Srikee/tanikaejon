@@ -18,9 +18,9 @@ function Initial(callback) {
         }, function (res) {
             HideLoading(0);
             if (res.status == "ok") {
-                callback("ok");
+                callback("ok", res.data);
             } else {
-                callback("no");
+                callback("no", null);
             }
         }, 'json').fail(function (err) {
             alert("Error API Login.");
@@ -31,13 +31,17 @@ function Initial(callback) {
     RunApp();
 }
 $(function () {
-    Initial(function (status) {
-        var page_no_login = ["index", "register"];
+    Initial(function (status, customer) {
+        var page_no_login = ["index", "register", "forgot"];
         var d = new Date();
         var p = Func.GetUrlParameter("page") || "index";
         if (status == "no") {
             if ($.inArray(p, page_no_login) == -1) {
                 p = "login";
+            }
+        } else {
+            if (customer.status == "1") {
+                p = "profile-pending";
             }
         }
         var href = location.href;

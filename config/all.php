@@ -6,10 +6,11 @@
     ini_set('display_startup_errors', 1);
 
     include_once("class.database.php");
+    include_once("class.kscryption.php");
     include_once("func.php");
 
     
-    $VERSION = "1.0.0";
+    $VERSION = "1.0.2";
 
     if( $_SERVER["HTTP_HOST"]=="tanikaejon.com" ) {
         $MODE = "production";
