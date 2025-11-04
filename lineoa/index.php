@@ -1,5 +1,24 @@
 <?php
     include_once("../config/all.php");
+
+    // ลบ temp ของ service_booking
+    $now = new DateTime();
+    $now->modify('-10 minutes');        // ลบ 10 นาที
+    $date = $now->format('Y-m-d H:i:s');
+    $datas = $DB->QueryObj("SELECT * FROM service_booking_image_temp WHERE add_when <= '".$date."' ");
+    foreach($datas as $data) {
+        $random_id = $data["random_id"];
+        $dir = "../files/service_booking_temp/".$random_id."/";
+        $options = array(
+            "dir"   => $dir
+        );
+        Func::RemoveDir($options);
+        $DB->QueryDelete("service_booking_image_temp", "random_id='".$DB->Escape($random_id)."' ");
+        // echo "ลบแล้วโฟลเดอร์ ".$dir." <br>";
+    }
+    // END ลบ temp ของ service_booking
+
+
     $PAGE = $_GET['page'] ?? 'index';
 ?>
 <!DOCTYPE html>
