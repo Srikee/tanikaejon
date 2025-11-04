@@ -49,4 +49,5 @@ $(function () {
         var src = $(this).find("img").attr("src");
         Func.ShowImage(src, "Profile");
     });
+    if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });

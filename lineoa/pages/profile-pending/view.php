@@ -30,11 +30,13 @@
     // Func::PrintData($_SESSION);
 ?>
 <div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
     โปรไฟล์ของฉัน
 </div>
 <div class="container-fluid py-4">
     <div>
-        <?php if( $customer!=null ) { ?>
         <div class="mb-5">
             <div class="alert alert-danger" role="alert">
                 บัญชีของคุณอยู่ระหว่างการตรวจสอบโดยเจ้าหน้าที่ภายใน 24 ชั่วโมง
@@ -86,6 +88,5 @@
             <i class="fa-solid fa-right-from-bracket me-2"></i>
             ออกจากระบบ
         </button>
-        <?php } ?>
     </div>
 </div>

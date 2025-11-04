@@ -30,11 +30,13 @@
     // Func::PrintData($_SESSION);
 ?>
 <div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
     โปรไฟล์ของฉัน
 </div>
 <div class="container-fluid py-4">
     <div>
-        <?php if( $customer!=null ) { ?>
         <div class="profile-image">
             <img src="<?php echo $pictureUrl; ?>" alt="Profile" class="w-100">
         </div>
@@ -81,6 +83,5 @@
             <i class="fa-solid fa-right-from-bracket me-2"></i>
             ออกจากระบบ
         </button>
-        <?php } ?>
     </div>
 </div>

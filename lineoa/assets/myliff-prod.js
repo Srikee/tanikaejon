@@ -49,7 +49,6 @@ function Initial(liffId, callback) {
 $(function () {
     Initial(LIFF_ID, function (status, customer) {
         var page_no_login = ["index", "register", "forgot"];
-        var d = new Date();
         var p = Func.GetUrlParameter("page") || "index";
         if (status == "no") {
             if ($.inArray(p, page_no_login) == -1) {
@@ -64,16 +63,25 @@ $(function () {
         }
         var href = location.href;
         var arr = href.split(p);
-        $("#main").load("pages/" + p + "/view.php?t=" + d.getTime() + arr[1], function () {
+        // var d = new Date();
+        // $("#main").load("pages/" + p + "/view.php?t=" + d.getTime() + arr[1], function () {
+        //     $("body").append(`
+        //         <script>
+        //             var PAGE = "`+ p + `";
+        //         </script>
+        //     `);
+        //     $("body").append('<link href="pages/' + p + '/view.css?t=' + d.getTime() + '" rel="stylesheet">');
+        //     $("body").append('<script src="pages/' + p + '/view.js?t=' + d.getTime() + '"></>');
+        // });
+        $("#main").load("pages/" + p + "/view.php?v=" + VERSION + arr[1], function () {
             $("body").append(`
                 <script>
                     var PAGE = "`+ p + `";
                 </script>
             `);
-            $("body").append('<link href="pages/' + p + '/view.css?t=' + d.getTime() + '" rel="stylesheet">');
-            $("body").append('<script src="pages/' + p + '/view.js?t=' + d.getTime() + '"></>');
+            $("body").append('<link href="pages/' + p + '/view.css?v=' + VERSION + '" rel="stylesheet">');
+            $("body").append('<script src="pages/' + p + '/view.js?v=' + VERSION + '"></>');
         });
-
         $("#main").fadeIn("fast");
     });
 });

@@ -12,6 +12,9 @@
     <meta name="description" content="ตานีแก้จน">
     <meta name="keywords" content="ตานีแก้จน" />
     <link rel="icon" href="../images/favicon.png" />
+    <script>
+    var VERSION = "<?php echo $VERSION; ?>";
+    </script>
     <!-- jquery -->
     <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
     <!-- bootstrap -->
