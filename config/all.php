@@ -10,7 +10,7 @@
     include_once("func.php");
 
     
-    $VERSION = "1.0.10";
+    $VERSION = "1.0.12";
 
     if( $_SERVER["HTTP_HOST"]=="tanikaejon.com" ) {
         $MODE = "production";
@@ -27,3 +27,10 @@
         $dbname = "db_kaejon";
         $DB = new Database($host, $user, $pass, $dbname);
     }
+    //สถานะ 1: รอดำเนินการ, 2: กำลังดำเนินการ, 3: เสร็จสิ้น, 4: ยกเลิก
+    $StatusServiceBooking = [
+        "1"=>'<span class="text-warning"><i class="fas fa-alarm-clock me-1"></i> รอดำเนินการ</span>',
+        "2"=>'<span class="text-info"><i class="fas fa-clock me-1"></i> กำลังดำเนินการ</span>',
+        "3"=>'<span class="text-success"><i class="fas fa-circle-check me-1"></i> เสร็จสิ้น</span>',
+        "4"=>'<span class="text-danger"><i class="fas fa-times me-1"></i> ยกเลิก</span>'
+    ];

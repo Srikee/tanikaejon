@@ -29,7 +29,7 @@
             c.customer_name,
             c.customer_sname
         FROM service_booking sb
-            LEFT JOIN customer c ON c.customer_id = c.customer_id
+            LEFT JOIN customer c ON c.customer_id = sb.customer_id
         WHERE sb.service_booking_id = '".$service_booking_id."' 
     ";
     $service_booking = $DB->QueryFirst($sql);
@@ -78,6 +78,12 @@
                 <th>เบอร์มือถือ</th>
                 <td><?php echo $service_booking["phone"]; ?></td>
             </tr>
+            <tr>
+                <th>สถานะ</th>
+                <td>
+                    <?php echo $StatusServiceBooking[$service_booking["status"]]; ?>
+                </td>
+            </tr>
         </table>
         <div class="row mb-3 images-section">
             <?php
@@ -94,6 +100,22 @@
                     ';
                 }
             ?>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="row">
+        <div class="col-auto pe-1">
+            <a href="./?page=history-tracking&service_booking_id=<?php echo $service_booking["service_booking_id"]; ?>"
+                class="btn btn-success btn-lg">
+                <i class="fas fa-shuffle me-1"></i> ติดตาม
+            </a>
+        </div>
+        <div class="col ps-1">
+            <a href="./?page=history-tracking&service_booking_id=<?php echo $service_booking["service_booking_id"]; ?>"
+                class="btn btn-info btn-lg w-100">
+                ให้คะแนน
+            </a>
         </div>
     </div>
 </div>

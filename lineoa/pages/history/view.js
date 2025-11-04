@@ -1,5 +1,5 @@
 $(function () {
-    $("title").html("บริการของเรา");
+    $("title").html("ประวัติการใช้บริการ");
 
     function GetService() {
         $("#service").html("");
