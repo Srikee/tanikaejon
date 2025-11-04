@@ -54,7 +54,7 @@
 
 <body>
     <input type="hidden" id="PAGE" value="profile">
-    <div id="main" style="display:none;" class="container-fluid pt-3 pb-3"></div>
+    <div id="main" style="display:none;"></div>
     <div id="loading"
         style="display:none;z-index:7700;position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);">
         <div class="spinner-border text-primary"></div>

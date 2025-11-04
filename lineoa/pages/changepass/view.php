@@ -21,11 +21,15 @@
         $pictureUrl = "../images/default-profile.png?v=".$VERSION;
     }
 ?>
-<div class="container-fluid my-5">
-    <h4 class="text-center mb-5">
-        เปลี่ยนรหัสผ่าน
-    </h4>
+<div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
+    เปลี่ยนรหัสผ่าน
+</div>
+<div class="container-fluid py-4">
     <form id="formdata" autocomplete="off">
+        <input type="submit" id="form-submit" class="d-none">
         <div class="mb-3">
             <label>เบอร์มือถือ</label>
             <input type="text" class="form-control form-control-lg" value="<?php echo $customer["phone"]; ?>"
@@ -46,7 +50,7 @@
             <input type="password" class="form-control form-control-lg" id="password3" name="password3"
                 autocomplete="off" required>
         </div>
-        <div class="row mb-3 mt-4">
+        <!-- <div class="row mb-3 mt-4">
             <div class="col pe-2">
                 <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
                     <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
@@ -57,6 +61,13 @@
                     <i class="fas fa-pen me-1"></i> ยืนยัน
                 </button>
             </div>
-        </div>
+        </div> -->
     </form>
+</div>
+<div class="footer">
+    <div class="text-end">
+        <button type="button" id="btn-submit" class="btn btn-success btn-lg">
+            <i class="fas fa-pen me-1"></i> ยืนยันการแก้ไข
+        </button>
+    </div>
 </div>

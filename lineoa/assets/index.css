@@ -1,0 +1,41 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 12px;
+    font-size: 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #176974;
+    color: #fff;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 12px;
+    background-color: #f3f3f3;
+    border-top: 1px solid #cecece;
+}
+
+.backbutton {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 24px;
+    margin-right: 6px;
+}

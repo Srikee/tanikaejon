@@ -65,6 +65,9 @@ $(function () {
             }
         });
     });
+    $("#btn-submit").click(function () {
+        $("#form-submit").trigger("click");
+    });
     $(".profile-image").click(function () {
         var src = $(this).find("img").attr("src");
         Func.ShowImage(src, "Profile");
@@ -143,4 +146,7 @@ $(function () {
         });
         popup.open();
     });
+
+
+    if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });

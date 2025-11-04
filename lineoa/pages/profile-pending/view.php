@@ -29,10 +29,10 @@
 
     // Func::PrintData($_SESSION);
 ?>
-<div class="container-fluid my-5">
-    <h4 class="text-center mb-5">
-        โปรไฟล์ของฉัน
-    </h4>
+<div class="header">
+    โปรไฟล์ของฉัน
+</div>
+<div class="container-fluid py-4">
     <div>
         <?php if( $customer!=null ) { ?>
         <div class="mb-5">

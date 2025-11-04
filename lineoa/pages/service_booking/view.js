@@ -1,5 +1,5 @@
 $(function () {
-    $("title").html("เปลี่ยนรหัสผ่าน");
+    $("title").html("บริการของเรา");
     $("#formdata").submit(function (e) {
         e.preventDefault();
         let password1 = $("#password1").val().trim();
@@ -41,7 +41,7 @@ $(function () {
                 Func.ShowLoading();
                 $.ajax({
                     type: "POST",
-                    url: "pages/changepass/api/changepass.php",
+                    url: "pages/service_booking/api/service_booking-add.php",
                     dataType: "JSON",
                     data: Func.GetFormData($("#formdata")), // ดึงข้อมูลภายใน #formdata ที่มี Tag name
                     contentType: false,
@@ -72,8 +72,4 @@ $(function () {
             }
         });
     });
-    $("#btn-submit").click(function () {
-        $("#form-submit").trigger("click");
-    });
-    if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });

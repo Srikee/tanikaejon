@@ -5,6 +5,7 @@
     $condition = "";
     $arr = explode(" ", $search);
     foreach($arr as $v) {
+        if($v=="") continue;
         $condition .= " AND (
             t.tambol_name_thai LIKE '%".$v."%'
             OR a.amphur_name_thai LIKE '%".$v."%'
@@ -25,7 +26,7 @@
             LEFT JOIN th_province p ON p.province_id=a.province_id
         WHERE 1=1 
             ".$condition."
-        LIMIT 100
+        LIMIT 50
     ";
     $data = $DB->QueryObj($sql);
     foreach($data as $row) {

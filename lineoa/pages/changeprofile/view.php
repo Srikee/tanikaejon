@@ -27,11 +27,15 @@
         $pictureUrl = "../images/default-profile.png?v=".$VERSION;
     }
 ?>
-<div class="container-fluid my-5">
-    <h4 class="text-center mb-5">
-        แก้ไขโปรไฟล์ของฉัน
-    </h4>
+<div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
+    แก้ไขโปรไฟล์ของฉัน
+</div>
+<div class="container-fluid py-4">
     <form id="formdata" autocomplete="off">
+        <input type="submit" id="form-submit" class="d-none">
         <div class="profile-image">
             <img src="<?php echo $pictureUrl; ?>" alt="Profile" class="w-100">
         </div>
@@ -94,17 +98,24 @@
             <input type="tel" class="form-control form-control-lg" id="phone" name="phone" maxlength="10"
                 autocomplete="off" value="<?php echo $customer["phone"]; ?>" required>
         </div>
-        <div class="row mb-3 mt-4">
-            <div class="col pe-2">
-                <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
-                    <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
-                </button>
-            </div>
-            <div class="col ps-2">
-                <button id="btn-submit" type="submit" class="btn btn-success btn-lg w-100">
-                    <i class="fas fa-pen me-1"></i> ยืนยัน
-                </button>
-            </div>
-        </div>
     </form>
+</div>
+<div class="footer">
+    <!-- <div class="row">
+        <div class="col pe-2">
+            <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
+                <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
+            </button>
+        </div>
+        <div class="col ps-2">
+            <button type="button" id="btn-submit" class="btn btn-success btn-lg w-100">
+                <i class="fas fa-pen me-1"></i> ยืนยัน
+            </button>
+        </div>
+    </div> -->
+    <div class="text-end">
+        <button type="button" id="btn-submit" class="btn btn-success btn-lg">
+            <i class="fas fa-pen me-1"></i> ยืนยันการแก้ไข
+        </button>
+    </div>
 </div>
