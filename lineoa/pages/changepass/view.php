@@ -22,7 +22,7 @@
     }
 ?>
 <div class="header">
-    <button type="button" class="backbutton" onclick="Func.Back()">
+    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
     </button>
     เปลี่ยนรหัสผ่าน

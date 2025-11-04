@@ -6,11 +6,15 @@
         $pictureUrl = "../images/default-profile.png?v=".$VERSION;
     }
 ?>
-<div class="container-fluid my-5">
-    <h4 class="text-center mb-5">
-        แบบฟอร์มลงทะเบียน
-    </h4>
+<div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
+    แบบฟอร์มลงทะเบียน
+</div>
+<div class="container-fluid py-4">
     <form id="formdata" autocomplete="off">
+        <input type="submit" id="form-submit" class="d-none">
         <div class="profile-image">
             <img src="<?php echo $pictureUrl; ?>" alt="Profile" class="w-100">
         </div>
@@ -74,17 +78,12 @@
             <input type="password" class="form-control form-control-lg mb-4" id="password" name="password"
                 autocomplete="off" required>
         </div>
-        <div class="row">
-            <div class="col pe-2">
-                <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
-                    <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
-                </button>
-            </div>
-            <div class="col ps-2">
-                <button type="submit" class="btn btn-success btn-lg btn-block w-100">
-                    <i class="fas fa-sign-in-alt me-1"></i> ลงทะเบียน
-                </button>
-            </div>
-        </div>
     </form>
+</div>
+<div class="footer">
+    <div class="text-end">
+        <button type="button" id="btn-submit" class="btn btn-success btn-lg">
+            <i class="fas fa-user-plus me-1"></i> ลงทะเบียน
+        </button>
+    </div>
 </div>

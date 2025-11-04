@@ -29,7 +29,7 @@
                     <div class="fw-bold">'.$row["service_name"].'</div>
                     '.$row["service_desc"].'
                 </div>
-                <a href="./?page=service_booking&service_id='.$row["service_id"].'" class="btn btn-success btn-lg">
+                <a href="./?page=service_booking-add&service_id='.$row["service_id"].'" class="btn btn-success btn-lg">
                     เลือก
                 </a>
             </li>

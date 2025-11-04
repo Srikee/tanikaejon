@@ -509,7 +509,7 @@ var Func = {
         });
         $input.click();
     },
-    ShowImage(src, caption) {
+    ShowImage: function (src, caption) {
         var option = [{
             src: src,
             caption: caption,
@@ -517,8 +517,7 @@ var Func = {
         }];
         var fcb = new Fancybox(option);
     },
-    ShowGalleryImage(index, images) {
-        var index = 0;
+    ShowGalleryImage: function (index, images) {
         var option = [];
         for (var i = 0; i < images.length; i++) {
             option.push({
@@ -530,5 +529,5 @@ var Func = {
         var fcb = new Fancybox(option, {
             startIndex: index
         });
-    }
+    },
 };

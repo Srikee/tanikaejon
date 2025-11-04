@@ -132,4 +132,8 @@ $(function () {
         });
         popup.open();
     });
+    $("#btn-submit").click(function () {
+        $("#form-submit").trigger("click");
+    });
+    if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });
