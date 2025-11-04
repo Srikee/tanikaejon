@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 03/11/2025 22:18:13
+ Date: 04/11/2025 08:24:00
 */
 
 SET NAMES utf8mb4;
@@ -127,6 +127,29 @@ CREATE TABLE `service`  (
 INSERT INTO `service` VALUES (1, 'ตัดต้นไม้', 'บริการตัดต้นไม้ราคาถูก', NULL, NULL, NULL, NULL);
 INSERT INTO `service` VALUES (2, 'ทำความสะอาด', 'บริการทำความสะอาดราคาถูก', NULL, NULL, NULL, NULL);
 INSERT INTO `service` VALUES (3, 'นวดเพื่อสุขภาพ', 'บริการนวดเพื่อสุขภาพราคาถูก', NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for service_booking
+-- ----------------------------
+DROP TABLE IF EXISTS `service_booking`;
+CREATE TABLE `service_booking`  (
+  `booking_id` int NOT NULL AUTO_INCREMENT COMMENT 'รหัสการจอง',
+  `customer_id` int NULL DEFAULT NULL COMMENT 'รหัสลูกค้า -> customer',
+  `service_id` int NULL DEFAULT NULL COMMENT 'รหัสบริการ -> service',
+  `booking_datetime` date NULL DEFAULT NULL COMMENT 'วันที่และเวลานัดหมาย',
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT 'รายละเอียดการใช้บริการ',
+  `location` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT 'สถานที่',
+  `status` enum('1','2','3','4') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '1' COMMENT 'สถานะ 1: รอดำเนินการ, 2: ยืนยันแล้ว, 3: เสร็จสิ้น, 4: ยกเลิก',
+  `add_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'ผู้เพิ่ม',
+  `add_when` datetime NULL DEFAULT NULL COMMENT 'วันที่เพิ่ม',
+  `edit_by` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'ผู้แก้ไข',
+  `edit_when` datetime NULL DEFAULT NULL COMMENT 'วันที่แก้ไข',
+  PRIMARY KEY (`booking_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'ข้อมูลการรับบริการ' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of service_booking
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for th_amphur
