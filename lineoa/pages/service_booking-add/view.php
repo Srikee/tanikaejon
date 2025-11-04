@@ -45,24 +45,33 @@
     }
 ?>
 <div class="header">
+    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+        <i class="fas fa-arrow-left me-1"></i>
+    </button>
     บริการของเรา
 </div>
 <div class="container-fluid">
     <form id="formdata" autocomplete="off">
-        <input type="submit" id="btn-submit" class="d-none">
+        <input type="submit" id="form-submit" class="d-none">
         <input type="hidden" name="service_id" value="<?php echo $service_id; ?>">
-        <div class="mb-3">
-            <label>บริการ</label>
-            <input type="text" class="form-control form-control-lg" value="<?php echo $service["service_name"]; ?>"
-                disabled>
+        <div class="card border-success mb-3">
+            <div class="card-header border-success bg-success-subtle">
+                <?php echo $service["service_name"]; ?>
+            </div>
+            <div class="card-body border-success">
+                <p class="card-text"><?php echo $service["service_desc"]; ?></p>
+                <!-- <a href="#" class="btn btn-primary">อ่านรายละเอียด</a> -->
+            </div>
         </div>
         <div class="mb-3">
             <label for="note" class="form-label">รายละเอียดการใช้บริการ <span class="text-danger">*</span></label>
-            <textarea class="form-control form-control-lg" id="note" name="note" rows="5" required></textarea>
+            <textarea class="form-control form-control-lg" id="note" name="note" rows="5" required
+                placeholder="ระบุรายละเอียดที่ต้องการใช้บริการ"></textarea>
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">สถานที่ <span class="text-danger">*</span></label>
-            <textarea class="form-control form-control-lg" id="location" name="location" rows="3" required></textarea>
+            <textarea class="form-control form-control-lg" id="location" name="location" rows="3" required
+                placeholder="ระบุสถานที่ใช้บริการ"></textarea>
         </div>
         <div class="mb-3">
             <label for="customer" class="form-label">ผู้ใช้บริการ <span class="text-danger">*</span></label>
@@ -75,13 +84,17 @@
             <input type="tel" class="form-control form-control-lg" id="phone" name="phone" maxlength="10"
                 value="<?php echo $customer["phone"]; ?>" required>
         </div>
+        <div class="mb-2">
+            แนบรูปภาพ <span class="text-danger">สามารถแนปรูปภาพได้ไม่เกิน 4 รูป</span>
+        </div>
+        <div class="row mb-3 images-section"></div>
     </form>
 </div>
 <div class="footer">
     <div class="row">
-        <div class="col pe-2">
-            <button type="button" id="btn-image" class="btn btn-light btn-lg w-100">
-                <i class="fas fa-images me-1"></i> เพิ่มรูป
+        <div class="col-auto pe-2">
+            <button type="button" id="btn-image" class="btn btn-light btn-lg">
+                <i class="fas fa-images me-1"></i> แนปรูป
             </button>
         </div>
         <div class="col ps-2">
