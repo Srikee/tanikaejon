@@ -19,6 +19,7 @@
         FROM service s
         WHERE 1=1
             ".$condition."
+        ORDER BY service_name
         LIMIT 50
     ";
     $data = $DB->QueryObj($sql);

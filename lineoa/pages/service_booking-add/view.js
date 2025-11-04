@@ -68,29 +68,39 @@ $(function () {
         }
         var $input = $('<input type="file" accept="image/*" class="d-none" multiple>');
         $input.bind("change", function () {
+            Func.ShowLoading("กำลังอัพโหลดรูปภาพ");
             AddImage($(this)[0].files, 0);
         });
         $input.appendTo("body");
         $input.click();
     });
     function AddImage(files, idx) {
-        if (files.length == idx) return;
+        var l = $(".images-section .image").length;
+        if (l >= 4 || files.length == idx) {
+            Func.HideLoading();
+            return;
+        }
         var $img = $(`
             <div class="col-6">
                 <img src="" alt="Image" class="image">
                 <a href="Javascript:" class="btn-del-image">
                     <i class="fas fa-times"></i>
                 </a>
-                <input type="hidden" name="images[]" value="">
             </div>
         `);
-        Func.GetBase64AndResize(files[idx], 1500, 1500, function (base64) {
-            var l = $(".images-section .image").length;
-            if (l >= 4) return;
-            $img.find("img").attr("src", base64);
-            $img.find("input").val(base64);
-            $img.appendTo(".images-section");
-            AddImage(files, ++idx);
+        Func.GetBase64AndResize(files[idx], 1000, 1000, function (base64) {
+            $.post("pages/service_booking-add/api/image-temp-add.php", {
+                random_id: $("#random_id").val(),
+                base64: base64
+            }, function (res) {
+                if (res.status == "ok") {
+                    $img.find("img").attr("src", res.image);
+                    $img.appendTo(".images-section");
+                }
+                AddImage(files, ++idx);
+            }, "JSON").fail(function () {
+                AddImage(files, ++idx);
+            });
         });
     }
     $(".images-section").on("click", ".image", function () {
@@ -106,11 +116,30 @@ $(function () {
     $(".images-section").on("click", ".btn-del-image", function (e) {
         e.preventDefault();
         var $i = $(this).closest(".col-6");
+        var src = $i.find("img").attr("src");
+        var arr = src.split("/");
+        var filename = arr[arr.length - 1];
         Func.ShowConfirm({
             html: "ลบรูปนี้ไหม ?",
             callback: function (rs) {
                 if (rs) {
-                    $i.remove();
+                    Func.ShowLoading("กำลังลบรูปภาพ");
+                    $.post("pages/service_booking-add/api/image-temp-del.php", {
+                        random_id: $("#random_id").val(),
+                        filename: filename
+                    }, function (res) {
+                        Func.HideLoading();
+                        if (res.status == "ok") {
+                            $i.remove();
+                        }
+                    }, "JSON").fail(function () {
+                        Func.HideLoading();
+                        Func.ShowAlert({
+                            html: "ไม่สามารถติดต่อเครื่องแม่ข่ายได้",
+                            type: "error",
+                            callback: function () { }
+                        });
+                    });
                 }
             }
         });

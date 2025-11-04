@@ -176,7 +176,7 @@
             */
             $dir = $options["dir"] ?? "";
             $fileName = $options["fileName"] ?? "";
-            if( $filename!="" && file_exists($dir.$filename)) {
+            if( $fileName!="" && file_exists($dir.$fileName)) {
                 return true;
             }
             return false;
@@ -215,8 +215,8 @@
             $dir = $options["dir"] ?? "";
             $fileName = $options["fileName"] ?? "";
             if( $fileName=="" ) return false;
-            if( self::IsFile($dir, $filename) ) {
-                return unlink($dir.$filename);
+            if( self::IsFile($options) ) {
+                return unlink($dir.$fileName);
             }
             return false;
         }
@@ -256,6 +256,50 @@
             if ( !is_dir( $dir ) ) {
                 mkdir($dir, 0777);
             }
+        }
+        public static function RemoveDir($options) {
+            /*
+                Example.
+                $options = array(
+                    "dir"       => "/path/on/sftp/server/"
+                );
+                Func::RemoveDir($options);
+            */
+            // $dir = rtrim($options["dir"] ?? "", "/");
+            $dir = $options["dir"] ?? "";
+            if ($dir == "" || !is_dir($dir)) return false;
+            $files = array_diff(scandir($dir), array('.', '..'));
+            foreach ($files as $file) {
+                $path = "$dir/$file";
+                if (is_dir($path)) {
+                    self::RemoveDir(array("dir" => $path));
+                } else {
+                    unlink($path);
+                }
+            }
+            return rmdir($dir);
+        }
+        public static function MoveFiles($options) {
+            /*
+                Example.
+                $options = array( 
+                    "dir1" => "/files/images/a/",
+                    "dir2" => "/files/images/b/" 
+                );
+                Func::MoveFiles($options);
+            */
+            $dir1 = rtrim($options['dir1'], '/').'/';
+            $dir2 = rtrim($options['dir2'], '/').'/';
+            if (!is_dir($dir1)) return false;
+            if (!is_dir($dir2)) mkdir($dir2, 0777, true);
+            $files = scandir($dir1);
+            foreach ($files as $file) {
+                if ($file === '.' || $file === '..') continue;
+                $source = $dir1 . $file;
+                $destination = $dir2 . $file;
+                if (is_file($source)) rename($source, $destination);
+            }
+            return true;
         }
         public static function SftpUploadBase64($options) {
             /*

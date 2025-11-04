@@ -3,7 +3,7 @@ $(function () {
 
     function GetService() {
         $("#service").html("");
-        Func.ShowLoading("กำลังโหลดข้อมูล...");
+        ShowLoading();
         $.ajax({
             type: "POST",
             url: "pages/history/api/history.php",
@@ -14,11 +14,11 @@ $(function () {
             // contentType: false,
             // processData: false,
             success: function (html) {
-                Func.HideLoading();
+                HideLoading();
                 $("#service").html(html);
             },
             error: function () {
-                Func.HideLoading();
+                HideLoading();
                 Func.ShowAlert({
                     html: "ไม่สามารถติดต่อเครื่องแม่ข่ายได้",
                     type: "error",

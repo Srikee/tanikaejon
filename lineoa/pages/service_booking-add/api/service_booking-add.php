@@ -1,11 +1,11 @@
 <?php
     include_once("../../../../config/all.php");
 
+    $random_id = trim($_POST['random_id'] ?? "");
     $service_id = trim($_POST['service_id'] ?? "");
     $note = trim($_POST['note'] ?? "");
     $location = trim($_POST['location'] ?? "");
     $phone = trim($_POST['phone'] ?? "");
-    $images = $_POST['images'] ?? [];
 
     if(  $service_id == "" ||
         $note == "" ||
@@ -56,24 +56,22 @@
         "edit_when"=>date("Y-m-d H:i:s")
     ]);
     if($rs) {
+        $dir_temp = "../../../../files/service_booking_temp/".$random_id."/";
         $dir = "../../../../files/service_booking/".$service_booking_id."/";
         $options = array(
             "dir" => $dir
         );
         Func::MakeDir($options);
-        foreach($images as $image) {
-            // Func::PrintData($image);
-            $options = array(
-                "base64"        => $image,   // base64 string
-                "dir"           => $dir,              // path on sftp server
-                "rename"        => time().Func::GenerateRandom(5),                        // new filename without extension (optional)
-                "allowType"     => ["png"],     // allow file type
-            );
-            $uploader = Func::UploadBase64($options);
-            if( $uploader["status"]=="ok" ) {
-                // echo "Upload Success. File name : ".$uploader["fileName"];
-            }
-        }
+        $options = array( 
+            "dir1" => $dir_temp,
+            "dir2" => $dir
+        );
+        Func::MoveFiles($options);
+        $options = array(
+            "dir" => $dir_temp
+        );
+        Func::RemoveDir($options);
+        $DB->QueryDelete("service_booking_image_temp", "random_id='".$DB->Escape($random_id)."' ");
         echo json_encode(array(
             "status"=>"ok",
             "message"=>'ส่งข้อมูลขอใช้บริการเรียบร้อย คุณสามารถติดตามข้อมูลในหน้า "ประวัติการใช้บริการ" ได้',

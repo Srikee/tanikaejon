@@ -22,6 +22,7 @@
         FROM service_booking sb
         WHERE sb.customer_id='".$DB->Escape($customer_id)."'
             ".$condition."
+        ORDER BY add_when DESC
         LIMIT 50
     ";
     $data = $DB->QueryObj($sql);

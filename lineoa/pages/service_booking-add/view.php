@@ -54,6 +54,7 @@
     <form id="formdata" autocomplete="off">
         <input type="submit" id="form-submit" class="d-none">
         <input type="hidden" name="service_id" value="<?php echo $service_id; ?>">
+        <input type="hidden" id="random_id" name="random_id" value="<?php echo Func::GenerateRandom(10); ?>">
         <div class="card border-success mb-3">
             <div class="card-header border-success bg-success-subtle">
                 <?php echo $service["service_name"]; ?>
