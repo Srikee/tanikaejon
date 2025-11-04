@@ -1,0 +1,21 @@
+table {
+    font-size: 18px;
+}
+
+.images-section {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.images-section .col-6 {
+    position: relative;
+    padding: 5px;
+}
+
+.images-section .image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
