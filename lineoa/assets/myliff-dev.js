@@ -47,25 +47,25 @@ $(function () {
         }
         var href = location.href;
         var arr = href.split(p);
-        // var d = new Date();
-        // $("#main").load("pages/" + p + "/view.php?t=" + d.getTime() + arr[1], function () {
-        //     $("body").append(`
-        //         <script>
-        //             var PAGE = "`+ p + `";
-        //         </script>
-        //     `);
-        //     $("body").append('<link href="pages/' + p + '/view.css?t=' + d.getTime() + '" rel="stylesheet">');
-        //     $("body").append('<script src="pages/' + p + '/view.js?t=' + d.getTime() + '"></>');
-        // });
-        $("#main").load("pages/" + p + "/view.php?v=" + VERSION + arr[1], function () {
+        var d = new Date();
+        $("#main").load("pages/" + p + "/view.php?t=" + d.getTime() + arr[1], function () {
             $("body").append(`
                 <script>
                     var PAGE = "`+ p + `";
                 </script>
             `);
-            $("body").append('<link href="pages/' + p + '/view.css?v=' + VERSION + '" rel="stylesheet">');
-            $("body").append('<script src="pages/' + p + '/view.js?v=' + VERSION + '"></>');
+            $("body").append('<link href="pages/' + p + '/view.css?t=' + d.getTime() + '" rel="stylesheet">');
+            $("body").append('<script src="pages/' + p + '/view.js?t=' + d.getTime() + '"></>');
         });
+        // $("#main").load("pages/" + p + "/view.php?v=" + VERSION + arr[1], function () {
+        //     $("body").append(`
+        //         <script>
+        //             var PAGE = "`+ p + `";
+        //         </script>
+        //     `);
+        //     $("body").append('<link href="pages/' + p + '/view.css?v=' + VERSION + '" rel="stylesheet">');
+        //     $("body").append('<script src="pages/' + p + '/view.js?v=' + VERSION + '"></>');
+        // });
         $("#main").fadeIn("fast");
     });
 });

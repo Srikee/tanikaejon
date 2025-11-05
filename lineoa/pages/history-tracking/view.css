@@ -1,17 +1,17 @@
-.step-container {
+/**  **/
+.step-horizontal {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     max-width: 600px;
     margin: 0 auto;
-    margin-bottom: 20px;
 }
 
-.step-container::before {
+.step-horizontal::before {
     content: "";
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 5%;
     width: 90%;
     height: 4px;
@@ -20,37 +20,112 @@
     z-index: 1;
 }
 
-.step {
+.step-horizontal .step {
     position: relative;
     text-align: center;
     flex: 1;
     z-index: 2;
 }
 
-.step .circle {
-    width: 20px;
-    height: 20px;
+.step-horizontal .circle {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    margin: 0 auto 9px;
     color: #fff;
     font-weight: bold;
     background-color: #dee2e6;
     position: absolute;
-    right: Calc(50% - 10px);
+    right: Calc(50% - 15px);
+    padding: 5px;
+    font-size: 12px;
 }
 
-.step.active .circle {
+.step-horizontal .step.pending .circle {
     background-color: #007bff;
 }
 
-.step.completed .circle {
+.step-horizontal .step.completed .circle {
     background-color: #28a745;
 }
 
-.step p {
+.step-horizontal .step.cancel .circle {
+    background-color: #ba2f2f;
+}
+
+.step-horizontal .step p {
     font-size: 13px;
     color: #333;
     margin: 0;
     white-space: nowrap;
-    padding-top: 25px;
+    padding-top: 35px;
+}
+
+
+
+
+
+
+
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 15px;
+    bottom: 50px;
+    width: 2px;
+    /* height: 100%; */
+    background-color: #ddd;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 25px;
+    padding-left: 35px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item.active::before {
+    background-color: #0aad3b;
+    /* สีเขียวของสถานะล่าสุด */
+}
+
+.timeline-date {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.timeline-content h4 {
+    font-size: 15px;
+    margin: 0;
+    color: #000;
+}
+
+.timeline-content .subtext {
+    font-size: 13px;
+    color: #0d6efd;
+    margin-top: 3px;
+}
+
+.timeline-item:not(.active) {
+    color: #999;
+}
+
+.timeline-item:not(.active) h4 {
+    color: #999;
 }
