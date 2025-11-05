@@ -159,7 +159,7 @@
 			}
 			return $str;
 		}
-		public function RandomInDB($digit = 10, $table_feild_source, $schar, $random = "", $max_random = 50) {
+		public function RandomInDB($table_feild_source, $schar, $digit = 10, $random = "", $max_random = 50) {
 			/*
 				$id = RandomInDB(10, [
 					["table"=>"mytable1", "feild"=>"mytable1_id"],

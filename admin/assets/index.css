@@ -1,0 +1,377 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-bottom: 56px;
+    font-weight: 400;
+    font-style: normal;
+    /* font-family: "Sarabun"; */
+}
+
+.navbar-brand {
+    margin: 0px;
+}
+
+.ks-brand-logo {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 50px;
+    height: 44px;
+    border-radius: 4px;
+}
+
+.ks-brand-text {
+    margin-left: 55px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.ks-footer {
+    position: absolute;
+    background-color: #003C71;
+    width: 100%;
+    height: 60px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+}
+
+.ks-titlebar {
+    height: 60px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+}
+
+.ks-toggle-menu {
+    --bs-btn-color: #003C71;
+    --bs-btn-border-color: #003C71;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #003C71;
+    --bs-btn-hover-border-color: #003C71;
+    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #003C71;
+    --bs-btn-active-border-color: #003C71;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #003C71;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #003C71;
+    --bs-gradient: none;
+    font-size: 32px;
+    line-height: 0;
+}
+
+.ks-menu {
+    position: absolute;
+    top: 120px;
+    bottom: 60px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    width: 260px;
+    list-style: none;
+    padding: 0;
+    margin: 0px;
+    overflow: auto;
+    transition: margin .15s ease-out;
+    z-index: 100;
+}
+
+.ks-menu-item {
+    border-left: 5px solid #fff;
+}
+
+.ks-menu-item:hover {
+    border-left: 5px solid #0098de;
+}
+
+.ks-menu-item a:hover {
+    color: #0098de;
+}
+
+.ks-menu-item.active {
+    border-left: 5px solid #003C71;
+}
+
+.ks-menu-item.active>a {
+    color: #084199;
+    font-weight: bold;
+}
+
+.ks-menu-item a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 13px;
+    position: relative;
+}
+
+.ks-menu-icon-sub {
+    float: right;
+    margin-top: 5px;
+}
+
+.ks-submenu {
+    list-style: none;
+    display: none;
+    padding: 0;
+    position: relative;
+}
+
+.ks-submenu-item {
+    position: relative;
+    padding-left: 27px;
+}
+
+.ks-submenu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22px;
+    width: 3px;
+    height: Calc(100% - 20px);
+    background-color: #003c71;
+    z-index: 1;
+}
+
+.ks-submenu-item::before {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: 16px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 3px solid #003c71;
+    z-index: 2;
+}
+
+.ks-submenu-item.active::before {
+    background-color: #003c71;
+}
+
+.ks-badge {
+    position: absolute;
+    top: 17px;
+    background-color: #ff0000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 1px 4px 2px;
+    line-height: 1;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.ks-menu-item>a>.ks-badge {
+    right: 30px;
+}
+
+.ks-submenu-item>.ks-badge {
+    right: 10px;
+}
+
+.ks-submenu-item.active a {
+    color: #084199;
+    font-weight: bold;
+}
+
+.ks-hide-menu .ks-menu {
+    margin-left: -260px;
+}
+
+.ks-main-header {
+    margin-left: 260px;
+    padding: 13px;
+    border-bottom: 1px solid #dee2e6;
+    transition: margin .15s ease-out;
+}
+
+.ks-main-header a {
+    text-decoration: none;
+}
+
+.ks-main-content {
+    margin-left: 260px;
+    padding: 16px;
+    transition: margin .15s ease-out;
+}
+
+.ks-hide-menu .ks-main-header,
+.ks-hide-menu .ks-main-content {
+    margin-left: 0px;
+}
+
+@media (max-width: 700px) {
+    .ks-menu {
+        margin-left: -260px;
+    }
+
+    .ks-main-header,
+    .ks-main-content {
+        margin-left: 0px;
+    }
+
+    .ks-hide-menu .ks-menu {
+        margin-left: 0px;
+    }
+}
+
+.text-gray-300 {
+    color: #dddfeb !important;
+}
+
+.border-left-psu {
+    border-left: .25rem solid #003C71 !important;
+}
+
+.border-left-primary {
+    border-left: .25rem solid #4e73df !important;
+}
+
+.border-left-secondary {
+    border-left: .25rem solid #6c757d !important;
+}
+
+.border-left-success {
+    border-left: .25rem solid #1cc88a !important;
+}
+
+.border-left-danger {
+    border-left: .25rem solid #dc3545 !important;
+}
+
+.border-left-warning {
+    border-left: .25rem solid #f6c23e !important;
+}
+
+.border-left-info {
+    border-left: .25rem solid #36b9cc !important;
+}
+
+.border-left-light {
+    border-left: .25rem solid #f8f9fa !important;
+}
+
+.border-left-dark {
+    border-left: .25rem solid #343a40 !important;
+}
+
+/* `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {}
+
+/* `lg` applies to medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {}
+
+/* `xl` applies to large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {}
+
+/* `xxl` applies to x-large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {}
+
+.fc-daygrid-day-number,
+.fc-col-header-cell-cushion {
+    text-decoration: none;
+}
+
+.jbox-success .jBox-title {
+    background-color: #198754;
+    color: #fff;
+}
+
+.jbox-success .jBox-footer {
+    background: #cfffcb;
+}
+
+.jbox-warning .jBox-title {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.jbox-warning .jBox-footer {
+    background: #fff8a4;
+}
+
+.jbox-danger .jBox-title {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.jbox-danger .jBox-footer {
+    background: #fbbec4;
+}
+
+.swal2-container {
+    z-index: 100000;
+}
+
+/******** ปฏิทิน Fullcalendar ********/
+.fc .fc-daygrid-day-number {
+    z-index: 7;
+}
+
+.calendar-holiday {
+    background-color: #ffe4e7 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    z-index: 6 !important;
+}
+
+.calendar-holiday .fc-event-title {
+    color: #c70000;
+    font-style: normal !important;
+    text-align: center;
+}
+
+.calendar-leave-sick {
+    background-color: #ffb6ef;
+    border-color: #fd49d6;
+}
+
+.calendar-leave-sick .fc-event-title {
+    color: #000000;
+}
+
+.calendar-leave-personal {
+    background-color: #ffdaaf;
+    border-color: #ff8a04;
+}
+
+.calendar-leave-personal .fc-event-title {
+    color: #000000;
+}
+
+.leave-sick {
+    background-color: #ffb6ef;
+    border: 1px solid #fd49d6;
+    text-align: center;
+    padding: 2px 16px;
+    border-radius: 5px;
+    width: 80px;
+    display: block;
+}
+
+.leave-personal {
+    background-color: #ffdaaf;
+    border: 1px solid #ff8a04;
+    text-align: center;
+    padding: 2px 16px;
+    border-radius: 5px;
+    width: 80px;
+    display: block;
+}
+
+/******** End ปฏิทิน Fullcalendar ********/
