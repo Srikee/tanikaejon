@@ -114,7 +114,7 @@
         <div class="col ps-1">
             <a href="./?page=history-tracking&service_booking_id=<?php echo $service_booking["service_booking_id"]; ?>"
                 class="btn btn-info btn-lg w-100">
-                ให้คะแนน
+                <i class="fas fa-star me-1"></i> ให้คะแนน
             </a>
         </div>
     </div>

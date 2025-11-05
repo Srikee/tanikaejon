@@ -2,7 +2,7 @@
     <h4 class="text-center mb-5">
         โปรดเข้าสู่ระบบ
     </h4>
-    <form id="formdata">
+    <form id="formdata" class="px-3">
         <div class="mb-3">
             <label for="phone" class="form-label">เบอร์มือถือ <span class="text-danger">* ระบุ 10 หลัก
                     ไม่มีขีด</span></label>

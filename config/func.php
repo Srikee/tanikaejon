@@ -34,7 +34,7 @@
             if( sizeof($arr)<=2 ) return "";
             return ($arr[2]*1-543)."-".$arr[1]."-".($arr[0]);
         }
-        public static function DateThFull($date) {
+        public static function DateThFull($date, $time=true) {
             $date = trim($date ?? "");
             if( $date=="0000-00-00" || $date=="" ) return "";
             $arr1 = explode(" ", $date);
@@ -42,6 +42,11 @@
             if( sizeof($arr2)<=2 ) return "";
             $thaimonth = self::$fullmonth;
             $rs = ($arr2[2]*1)." ".$thaimonth[$arr2[1]*1-1]." ".($arr2[0]*1+543);
+            if( sizeof($arr1)==2 ) $rs .= " ".substr($arr1[1], 0, 5);
+            if( $time==false ) {
+                $arr = explode(" ", $rs);
+                return $arr[0];
+            }
             return $rs;
         }
         public static function DateThFullShort($date) {

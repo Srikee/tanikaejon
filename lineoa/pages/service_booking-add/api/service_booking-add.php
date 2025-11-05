@@ -72,6 +72,18 @@
         );
         Func::RemoveDir($options);
         $DB->QueryDelete("service_booking_image_temp", "random_id='".$DB->Escape($random_id)."' ");
+        
+        
+        // Insert Timeline
+        $DB->QueryInsert("service_booking_timeline", [
+            "service_booking_timeline_id"=>$DB->QueryMaxid("service_booking_timeline", "service_booking_timeline_id"),
+            "service_booking_id"=>$service_booking_id,
+            "timeline_desc"=>'ส่งเรื่องขอใช้บริการ "'.$service["service_name"].'" แล้ว',
+            "add_by"=>$customer["customer_name"]." ".$customer["customer_sname"],
+            "add_when"=>date("Y-m-d H:i:s"),
+        ]);
+        
+        
         echo json_encode(array(
             "status"=>"ok",
             "message"=>'ส่งข้อมูลขอใช้บริการเรียบร้อย คุณสามารถติดตามข้อมูลในหน้า "ประวัติการใช้บริการ" ได้',

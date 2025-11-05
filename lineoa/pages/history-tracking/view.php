@@ -41,6 +41,7 @@
     $status = $service_booking["status"];
     // Func::PrintData($_SESSION);
 ?>
+<input type="hidden" id="service_booking_id" value="<?php echo htmlspecialchars($service_booking_id); ?>">
 <div class="header">
     <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
@@ -128,43 +129,36 @@
     <div>
         <h5 class="mb-3">ประวัติการดำเนินงาน</h5>
         <div class="timeline">
-            <div class="timeline-item active">
-                <div class="timeline-date">27 ต.ค. 15:23</div>
-                <div class="timeline-content">
-                    <h4>พัสดุถูกจัดส่งสำเร็จแล้ว: Muang - Pattani</h4>
-                    <p class="subtext">ดูหลักฐานการจัดส่งสินค้า</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">27 ต.ค. 11:59</div>
-                <div class="timeline-content">
-                    <h4>พัสดุอยู่ระหว่างการนำส่ง</h4>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">27 ต.ค. 09:18</div>
-                <div class="timeline-content">
-                    <h4>พัสดุถึงสาขาปลายทาง: Muang - Pattani</h4>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">27 ต.ค. 09:18</div>
-                <div class="timeline-content">
-                    <h4>พัสดุถึงสาขาปลายทาง: Muang - Pattani</h4>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">27 ต.ค. 09:18</div>
-                <div class="timeline-content">
-                    <h4>พัสดุถึงสาขาปลายทาง: Muang - Pattani</h4>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">27 ต.ค. 09:18</div>
-                <div class="timeline-content">
-                    <h4>พัสดุถึงสาขาปลายทาง: Muang - Pattani</h4>
-                </div>
-            </div>
+            <?php
+                $sql = "
+                    SELECT * FROM service_booking_timeline 
+                    WHERE service_booking_id='".$service_booking_id."' 
+                    ORDER BY add_when DESC
+                ";
+                $timelines = $DB->QueryObj($sql);
+                foreach($timelines as $timeline) {
+                    $dir = "../../../files/service_booking_timeline/".$timeline["service_booking_timeline_id"]."/";
+                    $options = array(
+                        "dir"   => $dir
+                    );
+                    $files = Func::ListFile($options);
+                    $images = '';
+                    if( sizeof($files)>0 ) {
+                        $images = '<a href="Javascript:" class="subtext" data-id="'.$timeline["service_booking_timeline_id"].'" data-json="'.htmlspecialchars(json_encode($files)).'">ดูรูปภาพการดำเนินการ</a>';
+                    }
+                    echo '
+                        <div class="timeline-item active">
+                            <div class="timeline-date">
+                                '.Func::DateThFull($timeline["add_when"], true).' น.
+                            </div>
+                            <div class="timeline-content">
+                                <h4>'.$timeline["timeline_desc"].'</h4>
+                                '.$images.'
+                            </div>
+                        </div>
+                    ';
+                } 
+            ?>
         </div>
 
 
