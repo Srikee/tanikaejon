@@ -13,7 +13,7 @@
         $pass = "48HzZWCJnpLSfgBRdJbk";
         $dbname = "tanikaej_db";
         $CLIENT_ROOT = "/admin/";
-        $SERVER_ROOT = "/domains/tanikaejon.com/public_html/admin/";
+        $SERVER_ROOT = "/home/tanikaej/domains/tanikaejon.com/private_html/admin/";
     } else {
         $MODE = "developer";
         $host = "localhost";
