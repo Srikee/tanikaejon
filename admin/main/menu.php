@@ -2,7 +2,7 @@
     <a href="Javascript:" class="ks-toggle-menu btn me-2">
         <i class="fa-solid fa-bars"></i>
     </a>
-    <a href="./" class="text-decoration-none">งานแอดมินระบบ</a>
+    <a href="./" class="text-decoration-none">เมนูการใช้งาน</a>
 </div>
 <ul class="ks-menu">
 
@@ -16,21 +16,39 @@
 
     <?php
         $menus = [
-            "report-attendance", "report-leave", "report-leave-detail",
+            "customer-pending", "customer-pending-detail",
+            "customer", "customer-detail",
         ];
+        $sql = "
+            SELECT
+                IFNULL(COUNT(*),0)
+            FROM `customer`
+            WHERE `status`='1'
+        ";
+        $badge1 = $DB->QueryString($sql);
     ?>
     <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
-        <a href="#" class="btn-open-submenu">
-            <i class="fas fa-chart-simple me-1"></i> รายงาน
+        <a href="Javascript:" class="btn-open-submenu">
+            <i class="fas fa-users me-1"></i> ข้อมูลลูกค้า
             <i class="fas fa-angle-right ks-menu-icon-sub"></i>
+            <?php
+                if( $badge1>0 ) {
+                    echo '<span class="ks-badge">'.$badge1.'</span>';
+                }
+            ?>
         </a>
         <ul class="ks-submenu" style="<?php if (in_array($PAGE, $menus)) echo "display:block;"; ?>">
             <li
-                class="ks-submenu-item <?php if (in_array($PAGE, ["report-leave", "report-leave-detail"])) echo "active"; ?>">
-                <a href="./?page=report-leave">ข้อมูลใบลาทั้งหมด</a>
+                class="ks-submenu-item <?php if (in_array($PAGE, ["customer-pending", "customer-pending-detail"])) echo "active"; ?>">
+                <a href="./?page=customer-pending">ลูกค้าใหม่</a>
+                <?php
+                    if( $badge1>0 ) {
+                        echo '<span class="ks-badge">'.$badge1.'</span>';
+                    }
+                ?>
             </li>
-            <li class="ks-submenu-item <?php if (in_array($PAGE, ["report-attendance"])) echo "active"; ?>">
-                <a href="./?page=report-attendance">การมาเรียนของนักเรียน</a>
+            <li class="ks-submenu-item <?php if (in_array($PAGE, ["customer", "customer-detail"])) echo "active"; ?>">
+                <a href="./?page=customer">ลูกค้าทั้งหมด</a>
             </li>
         </ul>
     </li>
@@ -38,41 +56,89 @@
 
 
     <?php
-        $menus = ["staff", "staff-add", "staff-edit", "staff-detail"];
+        $menus = [
+            "service", "service-add", "service-edit", "service-detail",
+            "service_booking", "service_booking-detail",
+        ];
+        $sql = "
+            SELECT
+                IFNULL(COUNT(*),0)
+            FROM `service_booking`
+            WHERE `status`='1'
+        ";
+        $badge2 = $DB->QueryString($sql);
     ?>
-    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=staff"><i class="fas fa-user-tie me-1"></i> ข้อมูลบุคลากร</a>
+    <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
+        <a href="Javascript:" class="btn-open-submenu">
+            <i class="fas fa-handshake-angle me-1"></i> ข้อมูลการบริการ
+            <i class="fas fa-angle-right ks-menu-icon-sub"></i>
+            <?php
+                if( $badge2>0 ) {
+                    echo '<span class="ks-badge">'.$badge2.'</span>';
+                }
+            ?>
+        </a>
+        <ul class="ks-submenu" style="<?php if (in_array($PAGE, $menus)) echo "display:block;"; ?>">
+            <li
+                class="ks-submenu-item <?php if (in_array($PAGE, ["service", "service-add", "service-edit", "service-detail"])) echo "active"; ?>">
+                <a href="./?page=service">จัดการข้อมูลการบริการ</a>
+            </li>
+            <li
+                class="ks-submenu-item <?php if (in_array($PAGE, ["service_booking", "service_booking-detail"])) echo "active"; ?>">
+                <a href="./?page=service_booking">ผู้ขอใช้บริการทั้งหมด</a>
+                <?php
+                    if( $badge2>0 ) {
+                        echo '<span class="ks-badge">'.$badge2.'</span>';
+                    }
+                ?>
+            </li>
+        </ul>
     </li>
 
 
     <?php
-        $menus = ["role"];
+        $menus = ["occupation", "occupation-add", "occupation-edit"];
     ?>
-    <!-- <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=role"><i class="fas fa-users-rectangle me-1"></i> จัดการสิทธิ์บุคลากร</a>
+    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
+        <a href="./?page=occupation"><i class="fas fa-briefcase me-1"></i> ข้อมูลอาชีพ</a>
+    </li>
+
+
+    <?php
+        $menus = ["staff", "staff-add", "staff-edit"];
+    ?>
+    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
+        <a href="./?page=staff"><i class="fas fa-user-tie me-1"></i> ข้อมูลเจ้าหน้าที่</a>
+    </li>
+
+
+
+
+    <?php
+        $menus = [
+            "service", "service-add", "service-edit", "service-detail",
+            "service_booking", "service_booking-detail",
+        ];
+    ?>
+    <!-- <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
+        <a href="Javascript:" class="btn-open-submenu">
+            <i class="fas fa-handshake-angle me-1"></i> ข้อมูลการบริการ
+            <i class="fas fa-angle-right ks-menu-icon-sub"></i>
+        </a>
+        <ul class="ks-submenu" style="<?php if (in_array($PAGE, $menus)) echo "display:block;"; ?>">
+            <li
+                class="ks-submenu-item <?php if (in_array($PAGE, ["service", "service-add", "service-edit", "service-detail"])) echo "active"; ?>">
+                <a href="./?page=service">จัดการข้อมูลการบริการ</a>
+            </li>
+            <li
+                class="ks-submenu-item <?php if (in_array($PAGE, ["service_booking", "service_booking-detail"])) echo "active"; ?>">
+                <a href="./?page=service_booking">ผู้ขอใช้บริการทั้งหมด</a>
+            </li>
+        </ul>
     </li> -->
 
 
 
-    <?php
-        $menus = ["login", "login-detail"];
-    ?>
-    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=login"><i class="fas fa-users me-1"></i> ตรวจสอบผู้ล็อกอิน</a>
-    </li>
 
-    <?php
-        $menus = ["send-mail"];
-    ?>
-    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=send-mail"><i class="fas fa-envelope me-1"></i> ส่งอีเมล</a>
-    </li>
-
-    <?php
-        $menus = ["forge"];
-    ?>
-    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=forge"><i class="fas fa-user-tag me-1"></i> จำลองสิทธิ์</a>
-    </li>
 
 </ul>

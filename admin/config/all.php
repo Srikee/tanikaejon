@@ -28,9 +28,12 @@
     include_once($SERVER_ROOT."../config/class.kscryption.php");
     include_once($SERVER_ROOT."../config/func.php");
 
-    $VERSION = "1.0.0";
+    $VERSION = "1.0.1";
 
     $DB = new Database($host, $user, $pass, $dbname);
+
+    $SHOW = 100;
+    $PAGE_SHOW = 7;
 
     //สถานะ 1: รอดำเนินการ, 2: กำลังดำเนินการ, 3: เสร็จสิ้น, 4: ยกเลิก
     $StatusServiceBooking = [
