@@ -2,16 +2,12 @@
     include_once("../../../../config/all.php");
 
     $random_id = trim($_POST['random_id'] ?? "");
-    $service_id = trim($_POST['service_id'] ?? "");
-    $note = trim($_POST['note'] ?? "");
-    $location = trim($_POST['location'] ?? "");
-    $phone = trim($_POST['phone'] ?? "");
+    $service_booking_id = trim($_POST['service_booking_id'] ?? "");
+    $review_star = trim($_POST['review_star'] ?? "");
+    $review_comment = trim($_POST['review_comment'] ?? "");
 
-    if(  $service_id == "" ||
-        $note == "" ||
-        $location == "" ||
-        $phone == "" ||
-        strlen($phone) != 10
+    if(  $service_booking_id == "" ||
+        $review_star == ""
     ) {
         echo json_encode(array(
             "status"=>"no",
@@ -29,35 +25,26 @@
         ));
         exit();
     }
-    $sql = "SELECT * FROM `service` WHERE service_id='".$DB->Escape($service_id)."' ";
-    $service = $DB->QueryFirst($sql);
-    if( $service==null ) {
+    $sql = "SELECT * FROM `service_booking` WHERE service_booking_id='".$DB->Escape($service_booking_id)."' ";
+    $service_booking = $DB->QueryFirst($sql);
+    if( $service_booking==null ) {
         echo json_encode(array(
             "status"=>"no",
-            "message"=>"ไม่พบข้อมูลบริการ"
+            "message"=>"ไม่พบข้อมูลการใช้บริการ"
         ));
         exit();
     }
 
-    $service_booking_id = $DB->QueryMaxId("service_booking", "service_booking_id");
-    $rs = $DB->QueryInsert("service_booking", [
-        "service_booking_id"=>$service_booking_id,
-        "customer_id"=>$customer_id,
-        "service_id"=>$service["service_id"],
-        "service_name"=>$service["service_name"],
-        "booking_datetime"=>date("Y-m-d H:i:s"),
-        "note"=>$note,
-        "location"=>$location,
-        "phone"=>$phone,
-        "status"=>"1",
+    $rs = $DB->QueryInsert("service_booking_review", [
+        "service_booking_id"=>$service_booking["service_booking_id"],
+        "review_star"=>$review_star,
+        "review_comment"=>$review_comment,
         "add_by"=>$customer["customer_name"]." ".$customer["customer_sname"],
-        "add_when"=>date("Y-m-d H:i:s"),
-        "edit_by"=>$customer["customer_name"]." ".$customer["customer_sname"],
-        "edit_when"=>date("Y-m-d H:i:s")
+        "add_when"=>date("Y-m-d H:i:s")
     ]);
     if($rs) {
         $dir_temp = "../../../../files/temp/".$random_id."/";
-        $dir = "../../../../files/service_booking/".$service_booking_id."/";
+        $dir = "../../../../files/service_booking_review/".$service_booking["service_booking_id"]."/";
         $options = array(
             "dir" => $dir
         );
@@ -77,8 +64,8 @@
         // Insert Timeline
         $DB->QueryInsert("service_booking_timeline", [
             "service_booking_timeline_id"=>$DB->QueryMaxid("service_booking_timeline", "service_booking_timeline_id"),
-            "service_booking_id"=>$service_booking_id,
-            "timeline_desc"=>'ส่งเรื่องขอใช้บริการ "'.$service["service_name"].'" แล้ว',
+            "service_booking_id"=>$service_booking["service_booking_id"],
+            "timeline_desc"=>'ได้ให้คะแนนต่อการใช้บริการแล้ว',
             "add_by"=>$customer["customer_name"]." ".$customer["customer_sname"],
             "add_when"=>date("Y-m-d H:i:s"),
         ]);
@@ -86,8 +73,7 @@
         
         echo json_encode(array(
             "status"=>"ok",
-            "message"=>'ส่งข้อมูลขอใช้บริการเรียบร้อย คุณสามารถติดตามข้อมูลในหน้า "ประวัติการใช้บริการ" ได้',
-            "service_booking_id"=>$service_booking_id
+            "message"=>'บันทึกการให้คะแนนเรียบร้อย'
         ));
     } else {
         echo json_encode(array(

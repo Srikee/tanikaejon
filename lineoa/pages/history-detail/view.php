@@ -112,10 +112,29 @@
             </a>
         </div>
         <div class="col ps-1">
-            <a href="./?page=history-tracking&service_booking_id=<?php echo $service_booking["service_booking_id"]; ?>"
+            <?php
+                if( $service_booking["status"]=="3" ) {
+                    $sql = "
+                        SELECT 
+                            sbr.*
+                        FROM service_booking_review sbr
+                        WHERE sbr.service_booking_id = '".$service_booking_id."' 
+                    ";
+                    $service_booking_review = $DB->QueryFirst($sql);
+                    $button_title = "ให้คะแนน";
+                    if( $service_booking_review!=null ) {
+                        $button_title = "ดูคะแนน";
+                    }
+            ?>
+            <a href="./?page=history-review&service_booking_id=<?php echo $service_booking["service_booking_id"]; ?>"
                 class="btn btn-info btn-lg w-100">
-                <i class="fas fa-star me-1"></i> ให้คะแนน
+                <i class="fas fa-star me-1"></i> <?php echo $button_title; ?>
             </a>
+            <?php } else { ?>
+            <button class="btn btn-info btn-lg w-100" disabled>
+                <i class="fas fa-star me-1"></i> ให้คะแนน
+            </button>
+            <?php } ?>
         </div>
     </div>
 </div>

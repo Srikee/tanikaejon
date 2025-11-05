@@ -1,0 +1,44 @@
+.star {
+    font-size: 30px;
+    margin-right: 6px;
+    color: #ffd600;
+}
+
+.images-section {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.images-section .col-6 {
+    position: relative;
+    padding: 5px;
+}
+
+.images-section .image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
+
+.btn-del-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: red;
+    background-color: #ffffff;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.btn-del-image:hover {
+    background-color: #e1e1e1;
+}

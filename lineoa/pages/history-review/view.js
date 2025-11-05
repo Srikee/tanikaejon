@@ -1,20 +1,11 @@
 $(function () {
-    $("title").html("บริการของเรา");
+    $("title").html("ให้คะแนน");
     $("#formdata").submit(function (e) {
         e.preventDefault();
-        let phone = $("#phone").val().trim();
-        if (phone == "" || phone.length != 10) {
-            Func.ShowAlert({
-                html: "กรุณาระบุเบอร์มือถือให้ถูกต้อง",
-                type: "error",
-                callback: function () { $("#phone").focus(); }
-            });
-            return;
-        }
         Func.ShowConfirm({
-            html: 'คุณต้องการ <span class="text-success">"ยืนยันการส่งข้อมูล"</span> ใช่หรือไม่ ?',
+            html: 'คุณต้องการ <span class="text-success">"บันทึกการให้คะแนน"</span> ใช่หรือไม่ ?',
             type: "question",
-            confirmButtonText: '<i class="fas fa-envelope me-1"></i> ยืนยันการส่งข้อมูล',
+            confirmButtonText: '<i class="fas fa-floppy-disk me-1"></i> บันทึกการให้คะแนน',
             confirmButtonColor: '#198754',
             cancelButtonText: '<i class="fa fa-times me-1"></i> ยกเลิก',
             cancelButtonColor: '#727272',
@@ -23,7 +14,7 @@ $(function () {
                 Func.ShowLoading();
                 $.ajax({
                     type: "POST",
-                    url: "pages/service_booking-add/api/service_booking-add.php",
+                    url: "pages/history-review/api/review-add.php",
                     dataType: "JSON",
                     data: Func.GetFormData($("#formdata")), // ดึงข้อมูลภายใน #formdata ที่มี Tag name
                     contentType: false,
@@ -35,7 +26,7 @@ $(function () {
                             type: (res.status == "ok") ? "success" : "error",
                             callback: function () {
                                 if (res.status == "ok") {
-                                    Func.LinkTo("./?page=history-detail&service_booking_id=" + res.service_booking_id);
+                                    Func.Reload();
                                 }
                             }
                         });
@@ -87,7 +78,7 @@ $(function () {
             </div>
         `);
         Func.GetBase64AndResize(files[idx], 1000, 1000, function (base64) {
-            $.post("pages/service_booking-add/api/image-temp-add.php", {
+            $.post("pages/history-review/api/image-temp-add.php", {
                 random_id: $("#random_id").val(),
                 base64: base64
             }, function (res) {
@@ -122,7 +113,7 @@ $(function () {
             callback: function (rs) {
                 if (rs) {
                     Func.ShowLoading("กำลังลบรูปภาพ");
-                    $.post("pages/service_booking-add/api/image-temp-del.php", {
+                    $.post("pages/history-review/api/image-temp-del.php", {
                         random_id: $("#random_id").val(),
                         filename: filename
                     }, function (res) {
@@ -141,6 +132,15 @@ $(function () {
                 }
             }
         });
+    });
+    $("body").on("click", "[data-star]", function (e) {
+        var star = $(this).attr("data-star");
+        $("[data-star]").removeClass("fa-regular fa-solid");
+        for (var i = 1; i <= 5; i++) {
+            if (i <= star * 1) $("[data-star='" + i + "']").addClass("fa-solid");
+            else $("[data-star='" + i + "']").addClass("fa-regular");
+        }
+        $("#review_star").val(star);
     });
     if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });
