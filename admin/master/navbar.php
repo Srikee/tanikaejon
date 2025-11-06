@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #003C71; height:60px;" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo $CLIENT_ROOT; ?>">
-            <img src="<?php echo $CLIENT_ROOT; ?>../images/favicon.png" alt="Satit MIS" class="ks-brand-logo">
+            <img src="<?php echo $CLIENT_ROOT; ?>../images/favicon.png?v=<?php echo $VERSION; ?>" alt="Satit MIS"
+                class="ks-brand-logo">
             <span class="ks-brand-text">ตานีแก้จน</span>
         </a>
         <ul class="navbar-nav ms-auto">

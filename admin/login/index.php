@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STMIS::สำหรับบุคลากร - โรงเรียนสาธิตมหาวิทยาลัยสงขลานครินทร์ (ฝ่ายมัธยมศึกษา)</title>
-    <link rel="icon" href="<?php echo $CLIENT_ROOT; ?>../images/favicon.png" />
+    <link rel="icon" href="<?php echo $CLIENT_ROOT; ?>../images/favicon.png?v=<?php echo $VERSION; ?>" />
     <!-- bootstrap -->
     <link href="<?php echo $CLIENT_ROOT; ?>../assets/bootstrap-5.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="<?php echo $CLIENT_ROOT; ?>../assets/bootstrap-5.3.7/js/bootstrap.bundle.min.js"></script>
@@ -409,7 +409,7 @@
                 <i class="fas fa-user-tie"></i>
             </div> -->
             <div class="logo-image">
-                <img src="../../images/favicon.png" alt="Brand">
+                <img src="../../images/favicon.png?v=<?php echo $VERSION; ?>" alt="Brand">
             </div>
             <div class="info">
                 <h1>โครงการตานีแก้จน</h1>
