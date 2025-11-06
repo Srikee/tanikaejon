@@ -58,13 +58,13 @@
                 </td>
             </tr>
             <tr>
-                <th>บริการ</th>
+                <th>บริการขอใช้</th>
                 <td>
                     <?php echo $service_booking["service_name"]; ?>
                 </td>
             </tr>
             <tr>
-                <th>รายละเอียดการใช้บริการ</th>
+                <th>รายละเอียดการขอใช้บริการ</th>
                 <td>
                     <?php echo nl2br($service_booking["note"]); ?>
                 </td>

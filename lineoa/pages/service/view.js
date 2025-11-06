@@ -2,7 +2,7 @@ $(function () {
     $("title").html("บริการของเรา");
 
     function GetService() {
-        $("#service").html("");
+        // $("#service").html("");
         ShowLoading();
         $.ajax({
             type: "POST",

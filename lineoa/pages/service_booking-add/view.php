@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="note" class="form-label">รายละเอียดการใช้บริการ <span class="text-danger">*</span></label>
+            <label for="note" class="form-label">รายละเอียดการขอใช้บริการ <span class="text-danger">*</span></label>
             <textarea class="form-control form-control-lg" id="note" name="note" rows="5" required
                 placeholder="ระบุรายละเอียดที่ต้องการใช้บริการ"></textarea>
         </div>

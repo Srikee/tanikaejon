@@ -11,7 +11,7 @@
     include_once("func.php");
 
     
-    $VERSION = "1.0.25";
+    $VERSION = "1.0.26";
 
     if( $_SERVER["HTTP_HOST"]=="tanikaejon.com" ) {
         $MODE = "production";

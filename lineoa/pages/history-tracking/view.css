@@ -1,4 +1,4 @@
-/**  **/
+/** step-horizontal **/
 .step-horizontal {
     display: flex;
     justify-content: space-between;
@@ -36,7 +36,7 @@
     background-color: #dee2e6;
     position: absolute;
     right: Calc(50% - 15px);
-    padding: 5px;
+    padding: 6px;
     font-size: 12px;
 }
 
@@ -65,7 +65,7 @@
 
 
 
-
+/** timeline **/
 .timeline {
     position: relative;
 }

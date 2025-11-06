@@ -10,7 +10,8 @@
     foreach($arr as $v) {
         if($v=="") continue;
         $condition .= " AND (
-            sb.service_name LIKE '%".$v."%'
+            sb.service_booking_id LIKE '%".$v."%'
+            OR sb.service_name LIKE '%".$v."%'
             OR sb.note LIKE '%".$v."%'
             OR sb.location LIKE '%".$v."%'
         )";

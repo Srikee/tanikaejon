@@ -45,13 +45,6 @@
     ติดตามผล
 </div>
 <div class="container-fluid py-1">
-    <!-- <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div> -->
     <div class="border pt-3 pb-2 rounded mb-4">
         <?php 
             if( in_array($status, ["1", "2","3"]) ) {
