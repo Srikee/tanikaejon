@@ -21,7 +21,8 @@
         $pass = "";
         $dbname = "db_kaejon";
         $CLIENT_ROOT = "/tanikaejon/admin/";
-        $SERVER_ROOT = "D:/Server/tanikaejon/admin/";
+        // $SERVER_ROOT = "D:/Server/tanikaejon/admin/";
+        $SERVER_ROOT = "C:/Users/MSI_PC/Dropbox/Server/tanikaejon/admin/";
     }
 
     include_once($SERVER_ROOT."../config/class.database.php");

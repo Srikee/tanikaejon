@@ -111,6 +111,18 @@
         color: white;
     }
 
+    .logo-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 25px auto;
+    }
+
+    .logo-image img {
+        width: 100px;
+        border-radius: 10px;
+    }
+
     .info {
         text-align: center;
         position: relative;
@@ -393,9 +405,11 @@
 <body>
     <div class="login-container">
         <div class="login-left">
-            <div class="logo">
-                <!-- <i class="fas fa-user-tie"></i> -->
-                <img src="../../images/favicon.png" alt="Brand" width="150">
+            <!-- <div class="logo">
+                <i class="fas fa-user-tie"></i>
+            </div> -->
+            <div class="logo-image">
+                <img src="../../images/favicon.png" alt="Brand">
             </div>
             <div class="info">
                 <h1>โครงการตานีแก้จน</h1>
