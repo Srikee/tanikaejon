@@ -4,7 +4,7 @@ $(function () {
         Func.ShowLoading();
         $.ajax({
             type: "POST",
-            url: "pages/" + PAGE + "/api/edit.php",
+            url: "pages/" + PAGE + "/api/add.php",
             dataType: "JSON",
             data: Func.GetFormData('#formdata'),
             contentType: false,
@@ -16,7 +16,7 @@ $(function () {
                     type: (res.status == "ok") ? "success" : "error",
                     callback: function () {
                         if (res.status == "ok") {
-                            Func.LinkTo("./?page=occupation");
+                            Func.LinkTo("./?page=service");
                         }
                     }
                 });

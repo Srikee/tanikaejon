@@ -4,7 +4,7 @@ $(function () {
         Func.ShowLoading();
         $.ajax({
             type: "POST",
-            url: "pages/occupation-add/api/add.php",
+            url: "pages/" + PAGE + "/api/add.php",
             dataType: "JSON",
             data: Func.GetFormData('#formdata'),
             contentType: false,

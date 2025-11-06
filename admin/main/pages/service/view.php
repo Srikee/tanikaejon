@@ -4,13 +4,13 @@
     $condition = "";
     if( $search!="" ) {
         $condition .= " AND (
-            t.occupation_name LIKE '%".$DB->Escape($search)."%'
+            t.service_name LIKE '%".$DB->Escape($search)."%'
         )";
     }
     $sql = "
         SELECT
             t.*
-        FROM occupation t
+        FROM service t
         WHERE 1=1 ".$condition."
         ORDER BY t.edit_when DESC
     ";
@@ -23,18 +23,18 @@
 <div class="ks-main-header">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="./?page=occupation">ข้อมูลอาชีพ</a></li>
+            <li class="breadcrumb-item"><a href="./?page=service">ข้อมูลการบริการ</a></li>
         </ol>
     </nav>
 </div>
 <div class="ks-main-content">
     <div class="row mb-3">
         <div class="col">
-            <a href="./?page=occupation-add" class="btn btn-success me-2" occupation="เพิ่มข้อมูล">
+            <a href="./?page=service-add" class="btn btn-success me-2" service="เพิ่มข้อมูล">
                 <i class="fa fa-plus me-1"></i>
                 เพิ่มข้อมูล
             </a>
-            <a href="./?page=occupation" class="btn btn-light me-2 border" occupation="รีโหลด">
+            <a href="./?page=service" class="btn btn-light me-2 border" service="รีโหลด">
                 <i class="fa fa-sync me-1"></i>
                 รีโหลด
             </a>
@@ -46,7 +46,7 @@
                 <label for="search" class="form-label">ค้นหา</label>
                 <input type="text" class="form-control" id="search" value="<?php echo htmlspecialchars($search); ?>"
                     placeholder="ค้นหา">
-                <div class="form-text">พิมพ์คำค้นหา.. อาชีพ</div>
+                <div class="form-text">พิมพ์คำค้นหา.. การบริการ</div>
             </div>
         </div>
     </div>
@@ -84,11 +84,11 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href; ?>" occupation="หน้าแรก">
+                        <a class="page-link" href="<?php echo $href; ?>" service="หน้าแรก">
                             << </a>
                     </li>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href_pr; ?>" occupation="หน้าก่อนหน้า">
+                        <a class="page-link" href="<?php echo $href_pr; ?>" service="หน้าก่อนหน้า">
                             < </a>
                     </li>
                     <?php
@@ -110,10 +110,10 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href_ne; ?>" occupation="หน้าถัดไป">></a>
+                        <a class="page-link" href="<?php echo $href_ne; ?>" service="หน้าถัดไป">></a>
                     </li>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" occupation="หน้าสุดท้าย">>></a>
+                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" service="หน้าสุดท้าย">>></a>
                     </li>
                 </ul>
             </nav>
@@ -128,22 +128,24 @@
             <thead>
                 <tr class="table-secondary">
                     <th style="width:60px;" class="text-center">ลำดับ</th>
-                    <th style="min-width: 200px;">อาชีพ</th>
+                    <th style="min-width: 200px;">การบริการ</th>
+                    <th style="min-width: 200px;">คำอธิบาย</th>
                     <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="3" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_edit = '<a href="./?page=occupation-edit&occupation_id='.$value["occupation_id"].'" occupation="แก้ไขข้อมูล" data-container="#table" class="btn btn-link text-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
-                            $btn_del = '<button class="btn btn-link text-danger btn-sm btn-del" occupation="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
+                            $btn_edit = '<a href="./?page=service-edit&service_id='.$value["service_id"].'" service="แก้ไขข้อมูล" data-container="#table" class="btn btn-link text-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
+                            $btn_del = '<button class="btn btn-link text-danger btn-sm btn-del" service="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
-                                    <td>'.$value["occupation_name"].'</td>
+                                    <td>'.$value["service_name"].'</td>
+                                    <td>'.$value["service_desc"].'</td>
                                     <td class="text-center p-0">
                                         '.$btn_edit.'
                                         '.$btn_del.'

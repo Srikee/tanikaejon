@@ -6,7 +6,7 @@ $(function () {
     });
     $(".btn-del").click(function () {
         var data = JSON.parse($(this).closest("tr").attr("data-json"));
-        var occupation_id = data.occupation_id;
+        var service_id = data.service_id;
         Func.ShowConfirm({
             html: 'คุณต้องการลบข้อมูลอาชีพใช่หรือไม่ ?',
             confirmButtonText: '<i class="fas fa-trash me-2"></i> ยืนยันการลบ',
@@ -16,7 +16,7 @@ $(function () {
             callback: function (rs) {
                 if (rs) {
                     var formData = new FormData();
-                    formData.append("occupation_id", occupation_id);
+                    formData.append("service_id", service_id);
                     Func.ShowLoading();
                     $.ajax({
                         type: "POST",

@@ -16,7 +16,7 @@ $(function () {
                     type: (res.status == "ok") ? "success" : "error",
                     callback: function () {
                         if (res.status == "ok") {
-                            Func.LinkTo("./?page=occupation");
+                            Func.LinkTo("./?page=service");
                         }
                     }
                 });

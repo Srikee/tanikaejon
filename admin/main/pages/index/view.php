@@ -1,5 +1,11 @@
+<div class="ks-main-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="./">หน้าแรก</a></li>
+        </ol>
+    </nav>
+</div>
 <div class="ks-main-content">
-    AAA
     <div>
         <?php
             Func::PrintData($_SESSION);
