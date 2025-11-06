@@ -84,7 +84,7 @@ var Func = {
             closeEffect: 'none'
         });
     },
-    DateTh: function (date, time) {
+    DateTh: function (date, time = true) {
         if (date == null) return date;
         // if (time == null) time = null;
         var x = moment(date);

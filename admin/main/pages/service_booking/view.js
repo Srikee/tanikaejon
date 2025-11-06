@@ -6,10 +6,10 @@ $(function () {
     });
     $(".btn-del").click(function () {
         var data = JSON.parse($(this).closest("tr").attr("data-json"));
-        var customer_id = data.customer_id;
-        Del(customer_id)
+        var service_booking_id = data.service_booking_id;
+        Del(service_booking_id)
     });
-    function Del(customer_id) {
+    function Del(service_booking_id) {
         Func.ShowConfirm({
             html: 'คุณต้องการ <span class="text-danger">"ลบข้อมูล"</span> ใช่หรือไม่ ?',
             confirmButtonText: '<i class="fas fa-trash me-2"></i> ยืนยันการลบ',
@@ -19,7 +19,7 @@ $(function () {
             callback: function (rs) {
                 if (rs) {
                     var formData = new FormData();
-                    formData.append("customer_id", customer_id);
+                    formData.append("service_booking_id", service_booking_id);
                     Func.ShowLoading();
                     $.ajax({
                         type: "POST",
@@ -62,55 +62,20 @@ $(function () {
         var popup;
         var $title = $(`
             <div>
-                <i class="fa-solid fa-user-check me-1"></i> รายละเอียดข้อมูลลูกค้า
+                <i class="fa-solid fa-user-check me-1"></i> รายละเอียดข้อมูลผู้ขอใช้บริการ
             </div>
         `);
-        var $contents = $(`
-            <div>
-                <div class="row">
-                    <div class="col-md-auto mb-4">
-                        <div class="customer-image">
-                            <img id="pictureUrl" src="../../images/favicon.png" alt="Profile">
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <table class="table">
-                            <tr>
-                                <td style="width:100px;">ชื่อ-นามสกุล</td>
-                                <td id="fullname">AAAA XXXX</td>
-                            </tr>
-                            <tr>
-                                <td>ที่อยู่</td>
-                                <td id="address"></td>
-                            </tr>
-                            <tr>
-                                <td>เบอร์มือถือ</td>
-                                <td id="phone"></td>
-                            </tr>
-                            <tr>
-                                <td>อาชีพ</td>
-                                <td id="occupation_name"></td>
-                            </tr>
-                            <tr>
-                                <td>ชื่อไลน์</td>
-                                <td id="displayName"></td>
-                            </tr>
-                            <tr>
-                                <td>รหัส userId</td>
-                                <td id="userId"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        `);
-        $contents.find("#fullname").html(data.customer_name + " " + data.customer_sname);
-        $contents.find("#address").html(data.address);
-        $contents.find("#phone").html(Func.FormatPhoneNumber(data.phone));
-        $contents.find("#occupation_name").html(data.occupation_name);
-        $contents.find("#displayName").html(data.displayName);
-        $contents.find("#userId").html(data.userId);
-        $contents.find("#pictureUrl").html(data.pictureUrl);
+        var $contents = $(`<div></div>`);
+        Func.ShowLoading();
+        $.post("pages/" + PAGE + "/api/get-detail.php", {
+            service_booking_id: data.service_booking_id
+        }, function (html) {
+            Func.HideLoading();
+            $contents.html(html);
+            $(window).trigger('resize');
+        }).fail(function () {
+            Func.HideLoading();
+        });
         var $footer = $(`
             <div class="row">
                 <div class="col-auto">
@@ -122,7 +87,7 @@ $(function () {
             </div>
         `);
         $footer.find('.btn-del').click(function (event) {
-            Del(data.customer_id);
+            Del(data.service_booking_id);
         });
         $footer.find('.btn-cancel').click(function (event) {
             popup.close();
@@ -135,7 +100,7 @@ $(function () {
             height: "auto",
             draggable: 'title',
             overlay: true,
-            zIndex: 10001,  // default=10000
+            zIndex: 101,  // default=10000
             onOpen: function () {
                 // เมื่อเปิด Popup
             },
@@ -146,5 +111,16 @@ $(function () {
             }
         });
         popup.open();
+    });
+    $("body").on("click", ".image", function () {
+        var src = $(this).attr("src");
+        var index = 0;
+        var images = [];
+        $.each($("body .image"), function (i, v) {
+            images.push($(this).attr("src"));
+            if (src == $(this).attr("src")) index = i;
+        });
+        // console.log(images)
+        Func.ShowGalleryImage(index, images);
     });
 });

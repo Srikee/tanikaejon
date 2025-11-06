@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="<?php echo $CLIENT_ROOT; ?>">
             <img src="<?php echo $CLIENT_ROOT; ?>../images/favicon.png?v=<?php echo $VERSION; ?>" alt="Satit MIS"
                 class="ks-brand-logo">
-            <span class="ks-brand-text">ตานีแก้จน</span>
+            <span class="ks-brand-text">โครงการตานีแก้จน</span>
         </a>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">

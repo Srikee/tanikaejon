@@ -1,9 +1,7 @@
-.customer-image {
-    width: 200px;
-    margin: auto;
-}
-
-.customer-image img {
+.image {
     width: 100%;
-    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #222;
 }
