@@ -2,7 +2,7 @@ $(function () {
     $("title").html("ประวัติการใช้บริการ");
 
     function GetService() {
-        $("#service").html("");
+        $("#history").html("");
         ShowLoading();
         $.ajax({
             type: "POST",
@@ -15,7 +15,7 @@ $(function () {
             // processData: false,
             success: function (html) {
                 HideLoading();
-                $("#service").html(html);
+                $("#history").html(html);
             },
             error: function () {
                 HideLoading();

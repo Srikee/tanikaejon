@@ -30,7 +30,7 @@
     <title>ตานีแก้จน</title>
     <meta name="description" content="ตานีแก้จน">
     <meta name="keywords" content="ตานีแก้จน" />
-    <link rel="icon" href="../images/favicon.png" />
+    <link rel="icon" href="../images/favicon.png?v=<?php echo $VERSION;?>" />
     <script>
     var VERSION = "<?php echo $VERSION; ?>";
     </script>

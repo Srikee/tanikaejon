@@ -19,15 +19,11 @@
         SELECT 
             c.*,
             o.occupation_name,
-            ul.userId,
-            ul.displayName,
-            ul.pictureUrl,
             ta.tambol_name_thai,
             am.amphur_name_thai,
             pr.province_name_thai
         FROM customer c
             LEFT JOIN occupation o ON o.occupation_id = c.occupation_id
-            LEFT JOIN user_line ul ON ul.customer_id = c.customer_id
             LEFT JOIN th_tambol ta ON ta.tambol_id=c.tambol_id
             LEFT JOIN th_amphur am ON am.amphur_id=c.amphur_id
             LEFT JOIN th_province pr ON pr.province_id=c.province_id

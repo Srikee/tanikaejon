@@ -26,17 +26,22 @@
         LIMIT 50
     ";
     $data = $DB->QueryObj($sql);
-    foreach($data as $row) {
-        echo '
-            <li class="list-group-item d-flex justify-content-between align-items-start" data-json="'.htmlspecialchars(json_encode($row)).'">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">'.$row["service_name"].'</div>
-                    '.$row["note"].'
-                </div>
-                <a href="./?page=history-detail&service_booking_id='.$row["service_booking_id"].'" class="btn btn-success btn-lg">
-                    เลือก
-                </a>
-            </li>
-        ';
+    if( sizeof($data)>0 ) {
+        echo '<ul class="list-group">';
+        foreach($data as $row) {
+            echo '
+                <li class="list-group-item d-flex justify-content-between align-items-start" data-json="'.htmlspecialchars(json_encode($row)).'">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">'.$row["service_name"].'</div>
+                        '.$row["note"].'
+                    </div>
+                    <a href="./?page=history-detail&service_booking_id='.$row["service_booking_id"].'" class="btn btn-success btn-lg">
+                        เลือก
+                    </a>
+                </li>
+            ';
+        }
+    } else {
+        echo '<div class="text-center py-5">ไม่พบข้อมูลประวัติการใช้บริการ</div>';
     }
     

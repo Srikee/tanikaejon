@@ -14,5 +14,5 @@
     </div>
 </div>
 <div class="container-fluid py-4">
-    <ul class="list-group" id="service"></ul>
+    <div id="service"></div>
 </div>

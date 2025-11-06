@@ -53,6 +53,7 @@
         "province_id"=>$province_id,
         "zipcode"=>$zipcode,
         "occupation_id"=>$occupation_id,
+        "is_login"=>"1",
         "userId"=>$userId,
         "displayName"=>$displayName,
         "pictureUrl"=>$pictureUrl,
@@ -63,16 +64,6 @@
         "edit_when"=>date("Y-m-d H:i:s")
     ]);
     if($rs) {
-        $rs = $DB->QueryInsert("user_line", [
-            "userId"=>$userId,
-            "displayName"=>$displayName,
-            "pictureUrl"=>$pictureUrl,
-            "customer_id"=>$customer_id,
-            "add_by"=>$customer_name." ".$customer_sname,
-            "add_when"=>date("Y-m-d H:i:s"),
-            "edit_by"=>$customer_name." ".$customer_sname,
-            "edit_when"=>date("Y-m-d H:i:s")
-        ]);
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"ลงทะเบียนเรียบร้อยแล้ว รอเจ้าหน้าตรวจสอบข้อมูลภายใน 24 ชั่วโมง"

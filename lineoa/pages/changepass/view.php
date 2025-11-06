@@ -5,13 +5,9 @@
     $sql = "
         SELECT 
             c.*,
-            o.occupation_name,
-            ul.userId,
-            ul.displayName,
-            ul.pictureUrl
+            o.occupation_name
         FROM customer c
             LEFT JOIN occupation o ON o.occupation_id = c.occupation_id
-            LEFT JOIN user_line ul ON ul.customer_id = c.customer_id
         WHERE c.customer_id = '".$customer_id."' 
     ";
     $customer = $DB->QueryFirst($sql);
@@ -50,18 +46,6 @@
             <input type="password" class="form-control form-control-lg" id="password3" name="password3"
                 autocomplete="off" required>
         </div>
-        <!-- <div class="row mb-3 mt-4">
-            <div class="col pe-2">
-                <button type="button" class="btn btn-light btn-lg w-100" onclick="Func.Back()">
-                    <i class="fas fa-arrow-left me-1"></i> ย้อนกลับ
-                </button>
-            </div>
-            <div class="col ps-2">
-                <button id="btn-submit" type="submit" class="btn btn-success btn-lg w-100">
-                    <i class="fas fa-pen me-1"></i> ยืนยัน
-                </button>
-            </div>
-        </div> -->
     </form>
 </div>
 <div class="footer">

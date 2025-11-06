@@ -12,7 +12,9 @@
         ));
         exit();
     }
-    $rs = $DB->QueryDelete("user_line", "customer_id='".$DB->Escape($customer_id)."' AND userId='".$DB->Escape($userId)."' ");
+    $rs = $DB->QueryUpdate("customer", [
+        "is_login"=>"2",
+    ], "customer_id='".$DB->Escape($customer_id)."' ");
     if($rs) {
         echo json_encode(array(
             "status"=>"ok",

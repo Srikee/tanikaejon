@@ -1,7 +1,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>STMIS::สำหรับบุคลากร - โรงเรียนสาธิตมหาวิทยาลัยสงขลานครินทร์ (ฝ่ายมัธยมศึกษา)</title>
-<link rel="icon" href="<?php echo $CLIENT_ROOT; ?>../images/favicon.png" />
+<link rel="icon" href="<?php echo $CLIENT_ROOT; ?>../images/favicon.png?v=<?php echo $VERSION; ?>" />
 <!-- bootstrap -->
 <link href="<?php echo $CLIENT_ROOT; ?>../assets/bootstrap-5.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <script src="<?php echo $CLIENT_ROOT; ?>../assets/bootstrap-5.3.7/js/bootstrap.bundle.min.js"></script>

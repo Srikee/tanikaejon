@@ -2,34 +2,42 @@
     include_once("../../config/all.php");
     $user_line = $_POST["user_line"];
 
-    $sql = "SELECT * FROM user_line WHERE userId='".$DB->Escape($user_line["userId"])."' ";
-    $obj = $DB->QueryObj($sql);
+    $userId = trim($_POST["user_line"]["userId"] ?? "");
+    $displayName = trim($_POST["user_line"]["displayName"] ?? "");
+    $pictureUrl = trim($_POST["user_line"]["pictureUrl"] ?? "");
+
+    if( $userId=="" || $displayName=="" ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"ไม่พบบัญชี Line ของคุณ"
+        ));
+        exit();
+    }
     $_SESSION["customer"]["user_line"] = $user_line;
-    if( sizeof($obj)==1 ) {
-		$customer_id = $obj[0]["customer_id"];
-		$sql = "
-			SELECT 
-                c.*
-			FROM customer c
-			WHERE c.customer_id='".$DB->Escape($customer_id)."' 
-		";
-		$objCustomer = $DB->QueryFirst($sql);
-        if( $objCustomer==null ) {
-            echo json_encode(array(
-                "status"=>"no",
-                "message"=>"ไม่พบข้อมูลลูกค้า"
-            ));
-            exit();
-        }
+    $sql = "
+        SELECT 
+            c.*
+        FROM customer c
+        WHERE c.userId='".$DB->Escape($userId)."' 
+    ";
+    $objCustomer = $DB->QueryFirst($sql);
+    if( $objCustomer==null ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"ไม่พบข้อมูลลูกค้า"
+        ));
+        exit();
+    }
+    if( $objCustomer["is_login"]=="1" ) {
+        $_SESSION["customer"]["data"] = $objCustomer;
         echo json_encode(array(
             "status"=>"ok",
             "data"=>$objCustomer
 		));
-        $_SESSION["customer"]["data"] = $objCustomer;
     } else {
+        unset($_SESSION["customer"]["data"]);
         echo json_encode(array(
             "status"=>"no",
-            "message"=>"ไม่พบข้อมูล"
+            "message"=>"บัญชีของคุณได้ออกจากระบบ"
         ));
-        unset($_SESSION["customer"]["data"]);
     }
