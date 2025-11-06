@@ -38,7 +38,9 @@
         ));
         exit();
     }
-
+    $userId = @$_SESSION["customer"]["user_line"]["userId"];
+    $displayName = @$_SESSION["customer"]["user_line"]["displayName"];
+    $pictureUrl = @$_SESSION["customer"]["user_line"]["pictureUrl"];
     $service_booking_id = $DB->QueryMaxId("service_booking", "service_booking_id");
     $rs = $DB->QueryInsert("service_booking", [
         "service_booking_id"=>$service_booking_id,
@@ -49,6 +51,9 @@
         "note"=>$note,
         "location"=>$location,
         "phone"=>$phone,
+        "userId"=>$userId,
+        "displayName"=>$displayName,
+        "pictureUrl"=>$pictureUrl,
         "status"=>"1",
         "add_by"=>$customer["customer_name"]." ".$customer["customer_sname"],
         "add_when"=>date("Y-m-d H:i:s"),

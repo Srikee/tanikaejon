@@ -51,6 +51,13 @@
         "edit_when"=>date("Y-m-d H:i:s")
     ]);
     if($rs) {
+        $DB->QueryUpdate("customer", [
+            "userId"=>$userId,
+            "displayName"=>$displayName,
+            "pictureUrl"=>$pictureUrl,
+            "edit_by"=>$customer_name." ".$customer_sname,
+            "edit_when"=>date("Y-m-d H:i:s")
+        ], " customer_id='".$customer_id."' ");
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"เข้าสู่ระบบสำเร้จ"
