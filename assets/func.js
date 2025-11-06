@@ -47,6 +47,11 @@ var Func = {
         ctrl2.inputmask("9{2}/9{2}/9{4}");
         $('.datepicker').css("display", "none");
     },
+    ToggleTooltip: function (ctrl) {
+        ctrl.tooltip();
+        // const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    },
     ShowPDF: function (url) {
         var CheckUrl = function (url) {
             var a = url.split('https://');
@@ -530,4 +535,33 @@ var Func = {
             startIndex: index
         });
     },
+    FormatPhoneNumber: function (input) {
+        if (input === null || input === undefined) return "";
+        // แปลงเป็นสตริง แล้วตัดช่องว่างรอบๆ
+        let s = String(input).trim();
+        // เก็บเฉพาะตัวเลขและเครื่องหมาย + (ถ้ามี)
+        s = s.replace(/[^\d+]/g, "");
+        // ถ้ามีเครื่องหมาย + ไว้ข้างหน้า ให้ตัด +
+        if (s.startsWith("+")) s = s.slice(1);
+        // ถ้าเป็นรูปแบบ country code ของไทย (66xxxx...) ให้แปลงเป็น 0xxxx...
+        if (s.startsWith("66")) {
+            s = "0" + s.slice(2);
+        }
+        // เอาเฉพาะตัวเลขจริงๆ ออกมา
+        const digits = s.replace(/\D/g, "");
+        // กรณีปกติของมือถือไทยคือ 10 หลัก เริ่มด้วย 0 -> format 3-3-4
+        if (digits.length === 10 && digits[0] === "0") {
+            return digits.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+        }
+        // กรณีพิเศษ: ถ้ามีความยาวมากกว่า 4 หลัก ให้แบ่งเป็นกลุ่ม (จากต้นเป็นกลุ่ม 1-3-3... แล้วต่อท้ายด้วย 4 หลักสุดท้าย)
+        if (digits.length > 4) {
+            const last4 = digits.slice(-4);
+            const rest = digits.slice(0, -4);
+            // แบ่ง rest เป็นกลุ่มละ 3 ตัว
+            const parts = rest.match(/.{1,3}/g) || [];
+            return parts.join("-") + (parts.length ? "-" : "") + last4;
+        }
+        // ถ้าน้อยกว่าหรือเท่ากับ 4 ให้คืนเป็นตัวเลขล้วน (หรือเปลี่ยนตามต้องการ)
+        return digits;
+    }
 };

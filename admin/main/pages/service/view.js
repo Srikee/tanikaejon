@@ -8,7 +8,7 @@ $(function () {
         var data = JSON.parse($(this).closest("tr").attr("data-json"));
         var service_id = data.service_id;
         Func.ShowConfirm({
-            html: 'คุณต้องการลบข้อมูลอาชีพใช่หรือไม่ ?',
+            html: 'คุณต้องการลบข้อมูลใช่หรือไม่ ?',
             confirmButtonText: '<i class="fas fa-trash me-2"></i> ยืนยันการลบ',
             cancelButtonText: '<i class="fas fa-xmark me-2"></i> ไม่ต้องการ',
             confirmButtonColor: '#dc3545',

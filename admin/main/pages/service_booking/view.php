@@ -4,15 +4,18 @@
     $condition = "";
     if( $search!="" ) {
         $condition .= " AND (
-            t.service_name LIKE '%".$DB->Escape($search)."%'
+            sb.service_name LIKE '%".$DB->Escape($search)."%'
         )";
     }
     $sql = "
         SELECT
-            t.*
-        FROM service t
+            sb.*,
+            c.customer_name,
+            c.customer_sname
+        FROM service_booking sb
+            LEFT JOIN customer c ON c.customer_id=sb.customer_id
         WHERE 1=1 ".$condition."
-        ORDER BY t.edit_when DESC
+        ORDER BY sb.edit_when DESC
     ";
     $show = $SHOW;
     $all = $DB->QueryNumRow($sql);
@@ -23,18 +26,14 @@
 <div class="ks-main-header">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="./?page=service">ข้อมูลการบริการ</a></li>
+            <li class="breadcrumb-item"><a href="./?page=customer-pending">ผู้ขอใช้บริการทั้งหมด</a></li>
         </ol>
     </nav>
 </div>
 <div class="ks-main-content">
     <div class="row mb-3">
         <div class="col">
-            <a href="./?page=service-add" class="btn btn-success me-2" service="เพิ่มข้อมูล">
-                <i class="fa fa-plus me-1"></i>
-                เพิ่มข้อมูล
-            </a>
-            <a href="./?page=service" class="btn btn-light me-2 border" service="รีโหลด">
+            <a href="./?page=customer-pending" class="btn btn-light me-2 border" customer="รีโหลด">
                 <i class="fa fa-sync me-1"></i>
                 รีโหลด
             </a>
@@ -46,7 +45,7 @@
                 <label for="search" class="form-label">ค้นหา</label>
                 <input type="text" class="form-control" id="search" value="<?php echo htmlspecialchars($search); ?>"
                     placeholder="ค้นหา">
-                <div class="form-text">พิมพ์คำค้นหา.. การบริการ</div>
+                <div class="form-text">พิมพ์คำค้นหา.. ลูกค้า</div>
             </div>
         </div>
     </div>
@@ -84,11 +83,11 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href; ?>" service="หน้าแรก">
+                        <a class="page-link" href="<?php echo $href; ?>" customer="หน้าแรก">
                             << </a>
                     </li>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href_pr; ?>" service="หน้าก่อนหน้า">
+                        <a class="page-link" href="<?php echo $href_pr; ?>" customer="หน้าก่อนหน้า">
                             < </a>
                     </li>
                     <?php
@@ -110,10 +109,10 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href_ne; ?>" service="หน้าถัดไป">></a>
+                        <a class="page-link" href="<?php echo $href_ne; ?>" customer="หน้าถัดไป">></a>
                     </li>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" service="หน้าสุดท้าย">>></a>
+                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" customer="หน้าสุดท้าย">>></a>
                     </li>
                 </ul>
             </nav>
@@ -127,26 +126,35 @@
         <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr class="table-secondary">
-                    <th style="width:60px;" class="text-center">ลำดับ</th>
-                    <th style="min-width: 200px;">การบริการ</th>
-                    <th style="min-width: 200px;">คำอธิบาย</th>
-                    <th style="min-width: 88px; width: 88px;" class="text-center">จัดการ</th>
+                    <th style="min-width:140px;width:140px;" class="text-center">รหัสขอใช้บริการ</th>
+                    <th style="min-width:150px;width:150px;" class="text-center">วันที่ขอใช้บริการ</th>
+                    <th style="min-width: 200px;">บริการ</th>
+                    <th class="text-center" style="min-width: 200px; width: 200px;">ลูกค้า</th>
+                    <th class="text-center" style="min-width: 120px; width: 120px;">เบอร์มือถือ</th>
+                    <th style="min-width: 70px; width: 70px;" class="text-center">สถานะ</th>
+                    <th style="min-width: 150px; width: 150px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="7" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_edit = '<a href="./?page=service-edit&service_id='.$value["service_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
+                            $btn_edit = '<a href="./?page=service-edit&service_id='.$value["customer_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
                             $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
-                                    <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
+                                    <td class="text-center">'.$value["service_booking_id"].'</td>
+                                    <td class="text-center">'.Func::DateTh($value["booking_datetime"]).'</td>
                                     <td>'.$value["service_name"].'</td>
-                                    <td>'.$value["service_desc"].'</td>
+                                    <td class="text-center">'.$value["customer_name"].' '.$value["customer_sname"].'</td>
+                                    <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
+                                    <td class="text-center" data-bs-toggle="tooltip" data-bs-title="'.$StatusServiceBookingText[$value["status"]].'">'.$StatusServiceBookingShort[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
+                                        <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
+                                            ดูข้อมูล
+                                        </button>
                                         '.$btn_edit.'
                                         '.$btn_del.'
                                     </td>
@@ -157,6 +165,5 @@
                 ?>
             </tbody>
         </table>
-        <br>
     </div>
 </div>

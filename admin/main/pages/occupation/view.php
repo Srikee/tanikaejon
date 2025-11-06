@@ -124,12 +124,12 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table id="table" class="table table-sm table-bordered table-hover">
+        <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr class="table-secondary">
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">อาชีพ</th>
-                    <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
+                    <th style="min-width: 88px; width: 88px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
@@ -138,13 +138,13 @@
                         echo '<tr><td colspan="3" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_edit = '<a href="./?page=occupation-edit&occupation_id='.$value["occupation_id"].'" occupation="แก้ไขข้อมูล" data-container="#table" class="btn btn-link text-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
-                            $btn_del = '<button class="btn btn-link text-danger btn-sm btn-del" occupation="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
+                            $btn_edit = '<a href="./?page=occupation-edit&occupation_id='.$value["occupation_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
+                            $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
                                     <td>'.$value["occupation_name"].'</td>
-                                    <td class="text-center p-0">
+                                    <td class="text-center p-0 pt-1">
                                         '.$btn_edit.'
                                         '.$btn_del.'
                                     </td>

@@ -103,7 +103,6 @@ body {
 
 .ks-menu-item.active>a {
     color: #084199;
-    font-weight: bold;
 }
 
 .ks-menu-item a {
@@ -168,7 +167,6 @@ body {
     padding: 1px 4px 2px;
     line-height: 1;
     font-size: 13px;
-    font-weight: bold;
 }
 
 .ks-menu-item>a>.ks-badge {
@@ -181,7 +179,6 @@ body {
 
 .ks-submenu-item.active a {
     color: #084199;
-    font-weight: bold;
 }
 
 .ks-hide-menu .ks-menu {
