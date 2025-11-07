@@ -563,5 +563,14 @@ var Func = {
         }
         // ถ้าน้อยกว่าหรือเท่ากับ 4 ให้คืนเป็นตัวเลขล้วน (หรือเปลี่ยนตามต้องการ)
         return digits;
+    },
+    GenerateRandom: function (length = 10) {
+        const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const charactersLength = characters.length;
+        let randomString = '';
+        for (let i = 0; i < length; i++) {
+            randomString += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return randomString;
     }
 };

@@ -131,47 +131,45 @@
             ORDER BY add_when 
         ";
         $timelines = $DB->QueryObj($sql);
-        // foreach($timelines as $timeline) {
-        //     $dir = "../../../files/service_booking_timeline/".$timeline["service_booking_timeline_id"]."/";
-        //     $options = array(
-        //         "dir"   => $dir
-        //     );
-        //     $files = Func::ListFile($options);
-        //     $images = '';
-        //     if( sizeof($files)>0 ) {
-        //         $images = '<a href="Javascript:" class="subtext" data-id="'.$timeline["service_booking_timeline_id"].'" data-json="'.htmlspecialchars(json_encode($files)).'">ดูรูปภาพการดำเนินการ</a>';
-        //     }
-        //     echo '
-        //         <div class="timeline-item active">
-        //             <div class="timeline-date">
-        //                 '.Func::DateThFull($timeline["add_when"], true).' น.
-        //             </div>
-        //             <div class="timeline-content">
-        //                 <h4>'.$timeline["timeline_desc"].'</h4>
-        //                 '.$images.'
-        //             </div>
-        //         </div>
-        //     ';
-        // }
     ?>
     <div class="mt-5 mb-4">
-        <h5 class="mb-3">บันทึกผลการดำเนินงาน</h5>
-        <div class="table-responsive">
+        <h5 class="mb-3 fw-bold">บันทึกผลการดำเนินงาน</h5>
+        <div class="table-responsive mb-4">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>วันที่</th>
-                        <th>ผลการดำเนินงาน</th>
-                        <th>ผู้ดำเนินงาน</th>
+                        <th style="min-width:160px;width:160px;">วันที่</th>
+                        <th style="min-width:300px;">ผลการดำเนินงาน</th>
+                        <th style="min-width:160px;width:160px;">ผู้ดำเนินงาน</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         foreach($timelines as $timeline) {
+                            $dir = "files/service_booking_timeline/".$timeline["service_booking_timeline_id"]."/";
+                            $options = array(
+                                "dir"   => $SERVER_ROOT."../".$dir
+                            );
+                            $files = Func::ListFile($options);
+                            $images = '';
+                            if( sizeof($files)>0 ) {
+                                $images = '<div class="row mt-3 images-section">';
+                                foreach($files as $file) {
+                                    $images .= '
+                                        <div class="col-2">
+                                            <img src="../../'.$dir.$file.'" alt="Image" class="image">
+                                        </div>
+                                    ';
+                                }
+                                $images .= '</div>';
+                            }
                             echo '
                                 <tr>
                                     <td>'.Func::DateTh($timeline["add_when"], true).' น.</td>
-                                    <td>'.$timeline["timeline_desc"].'</td>
+                                    <td>
+                                        <div>'.nl2br($timeline["timeline_desc"]).'</div>
+                                        '.$images.'
+                                    </td>
                                     <td>'.$timeline["add_by"].'</td>
                                 </tr>
                             ';
@@ -180,15 +178,17 @@
                 </tbody>
             </table>
         </div>
+        <?php if($data["status"]=="2") { ?>
         <div>
             <button class="btn btn-info me-2 mb-2" id="btn-update-process">
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 บันทึกผลการดำเนินงาน
             </button>
-            <button class="btn btn-success me-2 mb-2" id="btn-complete">
+            <button class="btn btn-success me-2 mb-2" id="btn-update-complete">
                 <i class="fa-solid fa-circle-check"></i>
                 ดำเนินการเสร็จแล้ว
             </button>
         </div>
+        <?php } ?>
     </div>
 </div>

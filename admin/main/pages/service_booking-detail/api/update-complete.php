@@ -9,11 +9,9 @@
         exit();
     }
 
-    $random_id = trim($_POST['random_id'] ?? "");
     $service_booking_id = trim($_POST["service_booking_id"] ?? "");
-    $timeline_desc = trim($_POST["timeline_desc"] ?? "");
 
-    if( $random_id=="" || $service_booking_id=="" || $timeline_desc=="" ) {
+    if( $service_booking_id=="" ) {
         echo json_encode(array(
             "status"=>"no",
             "message"=>"กรุณากรอกข้อมูลให้ครบถ้วน"
@@ -41,7 +39,7 @@
     $service_booking_id = $data["service_booking_id"];
 
     $rs = $DB->QueryUpdate("service_booking", [
-        "status"=>"2",
+        "status"=>"3",
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")
     ], " service_booking_id='".$service_booking_id."' ");
@@ -52,30 +50,13 @@
         $rs = $DB->QueryInsert("service_booking_timeline", [
             "service_booking_timeline_id"=>$service_booking_timeline_id,
             "service_booking_id"=>$service_booking_id,
-            "timeline_desc"=>$timeline_desc,
+            "timeline_desc"=>"ดำเนินการเสร็จเรียบร้อยแล้ว",
             "add_by"=>$_SESSION["tnkj_staff"]["username"],
             "add_when"=>date("Y-m-d H:i:s"),
         ]);
-        $dir_temp = $SERVER_ROOT."../files/temp/".$random_id."/";
-        $dir = $SERVER_ROOT."../files/service_booking_timeline/".$service_booking_timeline_id."/";
-        $options = array(
-            "dir" => $dir
-        );
-        Func::MakeDir($options);
-        $options = array( 
-            "dir1" => $dir_temp,
-            "dir2" => $dir
-        );
-        Func::MoveFiles($options);
-        $options = array(
-            "dir" => $dir_temp
-        );
-        Func::RemoveDir($options);
-        $DB->QueryDelete("image_temp", "random_id='".$DB->Escape($random_id)."' ");
-        
         echo json_encode(array(
             "status"=>"ok",
-            "message"=>'บันทึกผลการดำเนินงานเรียบร้อย'
+            "message"=>'บันทึกดำเนินการเสร็จแล้ว'
         ));
     } else {
         echo json_encode(array(

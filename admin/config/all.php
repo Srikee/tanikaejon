@@ -21,8 +21,8 @@
         $pass = "";
         $dbname = "db_kaejon";
         $CLIENT_ROOT = "/tanikaejon/admin/";
-        $SERVER_ROOT = "D:/Server/tanikaejon/admin/";
-        // $SERVER_ROOT = "C:/Users/MSI_PC/Dropbox/Server/tanikaejon/admin/";
+        // $SERVER_ROOT = "D:/Server/tanikaejon/admin/";
+        $SERVER_ROOT = "C:/Users/MSI_PC/Dropbox/Server/tanikaejon/admin/";
     }
 
     include_once($SERVER_ROOT."../config/class.database.php");
@@ -30,7 +30,7 @@
     include_once($SERVER_ROOT."../config/func.php");
     include_once($SERVER_ROOT."../config/variant.php");
 
-    $VERSION = "1.0.9";
+    $VERSION = "1.0.10";
 
     $DB = new Database($host, $user, $pass, $dbname);
 
