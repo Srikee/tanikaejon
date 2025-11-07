@@ -12,7 +12,7 @@
     include_once("variant.php");
 
     
-    $VERSION = "1.0.32";
+    $VERSION = "1.0.34";
 
     if( $_SERVER["HTTP_HOST"]=="tanikaejon.com" ) {
         $MODE = "production";

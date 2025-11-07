@@ -25,9 +25,7 @@ $(function () {
                             html: res.message,
                             type: (res.status == "ok") ? "success" : "error",
                             callback: function () {
-                                if (res.status == "ok") {
-                                    Func.Reload();
-                                }
+                                Func.Reload();
                             }
                         });
                     },

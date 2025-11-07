@@ -14,7 +14,7 @@
             LEFT JOIN th_tambol ta ON ta.tambol_id=c.tambol_id
             LEFT JOIN th_amphur am ON am.amphur_id=c.amphur_id
             LEFT JOIN th_province pr ON pr.province_id=c.province_id
-        WHERE c.customer_id = '".$customer_id."' 
+        WHERE c.customer_id = '".$DB->Escape($customer_id)."' 
     ";
     $customer = $DB->QueryFirst($sql);
 
