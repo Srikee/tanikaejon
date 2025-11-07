@@ -95,7 +95,7 @@
             if( $back==false ) {
                 echo '
                     <script>
-                        ShowAlert({
+                        Func.ShowAlert({
                             title: "'.$title.'",
                             html: "'.$html.'",
                             type: "'.$type.'",

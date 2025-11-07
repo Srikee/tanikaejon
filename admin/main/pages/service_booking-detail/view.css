@@ -1,0 +1,58 @@
+.image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
+
+:root {
+    --width-size-1: 130px;
+}
+
+.ui-group-title {
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.ui-info-title {
+    width: var(--width-size-1);
+}
+
+.ui-info-item {
+    margin: 0;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 0;
+}
+
+#image {
+    cursor: pointer;
+}
+
+/* lg */
+@media (max-width: 991.98px) {
+    .ui-info-desc {
+        width: calc(100% - var(--width-size-1));
+    }
+
+    .ui-info-item {
+        margin: 0;
+        border-bottom: 0;
+        padding: 0px;
+    }
+
+    .ui-info-title,
+    .ui-info-desc {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .ui-info-title {
+        padding: 10px 0 10px 10px;
+    }
+
+    .ui-info-desc {
+        padding: 10px 0px 10px 0px;
+    }
+}

@@ -1,0 +1,194 @@
+<?php
+    $service_booking_id = trim( $_GET["service_booking_id"] ?? "" );
+    $sql = "
+        SELECT
+            sb.*,
+            c.customer_name,
+            c.customer_sname
+        FROM service_booking sb
+            LEFT JOIN customer c ON c.customer_id=sb.customer_id
+        WHERE sb.status IN (2, 3, 4) 
+            AND service_booking_id='".$DB->Escape($service_booking_id)."'
+    ";
+    $data = $DB->QueryFirst($sql);
+    if( $data==null ) {
+        Func::ShowAlert("", "ไม่พบข้อมูล", "error", "./?page=service_booking");
+        exit();
+    }
+    $service_booking_id = $data["service_booking_id"];
+?>
+<input type="hidden" id="service_booking_id" value="<?php echo htmlspecialchars($service_booking_id); ?>">
+<div class="ks-main-header">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="./?page=service_booking-detail&service_booking_id=<?php echo $service_booking_id; ?>">
+                    รายละเอียดผู้ขอใช้บริการ
+                </a>
+            </li>
+        </ol>
+    </nav>
+</div>
+<div class="ks-main-content">
+    <div class="row mb-3">
+        <div class="col">
+            <a href="./?page=service_booking-detail&service_booking_id=<?php echo $service_booking_id; ?>"
+                class="btn btn-light me-2 border" title="รีโหลด">
+                <i class="fa fa-sync me-1"></i>
+                รีโหลด
+            </a>
+        </div>
+    </div>
+    <div class="mb-4">
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                รหัสขอใช้บริการ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <b><?php echo $data["service_booking_id"]; ?></b>
+            </div>
+            <div class="col-auto ui-info-title">
+                วันที่ส่งขอ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo Func::DateTh($data["booking_datetime"]); ?> น.
+            </div>
+        </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                บริการขอใช้
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["service_name"]; ?>
+            </div>
+        </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                รายละเอียด
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["note"]; ?>
+            </div>
+        </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                สถานที่
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["location"]; ?>
+            </div>
+        </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                ผู้ใช้บริการ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["customer_name"]; ?>
+                <?php echo $data["customer_sname"]; ?>
+            </div>
+            <div class="col-auto ui-info-title">
+                เบอร์มือถือ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["phone"]; ?>
+            </div>
+        </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                สถานะ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $StatusServiceBooking[$data["status"]]; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+        $dir = "files/service_booking/".$data["service_booking_id"]."/";
+        $options = array(
+            "dir"   => $SERVER_ROOT."../".$dir
+        );
+        $files = Func::ListFile($options);
+        if( sizeof($files)>0 ) {
+    ?>
+    <div class="mb-4">
+        <div class="row mb-4 images-section">
+            <?php
+                foreach($files as $file) {
+                    echo '
+                        <div class="col-sm-6 col-md-3">
+                            <img src="../../'.$dir.$file.'" alt="Image" class="image">
+                        </div>
+                    ';
+                }
+            ?>
+        </div>
+    </div>
+    <?php } ?>
+    <?php
+        $sql = "
+            SELECT * FROM service_booking_timeline 
+            WHERE service_booking_id='".$service_booking_id."' 
+            ORDER BY add_when 
+        ";
+        $timelines = $DB->QueryObj($sql);
+        // foreach($timelines as $timeline) {
+        //     $dir = "../../../files/service_booking_timeline/".$timeline["service_booking_timeline_id"]."/";
+        //     $options = array(
+        //         "dir"   => $dir
+        //     );
+        //     $files = Func::ListFile($options);
+        //     $images = '';
+        //     if( sizeof($files)>0 ) {
+        //         $images = '<a href="Javascript:" class="subtext" data-id="'.$timeline["service_booking_timeline_id"].'" data-json="'.htmlspecialchars(json_encode($files)).'">ดูรูปภาพการดำเนินการ</a>';
+        //     }
+        //     echo '
+        //         <div class="timeline-item active">
+        //             <div class="timeline-date">
+        //                 '.Func::DateThFull($timeline["add_when"], true).' น.
+        //             </div>
+        //             <div class="timeline-content">
+        //                 <h4>'.$timeline["timeline_desc"].'</h4>
+        //                 '.$images.'
+        //             </div>
+        //         </div>
+        //     ';
+        // }
+    ?>
+    <div class="mt-5 mb-4">
+        <h5 class="mb-3">บันทึกผลการดำเนินงาน</h5>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>วันที่</th>
+                        <th>ผลการดำเนินงาน</th>
+                        <th>ผู้ดำเนินงาน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach($timelines as $timeline) {
+                            echo '
+                                <tr>
+                                    <td>'.Func::DateTh($timeline["add_when"], true).' น.</td>
+                                    <td>'.$timeline["timeline_desc"].'</td>
+                                    <td>'.$timeline["add_by"].'</td>
+                                </tr>
+                            ';
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button class="btn btn-info me-2 mb-2" id="btn-update-process">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                บันทึกผลการดำเนินงาน
+            </button>
+            <button class="btn btn-success me-2 mb-2" id="btn-complete">
+                <i class="fa-solid fa-circle-check"></i>
+                ดำเนินการเสร็จแล้ว
+            </button>
+        </div>
+    </div>
+</div>

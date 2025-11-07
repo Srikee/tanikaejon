@@ -152,9 +152,12 @@
                                     <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
                                     <td class="text-center" data-bs-toggle="tooltip" data-bs-title="'.$StatusServiceBookingText[$value["status"]].'">'.$StatusServiceBookingShort[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
-                                        <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
+                                        <!--<button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
                                             ดูข้อมูล
-                                        </button>
+                                        </button>-->
+                                        <a href="./?page=service_booking-detail&service_booking_id='.$value["service_booking_id"].'" title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
+                                            ดูข้อมูล
+                                        </a>
                                         '.$btn_edit.'
                                         '.$btn_del.'
                                     </td>
