@@ -84,11 +84,11 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href; ?>" service="หน้าแรก">
+                        <a class="page-link" href="<?php echo $href; ?>" title="หน้าแรก">
                             << </a>
                     </li>
                     <li class="page-item <?php echo $disabled_pr; ?>">
-                        <a class="page-link" href="<?php echo $href_pr; ?>" service="หน้าก่อนหน้า">
+                        <a class="page-link" href="<?php echo $href_pr; ?>" title="หน้าก่อนหน้า">
                             < </a>
                     </li>
                     <?php
@@ -110,10 +110,10 @@
                         }
                     ?>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href_ne; ?>" service="หน้าถัดไป">></a>
+                        <a class="page-link" href="<?php echo $href_ne; ?>" title="หน้าถัดไป">></a>
                     </li>
                     <li class="page-item <?php echo $disabled_ne; ?>">
-                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" service="หน้าสุดท้าย">>></a>
+                        <a class="page-link" href="<?php echo $href."&p=".$p_all; ?>" title="หน้าสุดท้าย">>></a>
                     </li>
                 </ul>
             </nav>
