@@ -14,7 +14,7 @@
             c.customer_sname
         FROM service_booking sb
             LEFT JOIN customer c ON c.customer_id=sb.customer_id
-        WHERE sb.status IN (2, 3, 4) ".$condition."
+        WHERE sb.status IN (1) ".$condition."
         ORDER BY sb.edit_when DESC
     ";
     $show = $SHOW;
@@ -26,14 +26,14 @@
 <div class="ks-main-header">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="./?page=service_booking">ผู้ขอใช้บริการทั้งหมด</a></li>
+            <li class="breadcrumb-item"><a href="./?page=service_booking-pending">ผู้ขอใช้บริการใหม่</a></li>
         </ol>
     </nav>
 </div>
 <div class="ks-main-content">
     <div class="row mb-3">
         <div class="col">
-            <a href="./?page=service_booking" class="btn btn-light me-2 border" title="รีโหลด">
+            <a href="./?page=service_booking-pending" class="btn btn-light me-2 border" title="รีโหลด">
                 <i class="fa fa-sync me-1"></i>
                 รีโหลด
             </a>
@@ -132,7 +132,7 @@
                     <th class="text-center" style="min-width: 200px; width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 120px; width: 120px;">เบอร์มือถือ</th>
                     <th style="min-width: 70px; width: 70px;" class="text-center">สถานะ</th>
-                    <th style="min-width: 150px; width: 150px;" class="text-center">จัดการ</th>
+                    <th style="min-width: 115px; width: 115px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
@@ -141,7 +141,6 @@
                         echo '<tr><td colspan="7" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_edit = '<a href="./?page=service-edit&service_id='.$value["customer_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
                             $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
@@ -153,9 +152,8 @@
                                     <td class="text-center" data-bs-toggle="tooltip" data-bs-title="'.$StatusServiceBookingText[$value["status"]].'">'.$StatusServiceBookingShort[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
                                         <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
-                                            ดูข้อมูล
+                                            รับเรื่อง
                                         </button>
-                                        '.$btn_edit.'
                                         '.$btn_del.'
                                     </td>
                                 </tr>

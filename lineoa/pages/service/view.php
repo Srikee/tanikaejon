@@ -5,7 +5,7 @@
     <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
     </button>
-    บริการของเรา
+    เลือกบริการขอใช้
     <div class="">
         <input type="text" class="form-control form-control-lg mt-3" id="search" placeholder="ค้นหาบริการของเรา...">
         <span class="form-text text-danger">

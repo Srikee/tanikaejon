@@ -8,7 +8,7 @@
                 โปรไฟล์
             </a>
             <a href="./?page=service" class="list-group-item list-group-item-action">
-                บริการของเรา
+                ขอใช้บริการ
             </a>
             <a href="./?page=history" class="list-group-item list-group-item-action">
                 ประวัติการใช้บริการ

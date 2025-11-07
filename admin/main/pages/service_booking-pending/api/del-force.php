@@ -18,12 +18,24 @@
     //     ));
     //     exit();
     // }
-    $rs = $DB->QueryUpdate("service_booking", [
-        "status"=>"5",
-        "edit_by"=>$_SESSION["tnkj_staff"]["username"],
-        "edit_when"=>date("Y-m-d H:i:s")
-    ], "service_booking_id='".$DB->Escape($service_booking_id)."' ");
-    if( $rs ) {
+
+    if( $DB->QueryDelete("service_booking", "service_booking_id='".$DB->Escape($service_booking_id)."' ") ) {
+
+        $DB->QueryDelete("service_booking_review", "service_booking_id='".$DB->Escape($service_booking_id)."' ");
+        $DB->QueryDelete("service_booking_timeline", "service_booking_id='".$DB->Escape($service_booking_id)."' ");
+
+        $dir = "files/service_booking/".$service_booking_id."/";
+        $options = array(
+            "dir"   => $SERVER_ROOT."../".$dir
+        );
+        Func::RemoveDir($options);
+
+        $dir = "files/service_booking_review/".$service_booking_id."/";
+        $options = array(
+            "dir"   => $SERVER_ROOT."../".$dir
+        );
+        Func::RemoveDir($options);
+
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"ลบข้อมูลเสร็จเรียบร้อย"

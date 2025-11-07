@@ -19,14 +19,25 @@
     //     exit();
     // }
     $rs = $DB->QueryUpdate("service_booking", [
-        "status"=>"5",
+        "status"=>"2",
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")
     ], "service_booking_id='".$DB->Escape($service_booking_id)."' ");
     if( $rs ) {
+
+        // Insert Timeline
+        $DB->QueryInsert("service_booking_timeline", [
+            "service_booking_timeline_id"=>$DB->QueryMaxid("service_booking_timeline", "service_booking_timeline_id"),
+            "service_booking_id"=>$service_booking_id,
+            "timeline_desc"=>'รับเรื่องการขอใช้บริการแล้ว',
+            "add_by"=>$_SESSION["tnkj_staff"]["username"],
+            "add_when"=>date("Y-m-d H:i:s"),
+        ]);
+
+
         echo json_encode(array(
             "status"=>"ok",
-            "message"=>"ลบข้อมูลเสร็จเรียบร้อย"
+            "message"=>"รับเรื่องเรียบร้อย"
         ));
     } else {
         echo json_encode(array(

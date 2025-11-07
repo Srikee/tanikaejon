@@ -21,7 +21,8 @@
         SELECT 
             sb.*
         FROM service_booking sb
-        WHERE sb.customer_id='".$DB->Escape($customer_id)."'
+        WHERE sb.status IN (1, 2, 3, 4)
+            AND sb.customer_id='".$DB->Escape($customer_id)."'
             ".$condition."
         ORDER BY add_when DESC
         LIMIT 50

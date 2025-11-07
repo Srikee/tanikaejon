@@ -1,5 +1,5 @@
 $(function () {
-    $("title").html("บริการของเรา");
+    $("title").html("ขอใช้บริการ");
     $("#formdata").submit(function (e) {
         e.preventDefault();
         let phone = $("#phone").val().trim();

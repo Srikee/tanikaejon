@@ -1,5 +1,5 @@
 $(function () {
-    $("title").html("ประวัติการใช้บริการ");
+    $("title").html("รายละเอียดขอใช้บริการ");
     $("#btn-logout").click(function (e) {
         e.preventDefault();
         Func.ShowConfirm({

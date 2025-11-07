@@ -18,7 +18,7 @@
     ";
     $customer = $DB->QueryFirst($sql);
 
-    $service_booking_id = $_GET["service_booking_id"];
+    $service_booking_id = trim( $_GET["service_booking_id"] ?? "" );
     $sql = "
         SELECT 
             sb.*,
@@ -26,7 +26,8 @@
             c.customer_sname
         FROM service_booking sb
             LEFT JOIN customer c ON c.customer_id = sb.customer_id
-        WHERE sb.service_booking_id = '".$service_booking_id."' 
+        WHERE sb.status IN (1, 2, 3, 4)
+            AND sb.service_booking_id = '".$DB->Escape($service_booking_id)."' 
     ";
     $service_booking = $DB->QueryFirst($sql);
     if( $service_booking==null ) {
@@ -40,7 +41,7 @@
     <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
     </button>
-    ประวัติการใช้บริการ
+    รายละเอียดขอใช้บริการ
 </div>
 <div class="container-fluid">
     <div>

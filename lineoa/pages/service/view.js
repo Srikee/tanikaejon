@@ -1,5 +1,5 @@
 $(function () {
-    $("title").html("บริการของเรา");
+    $("title").html("เลือกบริการขอใช้");
 
     function GetService() {
         // $("#service").html("");
