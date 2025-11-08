@@ -69,7 +69,7 @@
         ]);
 
         $userId = $service_booking["userId"];
-        $message = "รหัสขอใช้บริการเลขที่ ".$service_booking["service_booking_id"]." เจ้าหน้าที่รับเรื่องการขอใช้บริการแล้ว";
+        $message = "รหัสขอใช้บริการเลขที่ ".$service_booking["service_booking_id"]." -> รับเรื่องการขอใช้บริการแล้ว";
         $url = "line://app/2008357457-opkvYyB0?page=history-detail&service_booking_id=".$service_booking["service_booking_id"];
         SentMessageToLine($userId, $message, $url);
 
