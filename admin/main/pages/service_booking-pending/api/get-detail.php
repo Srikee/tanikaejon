@@ -60,7 +60,7 @@
         <td id="status"><?php echo $StatusServiceBooking[$data["status"]]; ?></td>
     </tr>
 </table>
-<div class="row">
+<div class="row images-section">
     <?php
         $dir = "files/service_booking/".$data["service_booking_id"]."/";
         $options = array(
@@ -69,7 +69,7 @@
         $files = Func::ListFile($options);
         foreach($files as $file) {
             echo '
-                <div class="col-3">
+                <div class="col-6 col-md-3">
                     <img src="'.$CLIENT_ROOT."../".$dir.$file.'" alt="Image" class="image">
                 </div>
             ';

@@ -93,7 +93,8 @@ $(function () {
             }, function (res) {
                 if (res.status == "ok") {
                     $img.find("img").attr("src", res.image);
-                    $(".images-section").prepend($img);
+                    var $btn = $(".btn-add-image");
+                    $btn.closest("div").before($img);
                 }
                 AddImage(files, ++idx);
             }, "JSON").fail(function () {

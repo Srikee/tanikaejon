@@ -73,7 +73,9 @@ $(function () {
         }, function (html) {
             Func.HideLoading();
             $contents.html(html);
-            $(window).trigger('resize');
+            setTimeout(() => {
+                $(window).trigger("resize");
+            }, 100);
         }).fail(function () {
             Func.HideLoading();
         });
@@ -146,7 +148,16 @@ $(function () {
                         </label>
                         <textarea class="form-control" id="timeline_desc" name="timeline_desc" rows="5" required></textarea>
                     </div>
-                    <div class="row mb-3 images-section"></div>
+                    <div class="row mb-3 images-section">
+                        <div class="col-6 col-md-3">
+                            <a href="Javascript:" class="btn-add-image">
+                                <div>
+                                    <div><i class="fas fa-images me-1"></i></div>
+                                    <div>แนบรูปภาพ</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         `);
@@ -188,8 +199,11 @@ $(function () {
                 }, function (res) {
                     if (res.status == "ok") {
                         $img.find("img").attr("src", res.image);
-                        $contents.find(".images-section").append($img);
-                        $(window).trigger("resize");
+                        var $btn = $contents.find(".btn-add-image");
+                        $btn.closest("div").before($img);
+                        setTimeout(() => {
+                            $(window).trigger("resize");
+                        }, 100);
                     }
                     AddImage(files, ++idx);
                 }, "JSON").fail(function () {
@@ -197,6 +211,9 @@ $(function () {
                 });
             });
         }
+        $contents.find(".btn-add-image").click(function () {
+            $footer.find('.btn-image').click();
+        });
         $footer.find('.btn-image').click(function (event) {
             var l = $contents.find(".images-section .image").length;
             if (l >= 4) {
@@ -273,6 +290,9 @@ $(function () {
                             Func.HideLoading();
                             if (res.status == "ok") {
                                 $i.remove();
+                                setTimeout(() => {
+                                    $(window).trigger("resize");
+                                }, 100);
                             }
                         }, "JSON").fail(function () {
                             Func.HideLoading();
