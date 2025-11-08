@@ -43,6 +43,9 @@
         <i class="fas fa-arrow-left me-1"></i>
     </button>
     ติดตามผล
+    <button type="button" class="btn-header-reload" onclick="Func.Reload()">
+        <i class="fas fa-rotate"></i>
+    </button>
 </div>
 <div class="container-fluid py-1">
     <div class="border pt-3 pb-2 rounded mb-4">
@@ -114,7 +117,6 @@
         </div>
         <?php } ?>
     </div>
-
     <div>
         <h5 class="mb-3">ประวัติการดำเนินงาน</h5>
         <div class="timeline">

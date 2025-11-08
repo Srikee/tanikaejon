@@ -1,4 +1,6 @@
 <?php
+    $VERSION = "1.0.25";
+    
     $StatusServiceBooking = [
         "1"=>'<span class="text-warning"><i class="fas fa-alarm-clock"></i> รอดำเนินการ</span>',
         "2"=>'<span class="text-info"><i class="fas fa-clock"></i> กำลังดำเนินการ</span>',

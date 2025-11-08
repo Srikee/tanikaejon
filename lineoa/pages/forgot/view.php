@@ -3,6 +3,9 @@
         <i class="fas fa-arrow-left me-1"></i>
     </button>
     ลืมรหัสผ่าน
+    <button type="button" class="btn-header-reload" onclick="Func.Reload()">
+        <i class="fas fa-rotate"></i>
+    </button>
 </div>
 <div class="container-fluid py-4">
     <form id="formdata">

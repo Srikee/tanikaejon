@@ -11,9 +11,6 @@
     include_once("func.php");
     include_once("variant.php");
 
-    
-    $VERSION = "1.0.36";
-
     if( $_SERVER["HTTP_HOST"]=="tanikaejon.com" ) {
         $MODE = "production";
         $host = "localhost";

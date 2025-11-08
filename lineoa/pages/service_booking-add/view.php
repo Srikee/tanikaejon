@@ -45,6 +45,9 @@
         <i class="fas fa-arrow-left me-1"></i>
     </button>
     กรอกข้อมูลขอใช้บริการ
+    <button type="button" class="btn-header-reload" onclick="Func.Reload()">
+        <i class="fas fa-rotate"></i>
+    </button>
 </div>
 <div class="container-fluid">
     <form id="formdata" autocomplete="off">

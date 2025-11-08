@@ -6,6 +6,9 @@
         <i class="fas fa-arrow-left me-1"></i>
     </button>
     เลือกบริการขอใช้
+    <button type="button" class="btn-header-reload" onclick="Func.Reload()">
+        <i class="fas fa-rotate"></i>
+    </button>
     <div class="">
         <input type="text" class="form-control form-control-lg mt-3" id="search" placeholder="ค้นหาบริการของเรา...">
         <span class="form-text text-danger">
