@@ -14,6 +14,7 @@
 <head>
     <?php include_once('../master/script.php'); ?>
     <script>
+    var VERSION = "<?php echo $DB->Escape($VERSION, "display"); ?>";
     var PAGE = "<?php echo $DB->Escape($PAGE, "display"); ?>";
     </script>
 </head>

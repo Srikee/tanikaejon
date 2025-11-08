@@ -87,7 +87,7 @@ $(function () {
                                     }
                                 });
                             } else {
-                                Func.Reload();
+                                Func.LinkTo("./?page=service_booking-detail&service_booking_id=" + service_booking_id);
                             }
                         },
                         error: function () {

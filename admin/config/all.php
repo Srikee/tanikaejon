@@ -30,7 +30,7 @@
     include_once($SERVER_ROOT."../config/func.php");
     include_once($SERVER_ROOT."../config/variant.php");
 
-    $VERSION = "1.0.11";
+    $VERSION = "1.0.18";
 
     $DB = new Database($host, $user, $pass, $dbname);
 

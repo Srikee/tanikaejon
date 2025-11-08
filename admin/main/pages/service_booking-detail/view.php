@@ -115,7 +115,7 @@
             <?php
                 foreach($files as $file) {
                     echo '
-                        <div class="col-sm-6 col-md-3">
+                        <div class="col-6 col-md-3">
                             <img src="../../'.$dir.$file.'" alt="Image" class="image">
                         </div>
                     ';
@@ -138,7 +138,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th style="min-width:160px;width:160px;">วันที่</th>
+                        <th style="min-width:165px;width:165px;">วันที่</th>
                         <th style="min-width:300px;">ผลการดำเนินงาน</th>
                         <th style="min-width:160px;width:160px;">ผู้ดำเนินงาน</th>
                     </tr>

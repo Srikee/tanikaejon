@@ -122,7 +122,6 @@ $(function () {
             images.push($(this).attr("src"));
             if (src == $(this).attr("src")) index = i;
         });
-        // console.log(images)
         Func.ShowGalleryImage(index, images);
     });
 
@@ -154,8 +153,14 @@ $(function () {
         var $footer = $(`
             <div class="row">
                 <div class="col-auto">
-                    <button class="btn btn-light me-2 btn-image"><i class="fas fa-images me-1"></i> แนปรูปภาพ</button>
-                    <button class="btn btn-info me-2 btn-submit"><i class="fas fa-clock-rotate-left me-1"></i> บันทึกผลการดำเนินงาน</button>
+                    <button class="btn btn-light me-2 btn-image">
+                        <i class="fas fa-images me-0 me-sm-1"></i>
+                        <span class="d-none d-sm-inline">แนปรูปภาพ</span>
+                    </button>
+                    <button class="btn btn-info me-2 btn-submit"><i class="fas fa-clock-rotate-left me-0 me-sm-1"></i>
+                        <span class="d-none d-sm-inline">บันทึกผลการดำเนินงาน</span>
+                        <span class="d-inline d-sm-none">บันทึก</span>
+                    </button>
                 </div>
                 <div class="col text-end">
                     <button class="btn btn-light btn-cancel"><i class="fas fa-times me-1"></i> ปิดหน้าจอ</button>
@@ -169,7 +174,7 @@ $(function () {
                 return;
             }
             var $img = $(`
-                <div class="col-3 position-relative">
+                <div class="col-6 col-md-3 position-relative">
                     <img src="" alt="Image" class="image">
                     <a href="Javascript:" class="btn-del-image">
                         <i class="fas fa-times"></i>

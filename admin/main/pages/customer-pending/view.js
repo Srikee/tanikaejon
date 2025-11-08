@@ -113,7 +113,7 @@ $(function () {
                 <div class="row">
                     <div class="col-md-auto mb-4">
                         <div class="customer-image">
-                            <img id="pictureUrl" src="../../images/favicon.png" alt="Profile">
+                            <img id="pictureUrl" src="../../images/favicon.png?v=`+ VERSION + `" alt="Profile">
                         </div>
                     </div>
                     <div class="col-md">
@@ -153,7 +153,7 @@ $(function () {
         $contents.find("#occupation_name").html(data.occupation_name);
         $contents.find("#displayName").html(data.displayName);
         $contents.find("#userId").html(data.userId);
-        $contents.find("#pictureUrl").html(data.pictureUrl);
+        if (data.pictureUrl != "") $contents.find("#pictureUrl").attr("src", data.pictureUrl);
         var $footer = $(`
             <div class="row">
                 <div class="col-auto">
@@ -182,7 +182,7 @@ $(function () {
             height: "auto",
             draggable: 'title',
             overlay: true,
-            zIndex: 10001,  // default=10000
+            zIndex: 201,  // default=10000
             onOpen: function () {
                 // เมื่อเปิด Popup
             },
@@ -193,5 +193,9 @@ $(function () {
             }
         });
         popup.open();
+    });
+    $("body").on("click", "#pictureUrl", function () {
+        var src = $(this).attr("src");
+        Func.ShowImage(src, "Profile");
     });
 });
