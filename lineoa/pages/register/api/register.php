@@ -64,6 +64,16 @@
         "edit_when"=>date("Y-m-d H:i:s")
     ]);
     if($rs) {
+
+        $DB->QueryUpdate("customer", [
+            "is_login"=>"2",
+            "userId"=>"",
+            "displayName"=>"",
+            "pictureUrl"=>"",
+            "edit_by"=>$customer_name." ".$customer_sname,
+            "edit_when"=>date("Y-m-d H:i:s")
+        ], " userId='".$userId."' AND customer_id!='".$customer_id."' ");
+
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"ลงทะเบียนเรียบร้อยแล้ว รอเจ้าหน้าตรวจสอบข้อมูลภายใน 24 ชั่วโมง"

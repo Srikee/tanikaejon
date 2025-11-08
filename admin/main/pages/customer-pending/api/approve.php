@@ -9,21 +9,33 @@
         exit();
     }
 
-    $customer_id = $_POST["customer_id"] ?? "";
+    $customer_id = trim( $_POST["customer_id"] ?? "" );
 
-    // if( $DB->QueryHaving("plan", "plan_name", $field['plan_name']) ) {
-    //     echo json_encode(array(
-    //         "status"=>false,
-    //         "message"=>"ไม่สามารถเพิ่มได้ เนื่องจากคุณระบุชื่อซ้ำกับที่มีอยู่ !!!"
-    //     ));
-    //     exit();
-    // }
+    $sql = "
+        SELECT
+            c.*
+        FROM customer c
+        WHERE c.customer_id='".$DB->Escape($customer_id)."'
+    ";
+    $customer = $DB->QueryFirst($sql);
+    if( $customer==null ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"ไม่พบข้อมูลลูกค้า"
+        ));
+        exit();
+    }
+
     $rs = $DB->QueryUpdate("customer", [
         "status"=>"2",
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")
     ], "customer_id='".$DB->Escape($customer_id)."' ");
     if( $rs ) {
+        
+        $userId = $customer["userId"];
+        SentMessageToLine($userId, "บัญชีของคุณได้รับการอนุมัติแล้ว");
+
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"อนุมัติเรียบร้อย"

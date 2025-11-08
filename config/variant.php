@@ -26,8 +26,50 @@
     ];
 
 
-    function SentMessageToLine($userId, $message, $url) {
+    function SentMessageToLine($userId, $message, $url="") {
         global $LINEAO_CHANNEL_ACCESS_TOKEN;
+        $userId = trim( $userId ?? "" );
+        $message = trim( $message ?? "" );
+        $url = trim( $url ?? "" );
+        if($userId=="") return false;
+        if($message=="") return false;
+        $contents = [
+            [
+                "type"=>"text",
+                "text"=>$message,
+                "wrap"=>true
+            ]
+        ];
+        if( $url!="" ) {
+            $contents[] = [
+                "type"=> "button",
+                "action"=> [
+                    "type"=> "uri",
+                    "label"=> "เปิดดู",
+                    "uri"=> $url
+                ],
+                "style"=> "primary",
+                "color"=> "#198754",
+                "margin"=> "xl"
+            ];
+        }
+        $body = [
+            "to" => [$userId],
+            "messages" => [
+                [
+                    "type"=>"flex",
+                    "altText"=>"แจ้งข้อความ",
+                    "contents"=>[
+                        "type"=>"bubble",
+                        "body"=>[
+                            "type"=>"box",
+                            "layout"=>"vertical",
+                            "contents"=>$contents
+                        ]
+                    ]
+                ]
+            ]
+        ];
         $rs = Func::Curl(
             "https://api.line.me/v2/bot/message/multicast",
             array(
@@ -35,40 +77,49 @@
                 "cache-control: no-cache",
                 "content-type: application/json; charset=UTF-8"
             ),
-            '
-                {
-                    "to": '.json_encode([$userId]).',
-                    "messages": [{
-                        "type": "flex",
-                        "altText": "แจ้งข้อความ",
-                        "contents": {
-                            "type": "bubble",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "'.$message.'",
-                                        "wrap": true
-                                    },
-                                    {
-                                        "type": "button",
-                                        "action": {
-                                            "type": "uri",
-                                            "label": "เปิดดู",
-                                            "uri": "'.$url.'"
-                                        },
-                                        "style": "primary",
-                                        "color": "#198754",
-                                        "margin": "xl"
-                                    }
-                                ]
-                            }
-                        }
-                    }]
-                }
-            '
+            json_encode($body)
         );
+        // $rs = Func::Curl(
+        //     "https://api.line.me/v2/bot/message/multicast",
+        //     array(
+        //         "authorization: Bearer ".$LINEAO_CHANNEL_ACCESS_TOKEN,
+        //         "cache-control: no-cache",
+        //         "content-type: application/json; charset=UTF-8"
+        //     ),
+        //     '
+        //         {
+        //             "to": '.json_encode([$userId]).',
+        //             "messages": [{
+        //                 "type": "flex",
+        //                 "altText": "แจ้งข้อความ",
+        //                 "contents": {
+        //                     "type": "bubble",
+        //                     "body": {
+        //                         "type": "box",
+        //                         "layout": "vertical",
+        //                         "contents": [
+        //                             {
+        //                                 "type": "text",
+        //                                 "text": "'.$message.'",
+        //                                 "wrap": true
+        //                             },
+        //                             {
+        //                                 "type": "button",
+        //                                 "action": {
+        //                                     "type": "uri",
+        //                                     "label": "เปิดดู",
+        //                                     "uri": "'.$url.'"
+        //                                 },
+        //                                 "style": "primary",
+        //                                 "color": "#198754",
+        //                                 "margin": "xl"
+        //                             }
+        //                         ]
+        //                     }
+        //                 }
+        //             }]
+        //         }
+        //     '
+        // );
         return $rs;
     }
