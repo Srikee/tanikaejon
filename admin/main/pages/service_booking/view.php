@@ -31,6 +31,107 @@
     </nav>
 </div>
 <div class="ks-main-content">
+    <?php
+        // $rs = Func::Curl(
+		// 	"https://api.line.me/v2/bot/message/multicast",
+		// 	array(
+		// 		"authorization: Bearer ".$LINEAO_CHANNEL_ACCESS_TOKEN,
+		// 		"cache-control: no-cache",
+		// 		"content-type: application/json; charset=UTF-8"
+		// 	),
+		// 	'
+		// 		{
+		// 			"to": '.json_encode(["U7c5521a838c055a05cc79d5bb2b42c1e"]).',
+		// 			"messages": [{
+        //                 "type": "flex",
+        //                 "altText": "this is a flex message",
+        //                 "contents": {
+        //                     "type": "bubble",
+        //                     "body": {
+        //                     "type": "box",
+        //                     "layout": "vertical",
+        //                     "contents": [
+        //                         {
+        //                             "type": "text",
+        //                             "text": "hello"
+        //                         },
+        //                         {
+        //                             "type": "text",
+        //                             "text": "\n"
+        //                         },
+        //                         {
+        //                             "type": "button",
+        //                             "action": {
+        //                                 "type": "uri",
+        //                                 "label": "Tap me",
+        //                                 "uri": "https://example.com"
+        //                             },
+        //                             "style": "primary",
+        //                             "color": "#0000ff"
+        //                         }
+        //                     ]
+        //                     }
+        //                 }
+        //             }]
+		// 		}
+		// 	'
+		// );
+        // Func::PrintData($rs);
+
+
+        // function SentMessageToLine($userId, $message, $url) {
+        //     global $LINEAO_CHANNEL_ACCESS_TOKEN;
+        //     $rs = Func::Curl(
+        //         "https://api.line.me/v2/bot/message/multicast",
+        //         array(
+        //             "authorization: Bearer ".$LINEAO_CHANNEL_ACCESS_TOKEN,
+        //             "cache-control: no-cache",
+        //             "content-type: application/json; charset=UTF-8"
+        //         ),
+        //         '
+        //             {
+        //                 "to": '.json_encode([$userId]).',
+        //                 "messages": [{
+        //                     "type": "flex",
+        //                     "altText": "this is a flex message",
+        //                     "contents": {
+        //                         "type": "bubble",
+        //                         "body": {
+        //                             "type": "box",
+        //                             "layout": "vertical",
+        //                             "contents": [
+        //                                 {
+        //                                     "type": "text",
+        //                                     "text": "'.$message.'",
+        //                                     "wrap": true
+        //                                 },
+        //                                 {
+        //                                     "type": "button",
+        //                                     "action": {
+        //                                         "type": "uri",
+        //                                         "label": "เปิดดู",
+        //                                         "uri": "'.$url.'"
+        //                                     },
+        //                                     "style": "primary",
+        //                                     "color": "#198754",
+        //                                     "margin": "xl"
+        //                                 }
+        //                             ]
+        //                         }
+        //                     }
+        //                 }]
+        //             }
+        //         '
+        //     );
+        //     return $rs;
+        // }
+
+        // $userId = "U7c5521a838c055a05cc79d5bb2b42c1e";
+        // $message = "รหัสขอใช้บริการเลขที่ XXXX เจ้าหน้าที่รับเรื่องการขอใช้บริการแล้ว";
+        // $url = "line://app/2008357457-opkvYyB0?page=history-detail&service_booking_id=XXXX";
+        // $rs = SentMessageToLine($userId, $message, $url);
+        // Func::PrintData($rs);
+    ?>
     <div class="row mb-3">
         <div class="col">
             <a href="./?page=service_booking" class="btn btn-light me-2 border" title="รีโหลด">

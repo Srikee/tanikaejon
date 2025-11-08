@@ -982,6 +982,66 @@
                 ''
             );
         }
+        public static function LineOASendMessage($options) {
+            /*
+                $rs = Func::LineOASendMessage([
+                    "token"=>"CHANNEL_ACCESS_TOKEN",
+                    "users"=>["userId", "userId", "userId", ...],
+                    "message"=>"Message",
+                ]);
+            */
+            $options["token"] = $options["token"] ?? "";
+            $options["users"] = $options["users"] ?? [];
+            $options["message"] = $options["message"] ?? "";
+            if( $options["token"]=="" ) return false;
+            if( sizeof($options["users"])==0 ) return false;
+            if( $options["message"]=="" ) return false;
+            $url = "https://api.line.me/v2/bot/message/multicast";
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 3,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => json_encode([
+                    "to"=>$options["users"],
+                    "messages"=>[
+                        [
+                            "type"=>"text",
+                            "text"=>$options["message"]
+                        ]
+                    ]
+                ]),
+                CURLOPT_HTTPHEADER => array(
+                    "authorization: Bearer ".$options["token"],
+                    "cache-control: no-cache",
+                    "content-type: application/json; charset=UTF-8"
+                )
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            return $response;
+        }
+        public static function Curl($Url, $headers, $feilds, $method="POST") {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => $Url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 3,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => $method,
+                CURLOPT_POSTFIELDS => $feilds,
+                CURLOPT_HTTPHEADER => $headers
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            return $response;
+        }
         public static function Encrypt($data) {
             $cryption = new KSCryption();
             return $cryption->encrypt($data, "key123*!");

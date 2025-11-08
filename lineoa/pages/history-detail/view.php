@@ -14,7 +14,7 @@
             LEFT JOIN th_tambol ta ON ta.tambol_id=c.tambol_id
             LEFT JOIN th_amphur am ON am.amphur_id=c.amphur_id
             LEFT JOIN th_province pr ON pr.province_id=c.province_id
-        WHERE c.customer_id = '".$customer_id."' 
+        WHERE c.customer_id = '".$DB->Escape($customer_id)."' 
     ";
     $customer = $DB->QueryFirst($sql);
 
@@ -28,6 +28,7 @@
             LEFT JOIN customer c ON c.customer_id = sb.customer_id
         WHERE sb.status IN (1, 2, 3, 4)
             AND sb.service_booking_id = '".$DB->Escape($service_booking_id)."' 
+            AND sb.customer_id='".$DB->Escape($customer_id)."'
     ";
     $service_booking = $DB->QueryFirst($sql);
     if( $service_booking==null ) {

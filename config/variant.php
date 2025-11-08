@@ -1,5 +1,7 @@
 <?php
-    $VERSION = "1.0.29";
+    $VERSION = "1.0.30";
+
+    $LINEAO_CHANNEL_ACCESS_TOKEN = "XvDR60THam9pSjcPFlI0JICGgHeCFlSXBhE44/u0/VxPvNv3tS5isD7rvsG4Lnr0wReMvRGBeGoBTxlwl/Cp6zGBtCRyAEpgZFnl8FMdqLJcZq0USnZ806IUiesAF9bqZMBHUGcBuAKe3BA/twqbyQdB04t89/1O/w1cDnyilFU=";
     
     $StatusServiceBooking = [
         "1"=>'<span class="text-warning"><i class="fas fa-alarm-clock"></i> รอดำเนินการ</span>',
@@ -22,3 +24,51 @@
         "4"=>'ยกเลิก',
         "5"=>'ลบแล้ว'
     ];
+
+
+    function SentMessageToLine($userId, $message, $url) {
+        global $LINEAO_CHANNEL_ACCESS_TOKEN;
+        $rs = Func::Curl(
+            "https://api.line.me/v2/bot/message/multicast",
+            array(
+                "authorization: Bearer ".$LINEAO_CHANNEL_ACCESS_TOKEN,
+                "cache-control: no-cache",
+                "content-type: application/json; charset=UTF-8"
+            ),
+            '
+                {
+                    "to": '.json_encode([$userId]).',
+                    "messages": [{
+                        "type": "flex",
+                        "altText": "แจ้งข้อความ",
+                        "contents": {
+                            "type": "bubble",
+                            "body": {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "'.$message.'",
+                                        "wrap": true
+                                    },
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "uri",
+                                            "label": "เปิดดู",
+                                            "uri": "'.$url.'"
+                                        },
+                                        "style": "primary",
+                                        "color": "#198754",
+                                        "margin": "xl"
+                                    }
+                                ]
+                            }
+                        }
+                    }]
+                }
+            '
+        );
+        return $rs;
+    }
