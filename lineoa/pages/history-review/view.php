@@ -71,7 +71,7 @@
         </div>
         <div class="mb-3">
             <label for="review_comment" class="form-label">เขียนรีวิวการใช้บริการ</label>
-            <textarea class="form-control form-control-lg" id="review_comment" rows="5"
+            <textarea class="form-control form-control-lg" id="review_comment" name="review_comment" rows="5"
                 placeholder="เขียนรีวิวของคุณ..."></textarea>
         </div>
         <div class="mb-2">

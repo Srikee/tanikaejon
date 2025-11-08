@@ -156,7 +156,7 @@
                                 $images = '<div class="row mt-3 images-section">';
                                 foreach($files as $file) {
                                     $images .= '
-                                        <div class="col-2">
+                                        <div class="col-6 col-sm-3 col-md-2">
                                             <img src="../../'.$dir.$file.'" alt="Image" class="image">
                                         </div>
                                     ';
@@ -191,4 +191,63 @@
         </div>
         <?php } ?>
     </div>
+    <?php
+        function DisplayText($text) {
+            if($text=="") return "-"; 
+            return nl2br($text);
+        }
+        $sql = "
+            SELECT 
+                sbr.*
+            FROM service_booking_review sbr
+            WHERE sbr.service_booking_id = '".$service_booking_id."' 
+        ";
+        $service_booking_review = $DB->QueryFirst($sql);
+    ?>
+    <?php if( $service_booking_review!=null ) { ?>
+    <div class="mt-5 mb-5">
+        <h5 class="mb-4 fw-bold">ผลการรีวิวของลูกค้า</h5>
+        <div class="mb-4">
+            <?php
+                for($i=1; $i<=5; $i++) {
+                    $star = "fa-regular";
+                    if( $i<=$service_booking_review["review_star"]*1 ) {
+                        $star = "fa-solid";
+                    }
+                    echo '<i class="'.$star.' fa-star star"></i>';
+                }
+            ?>
+            <span class="review-score"> 5 คะแนน</span>
+        </div>
+        <div class="mb-4">
+            <div class="fw-bold mb-2">ข้อความรีวิว :</div>
+            <div>
+                <?php echo DisplayText($service_booking_review["review_comment"]); ?>
+            </div>
+        </div>
+        <div class="mb-4">
+            <div class="fw-bold mb-2">ภาพรีวิว :</div>
+            <div class="row images-section">
+                <?php
+                    $dir = "files/service_booking_review/".$service_booking_id."/";
+                    $options = array(
+                        "dir"   => $SERVER_ROOT."../".$dir
+                    );
+                    $files = Func::ListFile($options);
+                    if( sizeof($files)>0 ) {
+                        foreach($files as $file) {
+                            echo '
+                                <div class="col-6 col-md-2">
+                                    <img src="../../'.$dir.$file.'" alt="Image" class="image">
+                                </div>
+                            ';
+                        }
+                    } else {
+                        echo '<div class="col">ไม่มีภาพรีวิว</div>';
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>

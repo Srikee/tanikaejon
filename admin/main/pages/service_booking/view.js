@@ -57,61 +57,6 @@ $(function () {
             },
         });
     }
-    $(".btn-view").click(function () {
-        var data = JSON.parse($(this).closest("[data-json]").attr("data-json"));
-        var popup;
-        var $title = $(`
-            <div>
-                <i class="fa-solid fa-user-check me-1"></i> รายละเอียดข้อมูลผู้ขอใช้บริการ
-            </div>
-        `);
-        var $contents = $(`<div></div>`);
-        Func.ShowLoading();
-        $.post("pages/" + PAGE + "/api/get-detail.php", {
-            service_booking_id: data.service_booking_id
-        }, function (html) {
-            Func.HideLoading();
-            $contents.html(html);
-            $(window).trigger('resize');
-        }).fail(function () {
-            Func.HideLoading();
-        });
-        var $footer = $(`
-            <div class="row">
-                <div class="col-auto">
-                    <button class="btn btn-danger btn-del"><i class="fas fa-trash me-1"></i> ลบข้อมูล</button>
-                </div>
-                <div class="col text-end">
-                    <button class="btn btn-light btn-cancel"><i class="fas fa-times me-1"></i> ปิดหน้าจอ</button>
-                </div>
-            </div>
-        `);
-        $footer.find('.btn-del').click(function (event) {
-            Del(data.service_booking_id);
-        });
-        $footer.find('.btn-cancel').click(function (event) {
-            popup.close();
-        });
-        popup = new jBox('Modal', {
-            title: $title,
-            content: $contents,
-            footer: $footer,
-            width: "800px",
-            height: "auto",
-            draggable: 'title',
-            overlay: true,
-            zIndex: 101,  // default=10000
-            onOpen: function () {
-                // เมื่อเปิด Popup
-            },
-            onClose: function () {
-                setTimeout(function () {
-                    popup.destroy();
-                }, 100);
-            }
-        });
-        popup.open();
-    });
     $("body").on("click", ".image", function () {
         var src = $(this).attr("src");
         var index = 0;
