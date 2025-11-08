@@ -78,7 +78,7 @@ $(function () {
             </div>
         `);
         Func.GetBase64AndResize(files[idx], 1000, 1000, function (base64) {
-            $.post("pages/history-review/api/image-temp-add.php", {
+            $.post("api/image-temp-add.php", {
                 random_id: $("#random_id").val(),
                 base64: base64
             }, function (res) {
@@ -114,7 +114,7 @@ $(function () {
             callback: function (rs) {
                 if (rs) {
                     Func.ShowLoading("กำลังลบรูปภาพ");
-                    $.post("pages/history-review/api/image-temp-del.php", {
+                    $.post("api/image-temp-del.php", {
                         random_id: $("#random_id").val(),
                         filename: filename
                     }, function (res) {

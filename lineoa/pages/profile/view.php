@@ -26,9 +26,9 @@
     // Func::PrintData($_SESSION);
 ?>
 <div class="header">
-    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+    <!-- <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
-    </button>
+    </button> -->
     โปรไฟล์ของฉัน
     <button type="button" class="btn-header-reload" onclick="Func.Reload()">
         <i class="fas fa-rotate"></i>

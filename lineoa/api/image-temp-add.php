@@ -1,5 +1,5 @@
 <?php
-    include_once("../../../../config/all.php");
+    include_once("../../config/all.php");
 
     $random_id = trim($_POST['random_id'] ?? "");
     $base64 = trim($_POST['base64'] ?? "");
@@ -24,7 +24,7 @@
         exit();
     }
     
-    $dir = "../../../../files/temp/".$random_id."/";
+    $dir = "../../files/temp/".$random_id."/";
     $options = array(
         "dir" => $dir
     );
@@ -37,7 +37,6 @@
     );
     $uploader = Func::UploadBase64($options);
     if( $uploader["status"]=="ok" ) {
-        // echo "Upload Success. File name : ".$uploader["fileName"];
         if( !$DB->QueryHaving("image_temp", "random_id", $random_id) ) {
             $DB->QueryInsert("image_temp", [
                 "random_id"=>$random_id,
@@ -45,10 +44,9 @@
                 "add_when"=>date("Y-m-d H:i:s"),
             ]);
         }
-
         echo json_encode(array(
             "status"=>"ok",
-            "image"=>"../files/temp/".$random_id."/".$uploader["fileName"]
+            "image"=>"../files/temp/".$random_id."/".$uploader["fileName"],
         ));
     } else {
         echo json_encode(array(

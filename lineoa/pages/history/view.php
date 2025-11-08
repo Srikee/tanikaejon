@@ -2,9 +2,9 @@
     include_once("../../../config/all.php");
 ?>
 <div class="header2">
-    <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
+    <!-- <button type="button" class="backbutton" onclick="Func.Back()" style="display:none">
         <i class="fas fa-arrow-left me-1"></i>
-    </button>
+    </button> -->
     ประวัติการใช้บริการ
     <button type="button" class="btn-header-reload" onclick="Func.Reload()">
         <i class="fas fa-rotate"></i>

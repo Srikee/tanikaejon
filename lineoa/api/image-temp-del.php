@@ -1,5 +1,5 @@
 <?php
-    include_once("../../../../config/all.php");
+    include_once("../../config/all.php");
 
     $random_id = trim($_POST['random_id'] ?? "");
     $filename = trim($_POST['filename'] ?? "");
@@ -14,7 +14,7 @@
         exit();
     }
     
-    $dir = "../../../../files/temp/".$random_id."/";
+    $dir = "../../files/temp/".$random_id."/";
     $options = array(
         "dir"       => $dir,
         "fileName"  => $filename,
