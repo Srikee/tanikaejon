@@ -23,9 +23,13 @@
         SELECT 
             sb.*,
             c.customer_name,
-            c.customer_sname
+            c.customer_sname,
+            p.provider_name,
+            p.provider_sname,
+            p.phone AS provider_phone
         FROM service_booking sb
             LEFT JOIN customer c ON c.customer_id = c.customer_id
+            LEFT JOIN provider p ON p.provider_id = sb.provider_id
         WHERE sb.service_booking_id = '".$service_booking_id."' 
     ";
     $service_booking = $DB->QueryFirst($sql);
@@ -48,7 +52,7 @@
     </button>
 </div>
 <div class="container-fluid py-1">
-    <div class="border pt-3 pb-2 rounded mb-4">
+    <div class="border pt-3 pb-2 rounded mb-3">
         <?php 
             if( in_array($status, ["1", "2","3"]) ) {
                 $step1 = "completed";
@@ -117,6 +121,22 @@
         </div>
         <?php } ?>
     </div>
+    <?php
+        if( $service_booking["provider_name"]!="" || $service_booking["provider_sname"]!="" ) {
+    ?>
+    <div class="provider">
+        <img src="../images/default-profile.png" alt="Provider">
+        <div>
+            <?php echo $service_booking["provider_name"]; ?>
+            <?php echo $service_booking["provider_sname"]; ?>
+        </div>
+        <?php if( $service_booking["provider_phone"]!="" ) { ?>
+        <a href="Javascript:" id="btn-provider-call" data-phone="<?php echo $service_booking["provider_phone"]; ?>">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        <?php } ?>
+    </div>
+    <?php } ?>
     <div>
         <h5 class="mb-3">ประวัติการดำเนินงาน</h5>
         <div class="timeline">

@@ -61,6 +61,40 @@
 }
 
 
+.provider {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 16px;
+}
+
+.provider>img {
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.provider>div {
+    margin-right: auto;
+    font-weight: bold;
+}
+
+.provider>a {
+    font-size: 26px;
+    margin-right: 5px;
+}
+
+.provider-popup .jBox-content {
+    padding: 10px;
+}
+
+.provider-popup a {
+    margin-bottom: 10px;
+}
 
 
 
