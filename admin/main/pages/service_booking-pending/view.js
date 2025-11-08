@@ -135,11 +135,47 @@ $(function () {
                 </div>
             </div>
         `);
+        $contents.on("submit", "form", function (e) {
+            e.preventDefault();
+            Func.ShowLoading();
+            $.ajax({
+                type: "POST",
+                url: "pages/" + PAGE + "/api/approve.php",
+                dataType: "JSON",
+                data: Func.GetFormData($contents.find("form")),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    Func.HideLoading();
+                    if (res.status == 'no') {
+                        Func.ShowAlert({
+                            html: res.message,
+                            type: "error",
+                            callback: function () {
+                                Func.Reload();
+                            }
+                        });
+                    } else {
+                        Func.LinkTo("./?page=service_booking-detail&service_booking_id=" + data.service_booking_id);
+                    }
+                },
+                error: function () {
+                    Func.HideLoading();
+                    Func.ShowAlert({
+                        html: "ไม่สามารถติดต่อเครื่องแม่ข่ายได้",
+                        type: "error",
+                        callback: function () {
+                            Func.Reload();
+                        }
+                    });
+                }
+            });
+        });
         $footer.find('.btn-del').click(function (event) {
             Del(data.service_booking_id);
         });
         $footer.find('.btn-approve').click(function (event) {
-            Approve(data.service_booking_id);
+            $contents.find("#btn-submit").trigger("click");
         });
         $footer.find('.btn-cancel').click(function (event) {
             popup.close();
@@ -153,9 +189,7 @@ $(function () {
             draggable: 'title',
             overlay: true,
             zIndex: 101,  // default=10000
-            onOpen: function () {
-                // เมื่อเปิด Popup
-            },
+            onOpen: function () { },
             onClose: function () {
                 setTimeout(function () {
                     popup.destroy();

@@ -1,4 +1,7 @@
 $(function () {
+    var href = window.location.href;
+    window.history.replaceState({}, '', href);
+
     $(".ks-toggle-menu").click(function () {
         $("body").toggleClass("ks-hide-menu");
     });

@@ -101,6 +101,15 @@
                 <?php echo $StatusServiceBooking[$data["status"]]; ?>
             </div>
         </div>
+        <div class="row ui-info-item">
+            <div class="col-auto ui-info-title">
+                ผู้ให้บริการ
+            </div>
+            <div class="col-lg ui-info-desc">
+                <?php echo $data["provider_fullname"]; ?>
+                ( <?php echo $data["provider_phone"]; ?> )
+            </div>
+        </div>
     </div>
     <?php
         $dir = "files/service_booking/".$data["service_booking_id"]."/";

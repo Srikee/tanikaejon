@@ -10,16 +10,31 @@
     }
 
     $service_booking_id = trim( $_POST["service_booking_id"] ?? "" );
+    $provider_id = trim( $_POST["provider_id"] ?? "" );
 
-    // if( $DB->QueryHaving("plan", "plan_name", $field['plan_name']) ) {
-    //     echo json_encode(array(
-    //         "status"=>false,
-    //         "message"=>"ไม่สามารถเพิ่มได้ เนื่องจากคุณระบุชื่อซ้ำกับที่มีอยู่ !!!"
-    //     ));
-    //     exit();
-    // }
+    if(  $service_booking_id == "" || $provider_id == "" ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"กรุณากรอกข้อมูลให้ครบถ้วน"
+        ));
+        exit();
+    }
+
+    $sql = "SELECT * FROM provider WHERE status='2' AND provider_id='".$provider_id."' ";
+    $provider = $DB->QueryFirst($sql);
+    if( $provider==null ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"ไม่พบผู้ให้บริการ"
+        ));
+        exit();
+    }
+
     $rs = $DB->QueryUpdate("service_booking", [
         "status"=>"2",
+        "provider_id"=>$provider["provider_id"],
+        "provider_fullname"=>$provider["provider_name"]." ".$provider["provider_sname"],
+        "provider_phone"=>$provider["phone"],
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")
     ], "service_booking_id='".$DB->Escape($service_booking_id)."' ");

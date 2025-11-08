@@ -23,13 +23,9 @@
         SELECT 
             sb.*,
             c.customer_name,
-            c.customer_sname,
-            p.provider_name,
-            p.provider_sname,
-            p.phone AS provider_phone
+            c.customer_sname
         FROM service_booking sb
             LEFT JOIN customer c ON c.customer_id = c.customer_id
-            LEFT JOIN provider p ON p.provider_id = sb.provider_id
         WHERE sb.service_booking_id = '".$service_booking_id."' 
     ";
     $service_booking = $DB->QueryFirst($sql);
@@ -122,13 +118,12 @@
         <?php } ?>
     </div>
     <?php
-        if( $service_booking["provider_name"]!="" || $service_booking["provider_sname"]!="" ) {
+        if( $service_booking["provider_fullname"]!="" ) {
     ?>
     <div class="provider">
         <img src="../images/default-profile.png" alt="Provider">
         <div>
-            <?php echo $service_booking["provider_name"]; ?>
-            <?php echo $service_booking["provider_sname"]; ?>
+            <?php echo $service_booking["provider_fullname"]; ?>
         </div>
         <?php if( $service_booking["provider_phone"]!="" ) { ?>
         <a href="Javascript:" id="btn-provider-call" data-phone="<?php echo $service_booking["provider_phone"]; ?>">
