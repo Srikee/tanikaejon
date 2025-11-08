@@ -77,7 +77,16 @@
         <div class="mb-2">
             แนบรูปภาพ <span class="text-danger">สามารถแนปรูปภาพได้ไม่เกิน 4 รูป</span>
         </div>
-        <div class="row mb-3 images-section"></div>
+        <div class="row mb-3 images-section">
+            <div class="col-6">
+                <a href="Javascript:" class="btn-add-image">
+                    <div>
+                        <div><i class="fas fa-images me-1"></i></div>
+                        <div>แนบรูปภาพ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </form>
 </div>
 <div class="footer">

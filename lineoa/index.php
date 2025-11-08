@@ -8,11 +8,13 @@
     $datas = $DB->QueryObj("SELECT * FROM image_temp WHERE add_when <= '".$date."' ");
     foreach($datas as $data) {
         $random_id = $data["random_id"];
-        $dir = "../files/temp/".$random_id."/";
-        $options = array(
-            "dir"   => $dir
-        );
-        Func::RemoveDir($options);
+        if( $random_id !="" ) {
+            $dir = "../files/temp/".$random_id."/";
+            $options = array(
+                "dir"   => $dir
+            );
+            Func::RemoveDir($options);
+        }
         $DB->QueryDelete("image_temp", "random_id='".$DB->Escape($random_id)."' ");
         // echo "ลบแล้วโฟลเดอร์ ".$dir." <br>";
     }

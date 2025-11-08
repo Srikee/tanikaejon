@@ -46,7 +46,7 @@ $(function () {
     $("#btn-submit").click(function () {
         $("#form-submit").trigger("click");
     });
-    $("#btn-image").click(function () {
+    $("#btn-image, .btn-add-image").click(function () {
         var l = $(".images-section .image").length;
         if (l >= 4) {
             Func.ShowAlert({
@@ -84,7 +84,7 @@ $(function () {
             }, function (res) {
                 if (res.status == "ok") {
                     $img.find("img").attr("src", res.image);
-                    $img.appendTo(".images-section");
+                    $(".images-section").prepend($img);
                 }
                 AddImage(files, ++idx);
             }, "JSON").fail(function () {
