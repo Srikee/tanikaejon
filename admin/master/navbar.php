@@ -22,6 +22,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" href="<?php echo $CLIENT_ROOT; ?>main/?page=changepass">
+                            <i class="fas fa-key me-2"></i>
+                            เปลี่ยนรหัสผ่าน
+                        </a>
+                    </li>
+                    <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
