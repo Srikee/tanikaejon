@@ -26,7 +26,7 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="provider_id" value="<?php echo $data["provider_id"]; ?>">
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover table-borderless">
             <tr>
                 <th valign="middle" style="width:130px;">ชื่อ <span class="text-danger">*</span></th>
                 <td>

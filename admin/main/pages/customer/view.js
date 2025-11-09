@@ -74,7 +74,7 @@ $(function () {
                         </div>
                     </div>
                     <div class="col-md">
-                        <table class="table">
+                        <table class="table table-hover table-borderless">
                             <tr>
                                 <td style="width:100px;">ชื่อ-นามสกุล</td>
                                 <td id="fullname">AAAA XXXX</td>

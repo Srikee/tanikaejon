@@ -30,7 +30,7 @@
 <form>
     <input type="submit" id="btn-submit" class="d-none">
     <input type="hidden" name="service_booking_id" value="<?php echo $service_booking_id; ?>">
-    <table class="table">
+    <table class="table table-hover table-borderless">
         <tr>
             <td style="min-width:150px;width:150px;">รหัสขอใช้บริการ</td>
             <td id="service_booking_id" class="fw-bold"><?php echo $data["service_booking_id"]; ?></td>

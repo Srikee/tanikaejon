@@ -25,7 +25,7 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="service_id" value="<?php echo $data["service_id"]; ?>">
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover table-borderless">
             <tr>
                 <th valign="middle" style="width:130px;">การบริการ <span class="text-danger">*</span></th>
                 <td>

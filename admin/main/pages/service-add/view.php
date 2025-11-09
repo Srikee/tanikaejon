@@ -11,7 +11,7 @@
 </div>
 <div class="ks-main-content">
     <form id="formdata">
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover table-borderless">
             <tr>
                 <th valign="middle" style="width:130px;">การบริการ <span class="text-danger">*</span></th>
                 <td>

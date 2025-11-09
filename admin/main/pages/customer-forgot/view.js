@@ -24,7 +24,7 @@ $(function () {
                         </div>
                     </div>
                     <div class="col-md">
-                        <table class="table">
+                        <table class="table table-hover table-borderless">
                             <tr>
                                 <td style="width:120px;">วันที่แจัง</td>
                                 <td id="add_when">AAAA</td>

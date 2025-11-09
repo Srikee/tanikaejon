@@ -19,7 +19,7 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="staff_id" value="<?php echo $data["staff_id"]; ?>">
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover table-borderless">
             <tr>
                 <th valign="middle" style="width:140px;">รหัสผ่านเดิม <span class="text-danger">*</span></th>
                 <td>
