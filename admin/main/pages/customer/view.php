@@ -128,7 +128,7 @@
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 125px; width: 125px;">เบอร์มือถือ</th>
-                    <th style="min-width: 150px; width: 150px;" class="text-center">จัดการ</th>
+                    <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
@@ -137,8 +137,6 @@
                         echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_edit = '<a href="./?page=service-edit&service_id='.$value["customer_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
-                            $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
@@ -148,8 +146,6 @@
                                         <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
                                             ดูข้อมูล
                                         </button>
-                                        '.$btn_edit.'
-                                        '.$btn_del.'
                                     </td>
                                 </tr>
                             ';
