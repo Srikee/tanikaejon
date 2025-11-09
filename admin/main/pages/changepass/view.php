@@ -23,19 +23,28 @@
             <tr>
                 <th valign="middle" style="width:140px;">รหัสผ่านเดิม <span class="text-danger">*</span></th>
                 <td>
-                    <input type="text" class="form-control" name="password1" id="password1" required>
+                    <div class="form-inner">
+                        <input type="text" class="form-control" name="password1" id="password1" required>
+                        <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <th valign="middle">รหัสผ่านใหม่ <span class="text-danger">*</span></th>
                 <td>
-                    <input type="text" class="form-control" name="password2" id="password2" required>
+                    <div class="form-inner">
+                        <input type="text" class="form-control" name="password2" id="password2" required>
+                        <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <th valign="middle">ยืนยันรหัสผ่าน <span class="text-danger">*</span></th>
                 <td>
-                    <input type="text" class="form-control" name="password3" id="password3" required>
+                    <div class="form-inner">
+                        <input type="text" class="form-control" name="password3" id="password3" required>
+                        <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+                    </div>
                 </td>
             </tr>
         </table>
