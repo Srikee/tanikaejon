@@ -14,7 +14,7 @@
         FROM customer c
             LEFT JOIN occupation o ON o.occupation_id=c.occupation_id
         WHERE c.status='1' ".$condition."
-        ORDER BY c.edit_when DESC
+        ORDER BY c.add_when DESC
     ";
     $show = $SHOW;
     $all = $DB->QueryNumRow($sql);
@@ -126,6 +126,7 @@
             <thead>
                 <tr class="table-secondary">
                     <th style="width:60px;" class="text-center">ลำดับ</th>
+                    <th style="min-width: 165px; width: 165px;" class="text-center">วันที่ลงทะเบียน</th>
                     <th style="min-width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 125px; width: 125px;">เบอร์มือถือ</th>
                     <th style="min-width: 124px; width: 124px;" class="text-center">จัดการ</th>
@@ -134,12 +135,13 @@
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="5" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
+                                    <td>'.Func::DateTh($value["add_when"]).' น.</td>
                                     <td>'.$value["customer_name"].' '.$value["customer_sname"].'</td>
                                     <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
                                     <td class="text-center p-0 pt-1">

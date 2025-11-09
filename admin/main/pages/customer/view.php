@@ -14,7 +14,7 @@
         FROM customer c
             LEFT JOIN occupation o ON o.occupation_id=c.occupation_id
         WHERE c.status='2' ".$condition."
-        ORDER BY c.edit_when DESC
+        ORDER BY c.add_when DESC
     ";
     $show = $SHOW;
     $all = $DB->QueryNumRow($sql);
@@ -128,20 +128,27 @@
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 125px; width: 125px;">เบอร์มือถือ</th>
+                    <th style="min-width: 70px; width: 70px;" class="text-center">สถานะ</th>
                     <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="5" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
+                            $status = [
+                                "1"=>'<span class="badge text-bg-warning">รอตรวจสอบ</span>',
+                                "2"=>'<span class="badge text-bg-success">ตรวจสอบแล้ว</span>',
+                                "3"=>'<span class="badge text-bg-danger">ยกเลิก</span>'
+                            ];
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
                                     <td>'.$value["customer_name"].' '.$value["customer_sname"].'</td>
                                     <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
+                                    <td class="text-center">'.$status[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
                                         <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
                                             ดูข้อมูล

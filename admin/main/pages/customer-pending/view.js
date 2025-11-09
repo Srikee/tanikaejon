@@ -119,7 +119,11 @@ $(function () {
                     <div class="col-md">
                         <table class="table">
                             <tr>
-                                <td style="width:100px;">ชื่อ-นามสกุล</td>
+                                <td style="width:120px;">วันที่ลงทะเบียน</td>
+                                <td id="add_when">AAAA</td>
+                            </tr>
+                            <tr>
+                                <td>ชื่อ-นามสกุล</td>
                                 <td id="fullname">AAAA XXXX</td>
                             </tr>
                             <tr>
@@ -147,6 +151,7 @@ $(function () {
                 </div>
             </div>
         `);
+        $contents.find("#add_when").html(Func.DateTh(data.add_when) + " น.");
         $contents.find("#fullname").html(data.customer_name + " " + data.customer_sname);
         $contents.find("#address").html(data.address);
         $contents.find("#phone").html(Func.FormatPhoneNumber(data.phone));

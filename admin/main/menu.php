@@ -56,9 +56,6 @@
                     }
                 ?>
             </li>
-            <li class="ks-submenu-item <?php if (in_array($PAGE, ["customer", "customer-detail"])) echo "active"; ?>">
-                <a href="./?page=customer">ลูกค้าทั้งหมด</a>
-            </li>
             <li
                 class="ks-submenu-item <?php if (in_array($PAGE, ["customer-forgot", "customer-forgot-detail"])) echo "active"; ?>">
                 <a href="./?page=customer-forgot">ลูกค้าแจ้งลืมรหัสผ่าน</a>
@@ -67,6 +64,9 @@
                         echo '<span class="ks-badge">'.$badge2.'</span>';
                     }
                 ?>
+            </li>
+            <li class="ks-submenu-item <?php if (in_array($PAGE, ["customer", "customer-detail"])) echo "active"; ?>">
+                <a href="./?page=customer">ลูกค้าทั้งหมด</a>
             </li>
         </ul>
     </li>

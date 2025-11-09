@@ -26,7 +26,11 @@ $(function () {
                     <div class="col-md">
                         <table class="table">
                             <tr>
-                                <td style="width:120px;">ชื่อ-นามสกุล</td>
+                                <td style="width:120px;">วันที่แจัง</td>
+                                <td id="add_when">AAAA</td>
+                            </tr>
+                            <tr>
+                                <td>ชื่อ-นามสกุล</td>
                                 <td id="fullname" colspan="2">AAAA XXXX</td>
                             </tr>
                             <tr>
@@ -85,6 +89,7 @@ $(function () {
                 </form>
             </div>
         `);
+        $contents.find("#add_when").html(Func.DateTh(data.add_when) + " น.");
         $contents.find("#forgot_id").val(data.forgot_id);
         $contents.find("#customer_id").val(data.customer_id);
         $contents.find("#fullname").html(data.customer_name + " " + data.customer_sname);

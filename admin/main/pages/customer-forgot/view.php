@@ -131,7 +131,8 @@
             <thead>
                 <tr class="table-secondary">
                     <th style="width:60px;" class="text-center">ลำดับ</th>
-                    <th style="min-width: 200px;">ชื่อไลน์</th>
+                    <th style="min-width: 165px; width: 165px;" class="text-center">วันที่แจ้ง</th>
+                    <th style="min-width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 125px; width: 125px;">เบอร์มือถือ</th>
                     <th style="min-width: 70px; width: 70px;" class="text-center">สถานะ</th>
                     <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
@@ -140,7 +141,7 @@
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="5" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="6" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
                             $status = [
@@ -151,7 +152,8 @@
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
-                                    <td>'.$value["displayName"].'</td>
+                                    <td>'.Func::DateTh($value["add_when"]).' น.</td>
+                                    <td>'.$value["customer_name"].' '.$value["customer_sname"].'</td>
                                     <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
                                     <td class="text-center">'.$status[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
