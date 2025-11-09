@@ -122,11 +122,12 @@
 
 
     <?php
-        $menus = ["occupation", "occupation-add", "occupation-edit"];
+        $menus = ["provider", "provider-add", "provider-edit"];
     ?>
-    <!-- <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
-        <a href="./?page=occupation"><i class="fas fa-briefcase me-1"></i> ข้อมูลอาชีพ</a>
-    </li> -->
+    <li class="ks-menu-item <?php if( in_array($PAGE, $menus) ) echo "active"; ?>">
+        <a href="./?page=provider"><i class="fas fa-user-tag me-1"></i> ข้อมูลผู้ให้บริการ</a>
+    </li>
+
 
 
     <?php
@@ -139,28 +140,7 @@
 
 
 
-    <?php
-        $menus = [
-            "service", "service-add", "service-edit", "service-detail",
-            "service_booking", "service_booking-detail",
-        ];
-    ?>
-    <!-- <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
-        <a href="Javascript:" class="btn-open-submenu">
-            <i class="fas fa-handshake-angle me-1"></i> ข้อมูลการบริการ
-            <i class="fas fa-angle-right ks-menu-icon-sub"></i>
-        </a>
-        <ul class="ks-submenu" style="<?php if (in_array($PAGE, $menus)) echo "display:block;"; ?>">
-            <li
-                class="ks-submenu-item <?php if (in_array($PAGE, ["service", "service-add", "service-edit", "service-detail"])) echo "active"; ?>">
-                <a href="./?page=service">จัดการข้อมูลการบริการ</a>
-            </li>
-            <li
-                class="ks-submenu-item <?php if (in_array($PAGE, ["service_booking", "service_booking-detail"])) echo "active"; ?>">
-                <a href="./?page=service_booking">ผู้ขอใช้บริการทั้งหมด</a>
-            </li>
-        </ul>
-    </li> -->
+
 
 
 
