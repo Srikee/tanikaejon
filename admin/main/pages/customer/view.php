@@ -127,7 +127,7 @@
                 <tr class="table-secondary">
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">ลูกค้า</th>
-                    <th class="text-center" style="min-width: 120px; width: 120px;">เบอร์มือถือ</th>
+                    <th class="text-center" style="min-width: 125px; width: 125px;">เบอร์มือถือ</th>
                     <th style="min-width: 150px; width: 150px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>

@@ -17,7 +17,7 @@
         SELECT 
             s.*
         FROM service s
-        WHERE 1=1
+        WHERE s.status='Y'
             ".$condition."
         ORDER BY service_name
         LIMIT 50

@@ -33,6 +33,15 @@
                         value="<?php echo $data["occupation_name"]; ?>" required>
                 </td>
             </tr>
+            <tr>
+                <th valign="middle">สถานะ <span class="text-danger">*</span></th>
+                <td>
+                    <select name="status" id="status" class="form-control">
+                        <option value="Y" <?php if($data["status"] == "Y") echo "selected"; ?>>ใช้งาน</option>
+                        <option value="N" <?php if($data["status"] == "N") echo "selected"; ?>>ไม่ใช้งาน</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <div>
             <button type="submit" class="btn btn-warning me-2" occupation="ยืนยันการแก้ไข">

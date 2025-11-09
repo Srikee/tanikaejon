@@ -24,6 +24,15 @@
                     <input type="text" class="form-control" id="service_desc" name="service_desc" required>
                 </td>
             </tr>
+            <tr>
+                <th valign="middle">สถานะ <span class="text-danger">*</span></th>
+                <td>
+                    <select name="status" id="status" class="form-control">
+                        <option value="Y">ใช้งาน</option>
+                        <option value="N">ไม่ใช้งาน</option>
+                    </select>
+                </td>
+            </tr>
         </table>
         <div>
             <button type="submit" class="btn btn-success me-2" service="ยืนยันการเพิ่ม">

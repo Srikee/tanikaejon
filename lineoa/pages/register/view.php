@@ -63,7 +63,7 @@
             <select class="form-control form-control-lg" id="occupation_id" name="occupation_id" required>
                 <option value="">-- เลือกอาชีพ --</option>
                 <?php
-                    $sql = "SELECT * FROM occupation ORDER BY occupation_name ASC";
+                    $sql = "SELECT * FROM occupation WHERE `status`='Y' ORDER BY occupation_name ASC";
                     $obj = $DB->QueryObj($sql);
                     foreach ($obj as $row) {
                         echo '<option value="' . $row['occupation_id'] . '">' . $row['occupation_name'] . '</option>';

@@ -130,15 +130,20 @@
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">การบริการ</th>
                     <th style="min-width: 200px;">คำอธิบาย</th>
+                    <th class="text-center" style="min-width: 88px; width: 88px;">สถานะ</th>
                     <th style="min-width: 88px; width: 88px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="4" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="5" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
+                            $status = [
+                                "Y"=>'<span class="badge text-bg-success">ใช้งาน</span>',
+                                "N"=>'<span class="badge text-bg-danger">ไม่ใช้งาน</span>'
+                            ];
                             $btn_edit = '<a href="./?page=service-edit&service_id='.$value["service_id"].'" title="แก้ไขข้อมูล" data-container="#table" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>';
                             $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
@@ -146,6 +151,7 @@
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
                                     <td>'.$value["service_name"].'</td>
                                     <td>'.$value["service_desc"].'</td>
+                                    <td class="text-center">'.$status[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
                                         '.$btn_edit.'
                                         '.$btn_del.'

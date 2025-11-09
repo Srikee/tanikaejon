@@ -11,6 +11,7 @@
 
     $field = array(
         "occupation_name"=>$_POST["occupation_name"] ?? "",
+        "status"=>$_POST["status"] ?? "",
         "add_by"=>$_SESSION["tnkj_staff"]["username"],
         "add_when"=>date("Y-m-d H:i:s"),
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
