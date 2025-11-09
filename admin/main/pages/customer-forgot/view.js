@@ -9,7 +9,7 @@ $(function () {
         var popup;
         var $title = $(`
             <div>
-                <i class="fa-solid fa-user-check me-1"></i> รายละเอียดข้อมูลลูกค้า
+                <i class="fa-solid fa-user-check me-1"></i> รายละเอียดข้อมูลผู้แจ้งลืมรหัสผ่าน
             </div>
         `);
         var $contents = $(`
@@ -65,13 +65,19 @@ $(function () {
                             <tr class="password">
                                 <td valign="middle">รหัสผ่านใหม่</td>
                                 <td>
-                                    <input type="password" class="form-control" name="password1" id="password1" required>
+                                    <div class="form-inner">
+                                        <input type="password" class="form-control" name="password1" id="password1" required>
+                                        <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+                                    </div>
                                 </td>
                             </tr>
                             <tr class="password">
                                 <td valign="middle">ยืนยันรหัสผ่าน</td>
                                 <td>
-                                    <input type="password" class="form-control" name="password2" id="password2" required>
+                                    <div class="form-inner">
+                                        <input type="password" class="form-control" name="password2" id="password2" required>
+                                        <i class="fa-solid fa-eye inner-button" show-password="password2"></i>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -102,13 +108,13 @@ $(function () {
         if (data.pictureUrl != "") $contents.find("#pictureUrl").attr("src", data.pictureUrl);
         var $footer = $(`
             <div class="row">
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-edit w-100 btn-submit">
+                <div class="col text-end">
+                    <button type="button" class="btn btn-primary btn-submit me-2">
                         <i class="fas fa-check me-1"></i> ยืนยันการบันทึก
                     </button>
-                </div>
-                <div class="col text-end">
-                    <button class="btn btn-light btn-cancel"><i class="fas fa-times me-1"></i> ปิดหน้าจอ</button>
+                    <button class="btn btn-light btn-cancel">
+                        <i class="fas fa-times me-1"></i> ปิดหน้าจอ
+                    </button>
                 </div>
             </div>
         `);
@@ -117,6 +123,16 @@ $(function () {
         });
         $footer.find('.btn-submit').click(function (event) {
             $contents.find('#btn-submit').trigger("click");
+        });
+        $contents.find('[show-password]').click(function () {
+            var id = $(this).attr("show-password");
+            var type = $("#" + id).attr("type");
+            if (type == "password") {
+                $("#" + id).attr("type", "text");
+            } else {
+                $("#" + id).attr("type", "password");
+            }
+            $(this).toggleClass("fa-eye fa-eye-slash");
         });
         $contents.find('#changepass').change(function (event) {
             var changepass = $(this).prop("checked");

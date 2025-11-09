@@ -26,9 +26,9 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="staff_id" value="<?php echo $data["staff_id"]; ?>">
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover table-borderless">
             <tr>
-                <th valign="middle" style="width:130px;">ชื่อ <span class="text-danger">*</span></th>
+                <th valign="middle" style="width:135px;">ชื่อ <span class="text-danger">*</span></th>
                 <td>
                     <input type="text" class="form-control" id="staff_name" name="staff_name"
                         value="<?php echo $data["staff_name"]; ?>" required>
@@ -49,10 +49,30 @@
                 </td>
             </tr>
             <tr>
-                <th valign="middle">รหัสผ่าน <span class="text-danger">*</span></th>
+                <td valign="middle"></td>
                 <td>
-                    <input type="text" class="form-control" name="password" id="password"
-                        value="<?php echo $data["password"]; ?>" required>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="changepass" name="changepass" value="Y">
+                        <label class="form-check-label" for="changepass">เปลี่ยนรหัสผ่าน</label>
+                    </div>
+                </td>
+            </tr>
+            <tr class="password" style="display:none">
+                <th valign="middle">รหัสผ่านใหม่ <span class="text-danger">*</span></th>
+                <td>
+                    <div class="form-inner">
+                        <input type="password" class="form-control" name="password1" id="password1">
+                        <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+                    </div>
+                </td>
+            </tr>
+            <tr class="password" style="display:none">
+                <th valign="middle">ยืนยันรหัสผ่าน <span class="text-danger">*</span></th>
+                <td>
+                    <div class="form-inner">
+                        <input type="password" class="form-control" name="password2" id="password2">
+                        <i class="fa-solid fa-eye inner-button" show-password="password2"></i>
+                    </div>
                 </td>
             </tr>
             <tr>

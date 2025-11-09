@@ -10,15 +10,36 @@
     }
 
     $staff_id = trim($_POST["staff_id"] ?? "");
+    $changepass = trim( $_POST["changepass"] ?? "" );
+    $password1 = trim( $_POST["password1"] ?? "" );
+    $password2 = trim( $_POST["password2"] ?? "" );
+    
     $field = array(
         "staff_name"=>trim($_POST["staff_name"] ?? ""),
         "staff_sname"=>trim($_POST["staff_sname"] ?? ""),
         "username"=>trim($_POST["username"] ?? ""),
-        "password"=>trim($_POST["password"] ?? ""),
         "status"=>trim($_POST["status"] ?? ""),
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")
     );
+
+    if( $changepass=="Y" ) {
+        if( $password1 == "" ) {
+            echo json_encode(array(
+                "status"=>"no",
+                "message"=>"รหัสผ่านว่างเปล่า"
+            ));
+            exit();
+        }
+        if( $password1 != $password2 ) {
+            echo json_encode(array(
+                "status"=>"no",
+                "message"=>"ยืนยันรหัสผ่านไม่ถูกต้อง"
+            ));
+            exit();
+        }
+        $field["password"] = $password2;
+    }
 
     $skips = [];
     foreach($field as $k=>$f) {

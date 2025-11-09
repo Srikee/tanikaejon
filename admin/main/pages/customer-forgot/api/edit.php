@@ -31,7 +31,6 @@
             ));
             exit();
         }
-        $field["password"] = Func::Encrypt($password2);
     }
     
     $rs = $DB->QueryUpdate("forgot", [
@@ -43,7 +42,7 @@
     if( $rs ) {
         if( $changepass=="Y" ) {
             $DB->QueryUpdate("customer", [
-                "password"=>$password2,
+                "password"=>Func::Encrypt($password2),
                 "edit_by"=>$_SESSION["tnkj_staff"]["username"],
                 "edit_when"=>date("Y-m-d H:i:s")
             ], "customer_id='".$DB->Escape($customer_id)."' ");
