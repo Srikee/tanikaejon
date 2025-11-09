@@ -77,9 +77,20 @@
                 autocomplete="off" required>
         </div>
         <div class="mb-3">
-            <label for="password">กำหนดรหัสผ่านเข้าระบบ <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg mb-4" id="password" name="password"
-                autocomplete="off" required>
+            <label for="password1">กำหนดรหัสผ่านเข้าระบบ <span class="text-danger">*</span></label>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg mb-4" id="password1" name="password1"
+                    autocomplete="off" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password2">ยืนยันรหัสผ่านอีกครั้ง <span class="text-danger">*</span></label>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg mb-4" id="password2" name="password2"
+                    autocomplete="off" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password2"></i>
+            </div>
         </div>
     </form>
 </div>

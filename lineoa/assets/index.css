@@ -54,3 +54,23 @@ body {
     right: 5px;
     top: 11px;
 }
+
+/******** ปุ่มในช่อง input ********/
+.form-inner {
+    position: relative;
+}
+
+.form-inner .inner-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    color: #858585;
+    font-size: 18px;
+}
+
+.form-inner .inner-button:hover {
+    color: #686868;
+}
+
+/******** End ปุ่มในช่อง input ********/

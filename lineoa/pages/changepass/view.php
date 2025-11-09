@@ -36,18 +36,27 @@
         </div>
         <div class="mb-3">
             <label for="password1" class="form-label">รหัสผ่านเดิม <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg" id="password1" name="password1"
-                autocomplete="off" required>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg" id="password1" name="password1"
+                    autocomplete="off" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password1"></i>
+            </div>
         </div>
         <div class="mb-3">
             <label for="password2" class="form-label">รหัสผ่านใหม่ <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg" id="password2" name="password2"
-                autocomplete="off" required>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg" id="password2" name="password2"
+                    autocomplete="off" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password2"></i>
+            </div>
         </div>
         <div class="mb-3">
             <label for="password3" class="form-label">ยืนยันรหัสผ่านอีกครั้ง <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg" id="password3" name="password3"
-                autocomplete="off" required>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg" id="password3" name="password3"
+                    autocomplete="off" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password3"></i>
+            </div>
         </div>
     </form>
 </div>

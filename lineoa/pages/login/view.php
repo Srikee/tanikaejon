@@ -10,7 +10,10 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">รหัสผ่าน <span class="text-danger">*</span></label>
-            <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+            <div class="form-inner">
+                <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                <i class="fa-solid fa-eye inner-button" show-password="password"></i>
+            </div>
         </div>
         <div class="row mb-3 mt-4">
             <div class="col pe-2">

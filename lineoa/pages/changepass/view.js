@@ -1,5 +1,15 @@
 $(function () {
     $("title").html("เปลี่ยนรหัสผ่าน");
+    $('[show-password]').click(function () {
+        var id = $(this).attr("show-password");
+        var type = $("#" + id).attr("type");
+        if (type == "password") {
+            $("#" + id).attr("type", "text");
+        } else {
+            $("#" + id).attr("type", "password");
+        }
+        $(this).toggleClass("fa-eye fa-eye-slash");
+    });
     $("#formdata").submit(function (e) {
         e.preventDefault();
         let password1 = $("#password1").val().trim();

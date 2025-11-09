@@ -3,7 +3,8 @@
     $customer_name = trim($_POST['customer_name'] ?? "");
     $customer_sname = trim($_POST['customer_sname'] ?? "");
     $phone = trim($_POST['phone'] ?? "");
-    $password = trim($_POST['password'] ?? "");
+    $password1 = trim($_POST['password1'] ?? "");
+    $password2 = trim($_POST['password2'] ?? "");
     $address = trim($_POST['address'] ?? "");
     $tambol_id = trim($_POST['tambol_id'] ?? "");
     $amphur_id = trim($_POST['amphur_id'] ?? "");
@@ -16,7 +17,8 @@
     if(  $customer_name == "" ||
         $customer_sname == "" ||
         $phone == "" ||
-        $password == "" ||
+        $password1 == "" ||
+        $password2 == "" ||
         $address == "" ||
         $tambol_id == "" ||
         $amphur_id == "" ||
@@ -31,6 +33,14 @@
         ));
         exit();
     }
+    if( $password1 != $password2 ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>"ยืนยันรหัสผ่านไม่ถูกต้อง"
+        ));
+        exit();
+    }
+
     $sql = "SELECT * FROM customer WHERE phone='".$DB->Escape($phone)."' ";
     $customer = $DB->QueryFirst($sql);
     if( $customer!=null ) {
@@ -46,7 +56,7 @@
         "customer_name"=>$customer_name,
         "customer_sname"=>$customer_sname,
         "phone"=>$phone,
-        "password"=>Func::Encrypt($password),
+        "password"=>Func::Encrypt($password2),
         "address"=>$address,
         "tambol_id"=>$tambol_id,
         "amphur_id"=>$amphur_id,
