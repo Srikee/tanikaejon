@@ -30,6 +30,7 @@
         "forgot_id"=>$forgot_id,
         "phone"=>$phone,
         "status"=>"1",
+        "customer_id"=>$customer["customer_id"],
         "userId"=>$userId,
         "displayName"=>$displayName,
         "pictureUrl"=>$pictureUrl,

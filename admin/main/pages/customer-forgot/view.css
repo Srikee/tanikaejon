@@ -1,0 +1,13 @@
+.customer-image {
+    width: 200px;
+    margin: auto;
+}
+
+.customer-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#pictureUrl {
+    cursor: pointer;
+}

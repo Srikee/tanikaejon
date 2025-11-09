@@ -18,6 +18,7 @@
         $menus = [
             "customer-pending", "customer-pending-detail",
             "customer", "customer-detail",
+            "customer-forgot", "customer-forgot-detail"
         ];
         $sql = "
             SELECT
@@ -26,6 +27,14 @@
             WHERE `status`='1'
         ";
         $badge1 = $DB->QueryString($sql);
+
+        $sql = "
+            SELECT
+                IFNULL(COUNT(*),0)
+            FROM `forgot`
+            WHERE `status`='1'
+        ";
+        $badge2 = $DB->QueryString($sql);
     ?>
     <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
         <a href="Javascript:" class="btn-open-submenu">
@@ -50,6 +59,15 @@
             <li class="ks-submenu-item <?php if (in_array($PAGE, ["customer", "customer-detail"])) echo "active"; ?>">
                 <a href="./?page=customer">ลูกค้าทั้งหมด</a>
             </li>
+            <li
+                class="ks-submenu-item <?php if (in_array($PAGE, ["customer-forgot", "customer-forgot-detail"])) echo "active"; ?>">
+                <a href="./?page=customer-forgot">ลูกค้าแจ้งลืมรหัสผ่าน</a>
+                <?php
+                    if( $badge2>0 ) {
+                        echo '<span class="ks-badge">'.$badge2.'</span>';
+                    }
+                ?>
+            </li>
         </ul>
     </li>
 
@@ -66,15 +84,15 @@
             FROM `service_booking`
             WHERE `status`='1'
         ";
-        $badge2 = $DB->QueryString($sql);
+        $badge3 = $DB->QueryString($sql);
     ?>
     <li class="ks-menu-item <?php if (in_array($PAGE, $menus)) echo "active"; ?>">
         <a href="Javascript:" class="btn-open-submenu">
             <i class="fas fa-handshake-angle me-1"></i> ข้อมูลผู้ใช้บริการ
             <i class="fas fa-angle-right ks-menu-icon-sub"></i>
             <?php
-                if( $badge2>0 ) {
-                    echo '<span class="ks-badge">'.$badge2.'</span>';
+                if( $badge3>0 ) {
+                    echo '<span class="ks-badge">'.$badge3.'</span>';
                 }
             ?>
         </a>
@@ -83,8 +101,8 @@
                 class="ks-submenu-item <?php if (in_array($PAGE, ["service_booking-pending", "service_booking-pending-detail"])) echo "active"; ?>">
                 <a href="./?page=service_booking-pending">ผู้ขอใช้บริการใหม่</a>
                 <?php
-                    if( $badge2>0 ) {
-                        echo '<span class="ks-badge">'.$badge2.'</span>';
+                    if( $badge3>0 ) {
+                        echo '<span class="ks-badge">'.$badge3.'</span>';
                     }
                 ?>
             </li>

@@ -42,7 +42,7 @@
         <div>
             <button type="submit" class="btn btn-warning me-2" staff="ยืนยันการแก้ไข">
                 <i class="fas fa-key me-1"></i>
-                ยืนยันการแก้ไข
+                ยืนยันการเปลี่ยนรหัสผ่าน
             </button>
             <a href="Javascript:Func.Reload()" class="btn btn-light border">
                 <i class="fas fa-sync-alt me-1"></i>
