@@ -41,8 +41,8 @@
             <i class="fas fa-users me-1"></i> ข้อมูลลูกค้า
             <i class="fas fa-angle-right ks-menu-icon-sub"></i>
             <?php
-                if( $badge1>0 ) {
-                    echo '<span class="ks-badge">'.$badge1.'</span>';
+                if( $badge1+$badge2>0 ) {
+                    echo '<span class="ks-badge">'.($badge1+$badge2).'</span>';
                 }
             ?>
         </a>
@@ -108,7 +108,7 @@
             </li>
             <li
                 class="ks-submenu-item <?php if (in_array($PAGE, ["service_booking", "service_booking-detail"])) echo "active"; ?>">
-                <a href="./?page=service_booking">ผู้ขอใช้บริการทั้งหมด</a>
+                <a href="./?page=service_booking">ประวัติขอใช้บริการทั้งหมด</a>
             </li>
         </ul>
     </li>

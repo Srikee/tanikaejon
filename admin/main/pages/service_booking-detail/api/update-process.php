@@ -75,6 +75,13 @@
             "add_by"=>$_SESSION["tnkj_staff"]["username"],
             "add_when"=>date("Y-m-d H:i:s"),
         ]);
+
+        // ส่งแจ้งเตือนไลน์
+        $userId = $service_booking["userId"];
+        $message = "รหัสขอใช้บริการเลขที่ ".$service_booking["service_booking_id"]." -> ".$timeline_desc;
+        $url = "line://app/2008357457-opkvYyB0?page=history-detail&service_booking_id=".$service_booking["service_booking_id"];
+        SentMessageToLine($userId, $message, $url);
+
         $dir_temp = $SERVER_ROOT."../files/temp/".$random_id."/";
         $dir = $SERVER_ROOT."../files/service_booking_timeline/".$service_booking_timeline_id."/";
         $options = array(
@@ -92,11 +99,6 @@
         Func::RemoveDir($options);
         $DB->QueryDelete("image_temp", "random_id='".$DB->Escape($random_id)."' ");
 
-
-        $userId = $service_booking["userId"];
-        $message = "รหัสขอใช้บริการเลขที่ ".$service_booking["service_booking_id"]." -> ".$timeline_desc;
-        $url = "line://app/2008357457-opkvYyB0?page=history-detail&service_booking_id=".$service_booking["service_booking_id"];
-        SentMessageToLine($userId, $message, $url);
         
         echo json_encode(array(
             "status"=>"ok",
