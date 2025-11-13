@@ -7,13 +7,15 @@ body {
     padding-top: 70px;
     padding-bottom: 80px;
     position: relative;
+    max-width: 500px;
+    margin: auto;
 }
 
 .header {
     position: fixed;
     width: 100%;
     top: 0;
-    left: 0;
+    /* left: 0; */
     padding: 12px;
     font-size: 20px;
     font-weight: bold;
@@ -29,12 +31,28 @@ body {
     position: fixed;
     width: 100%;
     bottom: 0;
-    left: 0;
+    /* left: 0; */
     padding: 12px;
     background-color: #f3f3f3;
     border-top: 1px solid #cecece;
     z-index: 10;
 }
+
+/** Set Screen width=500px **/
+
+body {
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+}
+
+.header,
+.footer {
+    max-width: 500px;
+    /* left: Calc(50% - 250px); */
+}
+
+/** END Set Screen width=500px **/
 
 .backbutton {
     border: none;
