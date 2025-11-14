@@ -19,7 +19,23 @@
     //     exit();
     // }
 
+    $sql = "SELECT * FROM staff WHERE staff_id='".$DB->Escape($staff_id)."' ";
+    $staff = $DB->QueryFirst($sql);
+    if( $staff==null ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>'ไม่พบข้อมูล'
+        ));
+        exit();
+    }
+
     if( $DB->QueryDelete("staff", "staff_id='".$DB->Escape($staff_id)."' ") ) {
+        $dir = $SERVER_ROOT."../files/staff/";
+        $options = array(
+            "dir"       => $dir,
+            "fileName"  => $staff["image"],
+        );
+        $removed = Func::RemoveFile($options);
         echo json_encode(array(
             "status"=>"ok",
             "message"=>"ลบข้อมูลเสร็จเรียบร้อย"

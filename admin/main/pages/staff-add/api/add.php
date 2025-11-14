@@ -52,7 +52,20 @@
         ));
         exit();
     }
-    
+
+    $base64 = $_POST["base64"] ?? "";  // 'data:image/png;base64,AAAFBfj42Pj4'
+    $dir = $SERVER_ROOT."../files/staff/";
+    $options = array(
+        "base64"        => $base64,   // base64 string
+        "dir"           => $dir,              // path on sftp server
+        "rename"        => time().Func::GenerateRandom(5),                        // new filename without extension (optional)
+        "allowType"     => ["png"],     // allow file type
+    );
+    $uploader = Func::UploadBase64($options);
+    if( $uploader["status"]=="ok" ) {
+        $field["image"] = $uploader["fileName"];
+    }
+
     $field["staff_id"] = $DB->QueryMaxId("staff", "staff_id");
     if( $DB->QueryInsert("staff", $field) ) {
         echo json_encode(array(
