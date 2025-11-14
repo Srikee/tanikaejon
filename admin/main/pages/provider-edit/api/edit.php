@@ -48,6 +48,36 @@
         ));
         exit();
     }
+
+    $sql = "SELECT * FROM provider WHERE provider_id='".$DB->Escape($provider_id)."' ";
+    $provider = $DB->QueryFirst($sql);
+    if( $provider==null ) {
+        echo json_encode(array(
+            "status"=>"no",
+            "message"=>'ไม่พบข้อมูล'
+        ));
+        exit();
+    }
+
+    $base64 = $_POST["base64"] ?? "";  // 'data:image/png;base64,AAAFBfj42Pj4'
+    $dir = $SERVER_ROOT."../files/provider/";
+    $options = array(
+        "base64"        => $base64,   // base64 string
+        "dir"           => $dir,              // path on sftp server
+        "rename"        => time().Func::GenerateRandom(5),                        // new filename without extension (optional)
+        "allowType"     => ["png"],     // allow file type
+    );
+    $uploader = Func::UploadBase64($options);
+    if( $uploader["status"]=="ok" ) {
+        $field["image"] = $uploader["fileName"];
+        if( $provider["image"]!="" ) {
+            $options = array(
+                "dir"       => $dir,
+                "fileName"  => $provider["image"],
+            );
+            $removed = Func::RemoveFile($options);
+        }
+    }
     
     if( $DB->QueryUpdate("provider", $field, "provider_id='".$DB->Escape($provider_id)."'") ) {
         echo json_encode(array(

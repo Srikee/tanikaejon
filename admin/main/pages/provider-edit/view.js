@@ -26,6 +26,13 @@ $(function () {
         $("#zipcode").val(data.zipcode);
     });
     $("#zipcode").val(DATA.zipcode);
+    $("#btn-select-image").click(function () {
+        Func.SelectCropImage(1 / 1, function (base64) {
+            // console.log(base64);
+            $("#base64").val(base64);
+            $("#image").attr("src", base64);
+        });
+    });
     $("#formdata").submit(function (e) {
         e.preventDefault();
         Func.ShowLoading();
@@ -59,5 +66,9 @@ $(function () {
                 });
             }
         });
+    });
+    $("body").on("click", ".profile", function () {
+        var src = $(this).attr("src");
+        Func.ShowImage(src);
     });
 });

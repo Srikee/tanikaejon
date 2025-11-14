@@ -13,6 +13,17 @@
         exit();
     }
     $data = $obj[0];
+    $dir = "../files/provider/";
+    $options = array(
+        "dir"       => $SERVER_ROOT.$dir,
+        "fileName"  => $data["image"],
+    );
+    $is = Func::IsFile($options);
+    if( $is ) {
+        $data["image"] = $CLIENT_ROOT.$dir.$data["image"]."?v=".$VERSION;
+    } else {
+        $data["image"] = "../images/icon-profile.png?v=".$VERSION;
+    }
 ?>
 <input type="hidden" id="data" value="<?php echo htmlspecialchars(json_encode($data)); ?>">
 <div class="ks-main-header">
@@ -26,108 +37,121 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="provider_id" value="<?php echo $data["provider_id"]; ?>">
-        <table class="table table-hover table-borderless">
-            <tr>
-                <th valign="middle" style="width:130px;">ชื่อ <span class="text-danger">*</span></th>
-                <td>
-                    <input type="text" class="form-control" id="provider_name" name="provider_name"
-                        value="<?php echo $data["provider_name"]; ?>" required>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">นามสกุล<span class="text-danger">*</span></th>
-                <td>
-                    <input type="text" class="form-control" id="provider_sname" name="provider_sname"
-                        value="<?php echo $data["provider_sname"]; ?>" required>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">เลขบัตร ปชช. <span class="text-danger">*</span></th>
-                <td>
-                    <input type="text" class="form-control" id="card_id" name="card_id"
-                        value="<?php echo $data["card_id"]; ?>" maxlength="13" required>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">เบอร์มือถือ <span class="text-danger">*</span></th>
-                <td>
-                    <input type="text" class="form-control" id="phone" name="phone"
-                        value="<?php echo $data["phone"]; ?>" maxlength="10" required>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">ที่อยู่ <span class="text-danger">*</span></th>
-                <td><input type="text" class="form-control" id="address" name="address"
-                        value="<?php echo $data["address"]; ?>" required></td>
-            </tr>
-            <tr>
-                <th valign="middle">จังหวัด <span class="text-danger">*</span></th>
-                <td>
-                    <select name="province_id" id="province_id" class="form-control" data-select>
-                        <option value="">เลือกจังหวัด</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">อำเภอ <span class="text-danger">*</span></th>
-                <td>
-                    <select name="amphur_id" id="amphur_id" class="form-control" data-select>
-                        <option value="">เลือกอำเภอ</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">ตำบล <span class="text-danger">*</span></th>
-                <td>
-                    <select name="tambol_id" id="tambol_id" data-select class="form-select" required>
-                        <option value="">เลือกตำบล</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">รหัสไปรษณีย์ <span class="text-danger">*</span></th>
-                <td>
-                    <input type="text" class="form-control" name="zipcode" id="zipcode"
-                        value="<?php echo $data["zipcode"]; ?>" maxlength="5" required>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">อาชีพ <span class="text-danger">*</span></th>
-                <td>
-                    <select class="form-control form-control-lg" id="occupation_id" name="occupation_id" data-select
-                        required>
-                        <option value="">-- เลือกอาชีพ --</option>
-                        <?php
-                            $sql = "SELECT * FROM occupation WHERE `status`='Y' ORDER BY occupation_name ASC";
-                            $obj = $DB->QueryObj($sql);
-                            foreach ($obj as $row) {
-                                $selected = ($row["occupation_id"]==$data["occupation_id"]) ? "selected" : "";
-                                echo '<option value="' . $row['occupation_id'] . '" '.$selected.'>' . $row['occupation_name'] . '</option>';
-                            }
-                        ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">สถานะ <span class="text-danger">*</span></th>
-                <td>
-                    <select name="status" id="status" class="form-control">
-                        <option value="1" <?php if($data["status"] == "1") echo "selected"; ?>>รอตรวจสอบ</option>
-                        <option value="2" <?php if($data["status"] == "2") echo "selected"; ?>>ตรวจสอบแล้ว</option>
-                        <option value="3" <?php if($data["status"] == "3") echo "selected"; ?>>ยกเลิก</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <div>
-            <button type="submit" class="btn btn-warning me-2" provider="ยืนยันการแก้ไข">
-                <i class="fas fa-pen me-1"></i>
-                ยืนยันการแก้ไข
-            </button>
-            <a href="Javascript:Func.Reload()" class="btn btn-light border">
-                <i class="fas fa-sync-alt me-1"></i>
-                รีโหลด
-            </a>
+        <div class="row">
+            <div class="col-auto">
+                <div class="mb-3" style="width:200px;">
+                    <img src="<?php echo $data["image"]; ?>" id="image" alt="Staff Picture" class="w-100 mb-2 profile">
+                    <button type="button" id="btn-select-image" class="btn btn-outline-dark w-100">เลือกรูปภาพ</button>
+                    <input type="hidden" name="base64" id="base64">
+                </div>
+            </div>
+            <div class="col-lg">
+                <table class="table table-hover table-borderless">
+                    <tr>
+                        <th valign="middle" style="width:130px;">ชื่อ <span class="text-danger">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" id="provider_name" name="provider_name"
+                                value="<?php echo $data["provider_name"]; ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">นามสกุล<span class="text-danger">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" id="provider_sname" name="provider_sname"
+                                value="<?php echo $data["provider_sname"]; ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">เลขบัตร ปชช. <span class="text-danger">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" id="card_id" name="card_id"
+                                value="<?php echo $data["card_id"]; ?>" maxlength="13" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">เบอร์มือถือ <span class="text-danger">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" id="phone" name="phone"
+                                value="<?php echo $data["phone"]; ?>" maxlength="10" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">ที่อยู่ <span class="text-danger">*</span></th>
+                        <td><input type="text" class="form-control" id="address" name="address"
+                                value="<?php echo $data["address"]; ?>" required></td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">จังหวัด <span class="text-danger">*</span></th>
+                        <td>
+                            <select name="province_id" id="province_id" class="form-control" data-select required>
+                                <option value="">เลือกจังหวัด</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">อำเภอ <span class="text-danger">*</span></th>
+                        <td>
+                            <select name="amphur_id" id="amphur_id" class="form-control" data-select required>
+                                <option value="">เลือกอำเภอ</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">ตำบล <span class="text-danger">*</span></th>
+                        <td>
+                            <select name="tambol_id" id="tambol_id" data-select class="form-select" required>
+                                <option value="">เลือกตำบล</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">รหัสไปรษณีย์ <span class="text-danger">*</span></th>
+                        <td>
+                            <input type="text" class="form-control" name="zipcode" id="zipcode"
+                                value="<?php echo $data["zipcode"]; ?>" maxlength="5" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">อาชีพ <span class="text-danger">*</span></th>
+                        <td>
+                            <select class="form-control form-control-lg" id="occupation_id" name="occupation_id"
+                                data-select required>
+                                <option value="">-- เลือกอาชีพ --</option>
+                                <?php
+                                    $sql = "SELECT * FROM occupation WHERE `status`='Y' ORDER BY occupation_name ASC";
+                                    $obj = $DB->QueryObj($sql);
+                                    foreach ($obj as $row) {
+                                        $selected = ($row["occupation_id"]==$data["occupation_id"]) ? "selected" : "";
+                                        echo '<option value="' . $row['occupation_id'] . '" '.$selected.'>' . $row['occupation_name'] . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">สถานะ <span class="text-danger">*</span></th>
+                        <td>
+                            <select name="status" id="status" class="form-control">
+                                <option value="1" <?php if($data["status"] == "1") echo "selected"; ?>>รอตรวจสอบ
+                                </option>
+                                <option value="2" <?php if($data["status"] == "2") echo "selected"; ?>>ตรวจสอบแล้ว
+                                </option>
+                                <option value="3" <?php if($data["status"] == "3") echo "selected"; ?>>ยกเลิก</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <button type="submit" class="btn btn-warning me-2" provider="ยืนยันการแก้ไข">
+                        <i class="fas fa-pen me-1"></i>
+                        ยืนยันการแก้ไข
+                    </button>
+                    <a href="Javascript:Func.Reload()" class="btn btn-light border">
+                        <i class="fas fa-sync-alt me-1"></i>
+                        รีโหลด
+                    </a>
+                </div>
+            </div>
         </div>
     </form>
 </div>

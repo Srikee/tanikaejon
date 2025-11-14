@@ -434,7 +434,8 @@ var Func = {
         $input.change(function (event) {
             var popup;
             var $title = $(`
-                <div class="fa-solid fa-crop-simple mr-1"></i> ตัดภาพ
+                <div>
+                    <i class="fa-solid fa-crop-simple mr-1"></i> ตัดภาพ
                 </div>
             `);
             var $contents = $(`

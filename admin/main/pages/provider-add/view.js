@@ -1,6 +1,4 @@
 $(function () {
-
-
     LoadProvince($("#province_id"));
     $("#province_id").change(function () {
         var province_id = $(this).val();
@@ -26,6 +24,13 @@ $(function () {
     $("#tambol_id").change(function () {
         var data = JSON.parse($(this).find("option:selected").attr("data-json"));
         $("#zipcode").val(data.zipcode);
+    });
+    $("#btn-select-image").click(function () {
+        Func.SelectCropImage(1 / 1, function (base64) {
+            // console.log(base64);
+            $("#base64").val(base64);
+            $("#image").attr("src", base64);
+        });
     });
 
 
@@ -63,5 +68,9 @@ $(function () {
                 });
             }
         });
+    });
+    $("body").on("click", ".profile", function () {
+        var src = $(this).attr("src");
+        Func.ShowImage(src);
     });
 });
