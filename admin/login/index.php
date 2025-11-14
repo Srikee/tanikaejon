@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STMIS::สำหรับบุคลากร - โรงเรียนสาธิตมหาวิทยาลัยสงขลานครินทร์ (ฝ่ายมัธยมศึกษา)</title>
+    <title>โครงการตานีแก้จน</title>
     <link rel="icon" href="<?php echo $CLIENT_ROOT; ?>../images/favicon.png?v=<?php echo $VERSION; ?>" />
     <!-- bootstrap -->
     <link href="<?php echo $CLIENT_ROOT; ?>../assets/bootstrap-5.3.7/css/bootstrap.min.css" rel="stylesheet" />
