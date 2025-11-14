@@ -29,6 +29,16 @@
         exit();
     }
     if( $objCustomer["is_login"]=="1" ) {
+        $rs = $DB->QueryUpdate("customer", [
+            "userId"=>$userId,
+            "displayName"=>$displayName,
+            "pictureUrl"=>$pictureUrl,
+            // "edit_by"=>"",
+            "edit_when"=>date("Y-m-d H:i:s")
+        ], " customer_id='".$objCustomer["customer_id"]."' ");
+        $objCustomer["userId"] = $userId;
+        $objCustomer["displayName"] = $displayName;
+        $objCustomer["pictureUrl"] = $pictureUrl;
         $_SESSION["customer"]["data"] = $objCustomer;
         echo json_encode(array(
             "status"=>"ok",
