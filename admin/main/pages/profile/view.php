@@ -19,47 +19,60 @@
 <div class="ks-main-content">
     <form id="formdata">
         <input type="hidden" name="staff_id" value="<?php echo $data["staff_id"]; ?>">
-        <table class="table table-hover table-borderless">
-            <tr>
-                <th valign="middle" style="width:140px;">ชื่อ <span class="text-danger">*</span></th>
-                <td>
-                    <?php echo $data["staff_name"]; ?>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">นามสกุล<span class="text-danger">*</span></th>
-                <td>
-                    <?php echo $data["staff_sname"]; ?>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">ชื่อผู้ใช้งาน <span class="text-danger">*</span></th>
-                <td>
-                    <?php echo $data["username"]; ?>
-                </td>
-            </tr>
-            <tr>
-                <th valign="middle">สถานะ <span class="text-danger">*</span></th>
-                <td>
-                    <?php
-                        $status = [
-                            "1"=>'<span class="badge text-bg-success">ใช้งานได้</span>',
-                            "2"=>'<span class="badge text-bg-danger">ยกเลิก</span>'
-                        ];
-                        echo $status[$data["status"]];
-                    ?>
-                </td>
-            </tr>
-        </table>
-        <div>
-            <a href="./?page=changepass" class="btn btn-warning me-2" title="เปลี่ยนรหัสผ่าน">
-                <i class="fas fa-key me-1"></i>
-                เปลี่ยนรหัสผ่าน
-            </a>
-            <a href="Javascript:Func.Reload()" class="btn btn-light border">
-                <i class="fas fa-sync-alt me-1"></i>
-                รีโหลด
-            </a>
+        <div class="row">
+            <div class="col-auto">
+                <div class="mb-3" style="width:200px;">
+                    <img src="<?php echo $_SESSION['tnkj_staff']["image"]; ?>" id="image" alt="Staff Picture"
+                        class="w-100 mb-2 profile">
+                    <button type="button" id="btn-select-image"
+                        class="btn btn-outline-dark w-100">เปลี่ยนรูปโปรไฟล์</button>
+                    <input type="hidden" name="base64" id="base64">
+                </div>
+            </div>
+            <div class="col-lg">
+                <table class="table table-hover table-borderless">
+                    <tr>
+                        <th valign="middle" style="width:140px;">ชื่อ <span class="text-danger">*</span></th>
+                        <td>
+                            <?php echo $data["staff_name"]; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">นามสกุล<span class="text-danger">*</span></th>
+                        <td>
+                            <?php echo $data["staff_sname"]; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">ชื่อผู้ใช้งาน <span class="text-danger">*</span></th>
+                        <td>
+                            <?php echo $data["username"]; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">สถานะ <span class="text-danger">*</span></th>
+                        <td>
+                            <?php
+                                $status = [
+                                    "1"=>'<span class="badge text-bg-success">ใช้งานได้</span>',
+                                    "2"=>'<span class="badge text-bg-danger">ยกเลิก</span>'
+                                ];
+                                echo $status[$data["status"]];
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <a href="./?page=changepass" class="btn btn-warning me-2" title="เปลี่ยนรหัสผ่าน">
+                        <i class="fas fa-key me-1"></i>
+                        เปลี่ยนรหัสผ่าน
+                    </a>
+                    <a href="Javascript:Func.Reload()" class="btn btn-light border">
+                        <i class="fas fa-sync-alt me-1"></i>
+                        รีโหลด
+                    </a>
+                </div>
+            </div>
         </div>
     </form>
 </div>

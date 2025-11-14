@@ -29,6 +29,13 @@ body {
     font-weight: bold;
 }
 
+.nav-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 2px;
+}
+
 .ks-footer {
     position: absolute;
     background-color: #003C71;

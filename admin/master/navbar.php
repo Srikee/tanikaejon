@@ -9,7 +9,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle p-0" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <span class="">
+                    <img src="<?php echo $_SESSION['tnkj_staff']["image"]; ?>" alt="" class="nav-profile">
+                    <span class="d-none d-sm-inline">
                         <?php echo $_SESSION['tnkj_staff']['staff_name']; ?>
                         <?php echo $_SESSION['tnkj_staff']['staff_sname']; ?>
                     </span>

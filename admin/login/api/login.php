@@ -1,5 +1,5 @@
 <?php
-    include_once('../../../config/all.php');
+    include_once('../../config/all.php');
 
     $username = trim($_POST['username'] ?? "");
     $password = trim($_POST['password'] ?? "");
@@ -30,6 +30,17 @@
     }
 
     // เข้าสู่ระบบสำเร็จ
+    $dir = "../files/staff/";
+    $options = array(
+        "dir"       => $SERVER_ROOT.$dir,
+        "fileName"  => $staff["image"],
+    );
+    $is = Func::IsFile($options);
+    if( $is ) {
+        $staff["image"] = $CLIENT_ROOT.$dir.$staff["image"]."?v=".$VERSION;
+    } else {
+        $staff["image"] = "../images/icon-profile.png?v=".$VERSION;
+    }
     $_SESSION['tnkj_staff'] = $staff;
 
     echo json_encode([

@@ -8,7 +8,9 @@
 <div class="ks-main-content">
     <div>
         <?php
-            Func::PrintData($_SESSION);
+            // Func::PrintData($_SESSION);
         ?>
+        <h4>ยินดีต้อนรับ</h4>
+        <h6>เข้าระบบโครงการตานีแก้จน</h6>
     </div>
 </div>
