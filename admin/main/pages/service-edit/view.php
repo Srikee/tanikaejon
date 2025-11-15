@@ -27,7 +27,7 @@
         <input type="hidden" name="service_id" value="<?php echo $data["service_id"]; ?>">
         <table class="table table-hover table-borderless">
             <tr>
-                <th valign="middle" style="width:130px;">การบริการ <span class="text-danger">*</span></th>
+                <th valign="middle" style="width:160px;">การบริการ <span class="text-danger">*</span></th>
                 <td>
                     <input type="text" class="form-control" id="service_name" name="service_name"
                         value="<?php echo $data["service_name"]; ?>" required>
@@ -38,6 +38,13 @@
                 <td>
                     <input type="text" class="form-control" id="service_desc" name="service_desc"
                         value="<?php echo $data["service_desc"]; ?>" required>
+                </td>
+            </tr>
+            <tr>
+                <th valign="top">รายละเอียดบริการ <span class="text-danger">*</span></th>
+                <td>
+                    <textarea class="form-control" id="service_info" name="service_info" rows="10"
+                        required><?php echo $data["service_info"]; ?></textarea>
                 </td>
             </tr>
             <tr>

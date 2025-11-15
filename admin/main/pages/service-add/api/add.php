@@ -12,6 +12,7 @@
     $field = array(
         "service_name"=>$_POST["service_name"] ?? "",
         "service_desc"=>$_POST["service_desc"] ?? "",
+        "service_info"=>$_POST["service_info"] ?? "",
         "status"=>$_POST["status"] ?? "",
         "add_by"=>$_SESSION["tnkj_staff"]["username"],
         "add_when"=>date("Y-m-d H:i:s"),

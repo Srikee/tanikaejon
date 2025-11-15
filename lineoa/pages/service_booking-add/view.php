@@ -1,12 +1,12 @@
 <?php
     include_once("../../../config/all.php");
 
-    $service_id = $_GET["service_id"];
+    $service_id = $_GET["service_id"] ?? "";
     $sql = "
         SELECT 
             s.*
         FROM service s
-        WHERE s.service_id = '".$service_id."' 
+        WHERE s.service_id = '".$DB->Escape($service_id)."' 
     ";
     $service = $DB->QueryFirst($sql);
     if($service==null) {

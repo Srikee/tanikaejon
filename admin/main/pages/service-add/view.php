@@ -25,6 +25,12 @@
                 </td>
             </tr>
             <tr>
+                <th valign="top">รายละเอียดบริการ <span class="text-danger">*</span></th>
+                <td>
+                    <textarea class="form-control" id="service_info" name="service_info" rows="10" required></textarea>
+                </td>
+            </tr>
+            <tr>
                 <th valign="middle">สถานะ <span class="text-danger">*</span></th>
                 <td>
                     <select name="status" id="status" class="form-control">

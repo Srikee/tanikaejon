@@ -226,7 +226,9 @@
                     echo '<i class="'.$star.' fa-star star"></i>';
                 }
             ?>
-            <span class="review-score"> 5 คะแนน</span>
+            <span class="review-score">
+                <?php echo $service_booking_review["review_star"] ?> คะแนน
+            </span>
         </div>
         <div class="mb-4">
             <div class="fw-bold mb-2">ข้อความรีวิว :</div>
