@@ -31,5 +31,15 @@ $(function () {
     // $("#search").keyup(function () {
     //     GetService();
     // });
+    $(".images-section").on("click", ".image", function () {
+        var src = $(this).attr("src");
+        var index = 0;
+        var images = [];
+        $.each($(this).closest(".images-section").find(".image"), function (i, v) {
+            images.push($(this).attr("src"));
+            if (src == $(this).attr("src")) index = i;
+        });
+        Func.ShowGalleryImage(index, images);
+    });
     if (document.referrer !== "") { $(".backbutton").show(); } else { $(".backbutton").hide(); }
 });

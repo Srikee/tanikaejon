@@ -12,5 +12,6 @@
         ?>
         <h4>ยินดีต้อนรับ</h4>
         <h6>เข้าระบบโครงการตานีแก้จน</h6>
+        <img src="../../images/lineoa.png" alt="Line OA">
     </div>
 </div>
