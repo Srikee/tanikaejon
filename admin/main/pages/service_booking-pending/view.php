@@ -132,7 +132,7 @@
                     <th class="text-center" style="min-width: 200px; width: 200px;">ลูกค้า</th>
                     <th class="text-center" style="min-width: 120px; width: 120px;">เบอร์มือถือ</th>
                     <th style="min-width: 70px; width: 70px;" class="text-center">สถานะ</th>
-                    <th style="min-width: 115px; width: 115px;" class="text-center">จัดการ</th>
+                    <th style="min-width: 80px; width: 80px;" class="text-center">จัดการ</th>
                 </tr>
             </thead>
             <tbody>
@@ -141,7 +141,7 @@
                         echo '<tr><td colspan="7" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
-                            $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
+                            // $btn_del = '<button class="btn btn-danger btn-sm btn-del" title="ลบข้อมูล" data-container="#table"><i class="fa fa-trash"></i></button>';
                             echo '
                                 <tr data-json="'.htmlspecialchars(json_encode($value)).'">
                                     <td class="text-center">'.$value["service_booking_id"].'</td>
@@ -152,9 +152,8 @@
                                     <td class="text-center" data-bs-toggle="tooltip" data-bs-title="'.$StatusServiceBookingText[$value["status"]].'">'.$StatusServiceBookingShort[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
                                         <button title="ดูข้อมูล" class="btn btn-success btn-sm btn-view">
-                                            รับเรื่อง
+                                            ดูข้อมูล
                                         </button>
-                                        '.$btn_del.'
                                     </td>
                                 </tr>
                             ';

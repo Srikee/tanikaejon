@@ -17,6 +17,7 @@
     }
     $service_booking_id = $data["service_booking_id"];
 ?>
+<input type="hidden" id="service_booking" value="<?php echo htmlspecialchars(json_encode($data)); ?>">
 <input type="hidden" id="service_booking_id" value="<?php echo htmlspecialchars($service_booking_id); ?>">
 <div class="ks-main-header">
     <nav aria-label="breadcrumb">
@@ -102,12 +103,24 @@
             </div>
         </div>
         <div class="row ui-info-item">
-            <div class="col-auto ui-info-title">
+            <div class="col-auto ui-info-title d-flex align-items-center">
                 ผู้ให้บริการ
             </div>
-            <div class="col-lg ui-info-desc">
+            <div class="col-lg ui-info-desc d-flex align-items-center">
+                <?php if($data["provider_id"]!="") { ?>
                 <?php echo $data["provider_fullname"]; ?>
                 ( <?php echo $data["provider_phone"]; ?> )
+                <button id="btn-edit-provider" class="btn btn-outline-warning ms-2">
+                    <i class="fas fa-pen me-sm-1"></i>
+                    <span class="d-none d-sm-inline">เปลี่ยนผู้ให้บริการ</span>
+                </button>
+                <?php } else { ?>
+                ยังไม่ได้ระบุผู้ให้บริการ
+                <button id="btn-edit-provider" class="btn btn-outline-warning ms-2">
+                    <i class="fas fa-pen me-sm-1"></i>
+                    <span class="d-none d-sm-inline">ระบุผู้ให้บริการ</span>
+                </button>
+                <?php } ?>
             </div>
         </div>
     </div>

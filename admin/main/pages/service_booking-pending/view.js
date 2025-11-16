@@ -4,15 +4,10 @@ $(function () {
             Func.LinkTo("./?page=" + PAGE + "&search=" + $("#search").val());
         }
     });
-    $(".btn-del").click(function () {
-        var data = JSON.parse($(this).closest("tr").attr("data-json"));
-        var service_booking_id = data.service_booking_id;
-        Del(service_booking_id)
-    });
-    function Del(service_booking_id) {
+    function Cancel(service_booking_id) {
         Func.ShowConfirm({
-            html: 'คุณต้องการ <span class="text-danger">"ลบข้อมูล"</span> ใช่หรือไม่ ?',
-            confirmButtonText: '<i class="fas fa-trash me-2"></i> ยืนยันการลบ',
+            html: 'คุณต้องการ <span class="text-danger">"ยกเลิกใบคำขอใช้บริการนี้"</span> ใช่หรือไม่ ?',
+            confirmButtonText: '<i class="fas fa-thumbs-down me-2"></i> ยืนยันการยกเลิก',
             cancelButtonText: '<i class="fas fa-xmark me-2"></i> ไม่ต้องการ',
             confirmButtonColor: '#dc3545',
             cancelButtonColor: '#6c757d',
@@ -23,7 +18,7 @@ $(function () {
                     Func.ShowLoading();
                     $.ajax({
                         type: "POST",
-                        url: "pages/" + PAGE + "/api/del.php",
+                        url: "pages/" + PAGE + "/api/cancel.php",
                         dataType: "JSON",
                         data: formData,
                         contentType: false,
@@ -57,54 +52,6 @@ $(function () {
             },
         });
     }
-    function Approve(service_booking_id) {
-        Func.ShowConfirm({
-            html: 'คุณต้องการ <span class="text-success">"รับเรื่อง"</span> ใช่หรือไม่ ?',
-            confirmButtonText: '<i class="fas fa-handshake me-2"></i> รับเรื่อง',
-            cancelButtonText: '<i class="fas fa-xmark me-2"></i> ไม่ต้องการ',
-            confirmButtonColor: '#198754',
-            cancelButtonColor: '#6c757d',
-            callback: function (rs) {
-                if (rs) {
-                    var formData = new FormData();
-                    formData.append("service_booking_id", service_booking_id);
-                    Func.ShowLoading();
-                    $.ajax({
-                        type: "POST",
-                        url: "pages/" + PAGE + "/api/approve.php",
-                        dataType: "JSON",
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        success: function (res) {
-                            Func.HideLoading();
-                            if (res.status == 'no') {
-                                Func.ShowAlert({
-                                    html: res.message,
-                                    type: "error",
-                                    callback: function () {
-                                        Func.Reload();
-                                    }
-                                });
-                            } else {
-                                Func.LinkTo("./?page=service_booking-detail&service_booking_id=" + service_booking_id);
-                            }
-                        },
-                        error: function () {
-                            Func.HideLoading();
-                            Func.ShowAlert({
-                                html: "ไม่สามารถติดต่อเครื่องแม่ข่ายได้",
-                                type: "error",
-                                callback: function () {
-                                    Func.Reload();
-                                }
-                            });
-                        }
-                    });
-                }
-            },
-        });
-    }
     $(".btn-view").click(function () {
         var data = JSON.parse($(this).closest("[data-json]").attr("data-json"));
         var popup;
@@ -121,13 +68,19 @@ $(function () {
             Func.HideLoading();
             $contents.html(html);
             $(window).trigger('resize');
+            setTimeout(function () {
+                $(window).trigger('resize');
+            }, 100);
         }).fail(function () {
             Func.HideLoading();
         });
         var $footer = $(`
             <div class="row">
                 <div class="col-auto">
-                    <button class="btn btn-danger btn-del"><i class="fas fa-trash me-1"></i> ลบข้อมูล</button>
+                    <button class="btn btn-danger btn-cancel-data">
+                        <i class="fas fa-thumbs-down"></i> 
+                        ยกเลิกคำขอ
+                    </button>
                 </div>
                 <div class="col text-end">
                     <button class="btn btn-success btn-approve"><i class="fas fa-handshake me-1"></i> รับเรื่อง</button>
@@ -171,8 +124,8 @@ $(function () {
                 }
             });
         });
-        $footer.find('.btn-del').click(function (event) {
-            Del(data.service_booking_id);
+        $footer.find('.btn-cancel-data').click(function (event) {
+            Cancel(data.service_booking_id);
         });
         $footer.find('.btn-approve').click(function (event) {
             $contents.find("#btn-submit").trigger("click");
