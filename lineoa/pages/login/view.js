@@ -37,4 +37,35 @@ $(function () {
             });
         });
     });
+    $('#btn-contact-admin').click(function () {
+        var popup;
+        var $contents = $(`<div></div>`);
+        $contents.on("click", ".btn-cancel", function () {
+            popup.close();
+        });
+        $.post("pages/login/api/contact-admin.php", function (html) {
+            $contents.html(html);
+        });
+        popup = new jBox('Modal', {
+            content: $contents,
+            width: "300px",
+            height: "auto",
+            draggable: 'title',
+            overlay: true,
+            zIndex: 201,  // default=10000
+            // addClass: 'provider-popup',
+            onOpen: function () { },
+            closeButton: false,
+            onClose: function () {
+                setTimeout(function () {
+                    popup.destroy();
+                }, 100);
+            }
+        });
+        popup.open();
+    });
+    $("#img-brand").click(function () {
+        var src = $(this).attr("src");
+        Func.ShowImage(src, "โครงการตานีแก้จน");
+    });
 });

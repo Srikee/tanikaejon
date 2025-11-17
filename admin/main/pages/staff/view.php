@@ -131,6 +131,7 @@
                     <th style="width:60px;" class="text-center">ลำดับ</th>
                     <th style="min-width: 200px;">ชื่อเจ้าหน้าที่</th>
                     <th class="text-center" style="min-width: 125px; width: 125px;">ชื่อผู้ใช้งาน</th>
+                    <th class="text-center" style="min-width: 120px; width: 120px;">เบอร์มือถือ</th>
                     <th class="text-center" style="min-width: 88px; width: 88px;">สถานะ</th>
                     <th style="min-width: 88px; width: 88px;" class="text-center">จัดการ</th>
                 </tr>
@@ -138,7 +139,7 @@
             <tbody>
                 <?php 
                     if( sizeof($obj)==0 ) {
-                        echo '<tr><td colspan="5" class="text-center font-italic">ไม่พบรายการ</td></tr>';
+                        echo '<tr><td colspan="6" class="text-center font-italic">ไม่พบรายการ</td></tr>';
                     } else {
                         foreach ($obj as $key => $value) {
                             $status = [
@@ -152,6 +153,7 @@
                                     <td class="text-center">'.(($show*($p-1))+($key+1)).'</td>
                                     <td>'.$value["staff_name"].' '.$value["staff_sname"].'</td>
                                     <td class="text-center">'.$value["username"].'</td>
+                                    <td class="text-center">'.Func::FormatPhoneNumber($value["phone"]).'</td>
                                     <td class="text-center">'.$status[$value["status"]].'</td>
                                     <td class="text-center p-0 pt-1">
                                         '.$btn_edit.'

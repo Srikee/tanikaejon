@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <th>เบอร์มือถือ</th>
-                <td><?php echo $service_booking["phone"]; ?></td>
+                <td><?php echo Func::FormatPhoneNumber($service_booking["phone"]); ?></td>
             </tr>
             <tr>
                 <th>สถานะ</th>

@@ -1,7 +1,12 @@
-<div class="container-fluid my-5">
-    <h4 class="text-center mb-5">
+<div class="container-fluid my-3">
+    <div class="text-center mb-4">
+        <img id="img-brand" src="../images/favicon.png" alt="Login Image" class="img-fluid rounded-4"
+            style="max-height: 200px;">
+    </div>
+    <h4 class="text-center fw-bold fs-2 mb-2">
         โปรดเข้าสู่ระบบ
     </h4>
+    <p class="text-center fs-5 mb-4">โครงการตานีแก้จน</p>
     <form id="formdata" class="px-3">
         <div class="mb-3">
             <label for="phone" class="form-label">เบอร์มือถือ <span class="text-danger">* ระบุ 10 หลัก
@@ -28,9 +33,12 @@
             </div>
         </div>
         <div class="text-center mb-3">
-            <a href="./?page=forgot" class="btn btn-outline-secondary btn-lg w-100">
+            <a href="./?page=forgot" class="btn btn-outline-secondary btn-lg w-100 mb-3">
                 <i class="fa-solid fa-circle-question me-2"></i> ลืมรหัสผ่าน
             </a>
+            <button type="button" class="btn btn-outline-secondary btn-lg w-100 mb-3" id="btn-contact-admin">
+                <i class="fa-solid fa-phone me-2"></i> ติดต่อแอดมิน
+            </button>
         </div>
     </form>
 </div>

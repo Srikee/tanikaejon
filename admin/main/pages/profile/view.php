@@ -32,25 +32,31 @@
             <div class="col-lg">
                 <table class="table table-hover table-borderless">
                     <tr>
-                        <th valign="middle" style="width:140px;">ชื่อ <span class="text-danger">*</span></th>
+                        <th valign="middle" style="width:140px;">ชื่อ</th>
                         <td>
                             <?php echo $data["staff_name"]; ?>
                         </td>
                     </tr>
                     <tr>
-                        <th valign="middle">นามสกุล<span class="text-danger">*</span></th>
+                        <th valign="middle">นามสกุล</th>
                         <td>
                             <?php echo $data["staff_sname"]; ?>
                         </td>
                     </tr>
                     <tr>
-                        <th valign="middle">ชื่อผู้ใช้งาน <span class="text-danger">*</span></th>
+                        <th valign="middle">เบอร์มือถือ</th>
+                        <td>
+                            <?php echo Func::FormatPhoneNumber($data["phone"]); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th valign="middle">ชื่อผู้ใช้งาน</th>
                         <td>
                             <?php echo $data["username"]; ?>
                         </td>
                     </tr>
                     <tr>
-                        <th valign="middle">สถานะ <span class="text-danger">*</span></th>
+                        <th valign="middle">สถานะ</th>
                         <td>
                             <?php
                                 $status = [

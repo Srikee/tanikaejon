@@ -35,6 +35,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <th valign="top">เบอร์มือถือ<span class="text-danger">*</span></th>
+                        <td>
+                            <input type="tel" class="form-control" id="phone" name="phone" maxlength="10"
+                                autocomplete="off" required>
+                            <small class="form-text">ระบุ 10 หลัก ไม่มีขีด</small>
+                        </td>
+                    </tr>
+                    <tr>
                         <th valign="middle">ชื่อผู้ใช้งาน <span class="text-danger">*</span></th>
                         <td>
                             <input type="text" class="form-control" id="username" name="username" autocomplete="off"

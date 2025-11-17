@@ -14,7 +14,7 @@ $(function () {
         var popup;
         var $contents = $(`
             <div>
-                <a href="tel:`+ phone + `" type="button" class="btn btn-lg btn-outline-success w-100">` + phone + `</a>
+                <a href="tel:`+ phone + `" type="button" class="btn btn-lg btn-outline-success w-100">` + Func.FormatPhoneNumber(phone) + `</a>
                 <button type="button" class="btn btn-lg btn-outline-danger w-100 btn-cancel">ปิด</button>
             </div>
         `);

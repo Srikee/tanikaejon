@@ -18,6 +18,7 @@
         "staff_name"=>trim($_POST["staff_name"] ?? ""),
         "staff_sname"=>trim($_POST["staff_sname"] ?? ""),
         "username"=>trim($_POST["username"] ?? ""),
+        "phone"=>trim($_POST["phone"] ?? ""),
         "status"=>trim($_POST["status"] ?? ""),
         "edit_by"=>$_SESSION["tnkj_staff"]["username"],
         "edit_when"=>date("Y-m-d H:i:s")

@@ -924,6 +924,7 @@
             return $dates;
         }
         public static function FormatPhoneNumber($number) {
+            $number = trim($number ?? '');
             $number = preg_replace('/\D/', '', $number);
             if (strlen($number) === 10) {
                 return preg_replace('/(\d{3})(\d{3})(\d{4})/', '$1-$2-$3', $number);

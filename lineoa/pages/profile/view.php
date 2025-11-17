@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <th>เบอร์มือถือ</th>
-                <td><?php echo $customer["phone"]; ?></td>
+                <td><?php echo Func::FormatPhoneNumber($customer["phone"]); ?></td>
             </tr>
             <tr>
                 <th>อาชีพ</th>
