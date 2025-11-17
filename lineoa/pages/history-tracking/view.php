@@ -123,7 +123,8 @@
     <div class="provider">
         <img src="../images/default-profile.png" alt="Provider">
         <div>
-            <?php echo $service_booking["provider_fullname"]; ?>
+            คุณ<?php echo $service_booking["provider_fullname"]; ?>
+            (ผู้ให้บริการ)
         </div>
         <?php if( $service_booking["provider_phone"]!="" ) { ?>
         <a href="Javascript:" id="btn-provider-call" data-phone="<?php echo $service_booking["provider_phone"]; ?>">
@@ -132,6 +133,26 @@
         <?php } ?>
     </div>
     <?php } ?>
+    <?php
+        $sql = "
+            SELECT * 
+            FROM staff 
+            WHERE status='1'
+                AND username!='admin'
+            ORDER BY phone ASC
+            LIMIT 5
+        ";
+        $staff = $DB->QueryObj($sql);
+    ?>
+    <div class="provider mb-3">
+        <img src="../images/default-profile.png" alt="Provider">
+        <div>
+            ติดต่อแอดมิน
+        </div>
+        <a href="Javascript:" id="btn-admin-call" data-staff="<?php echo htmlspecialchars(json_encode($staff)); ?>">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
     <div>
         <h5 class="mb-3">ประวัติการดำเนินงาน</h5>
         <div class="timeline">

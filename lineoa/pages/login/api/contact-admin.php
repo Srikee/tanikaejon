@@ -17,6 +17,8 @@
         FROM staff 
         WHERE status='1'
             AND username!='admin'
+        ORDER BY phone ASC
+        LIMIT 5
     ";
     $staff = $DB->QueryObj($sql);
     $a = '';
